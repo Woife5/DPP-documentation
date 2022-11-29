@@ -1,5 +1,5 @@
 ---
-title: My Project
+title: BesAir 200 Esp Wroom 68
 layout: home
 has_children: true
 ---
@@ -11,7 +11,7 @@ Project documentation for the **Design for Physical Prototyping** course 2022/23
 ## Abstract
 
 Shortly summarize the intentions and ideas behind your project. 
-Lorem ipsum dolor sit amet. This project builds upon the idea of [Chindōgu](https://en.wikipedia.org/wiki/Chind%C5%8Dgu), the practice of inventing ingenious everyday gadgets that seem to be ideal solutions to particular problems, but which may cause more problems than they solve. Lorem ipsum dolor sit amet.
+This project builds upon the idea of [Chindōgu](https://en.wikipedia.org/wiki/Chind%C5%8Dgu), the practice of inventing ingenious everyday gadgets that seem to be ideal solutions to particular problems, but which may cause more problems than they solve. Lorem ipsum dolor sit amet.
 
 ## Concept
 
