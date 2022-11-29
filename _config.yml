@@ -1,8 +1,8 @@
-title: DPP Documentation
-description: A starter template for a Jeykll site using the Just the Docs theme!
+title: BesAir 200 Esp Wroom 68
+description: A futuristic broom for the modern human.
 theme: just-the-docs
 
-url: https://pretoms.github.io/dpp_docs_template
+url: https://Woife5.github.io/DPP-documentation
 
 color_scheme: nil
 callouts_level: quiet # or loud
@@ -23,4 +23,4 @@ callouts:
     color: red
 
 aux_links:
-  Repository: https://github.com/pretoms/dpp_docs_template
+  Repository: https://github.com/Woife5/DPP-documentation
