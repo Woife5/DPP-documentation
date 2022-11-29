@@ -4,7 +4,7 @@ layout: home
 has_children: true
 ---
 
-# My Project (project name)
+# BesAir 200 Esp Wroom 68
 
 Project documentation for the **Design for Physical Prototyping** course 2022/23 focusing on the topic of **Uncomfortable Devices**.
 
