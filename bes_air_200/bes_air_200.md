@@ -17,8 +17,6 @@ This project builds upon the idea of [Chindōgu](https://en.wikipedia.org/wiki/C
 
 Here you could summarize your project proposal. How did you plan to build your prototype? Did you arrive at your idea immediately or did you iterate over it? Describe your process. 
 
-![Chopsticks](assets/chopsticks.jpg)
-
 ## Implementation
 
 Describe how you implemented your project. Which iterations did go through? What did work and what did not work? Did you adapt your original idea to practical difficulties during implementation?
@@ -38,8 +36,6 @@ Lorem ipsum dolor sit amet.
 ## Materials and tools
 
 What materials and hardware did you use in your iterations and your final prototypes? Did you modify any ready-made devices? Did you build it from scratch? What tools did you use to implement your prototype?
-
-![Application](assets/simone.gif)
 
 ## Conclusion
 
