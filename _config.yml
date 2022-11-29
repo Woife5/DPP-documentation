@@ -1,0 +1,26 @@
+title: DPP Documentation
+description: A starter template for a Jeykll site using the Just the Docs theme!
+theme: just-the-docs
+
+url: https://pretoms.github.io/dpp_docs_template
+
+color_scheme: nil
+callouts_level: quiet # or loud
+callouts:
+  highlight:
+    color: yellow
+  important:
+    title: Important
+    color: blue
+  new:
+    title: New
+    color: green
+  note:
+    title: Note
+    color: purple
+  warning:
+    title: Warning
+    color: red
+
+aux_links:
+  Repository: https://github.com/pretoms/dpp_docs_template
