@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PrimaryButton from '@/components/ui/buttons/PrimaryButton.vue'
 import BesnToggle from './BesnToggle.vue'
 </script>
 

@@ -10,8 +10,8 @@ defineProps<{
 
 <template>
   <div
-    class="flex items-center gap-1 rounded-full pl-3 pr-4 py-1 dark:hover:bg-slate-600"
-    :class="{ 'dark:bg-slate-700': checked }"
+    class="flex items-center gap-1 rounded-full pl-3 pr-4 py-1 hover:bg-slate-400 dark:hover:bg-slate-600"
+    :class="{ 'bg-slate-300 dark:bg-slate-700': checked }"
   >
     <input
       type="radio"

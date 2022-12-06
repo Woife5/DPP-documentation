@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <button class="dark:hover:bg-slate-600" type="button">
+  <button class="hover:bg-slate-400 dark:hover:bg-slate-600" type="button">
     <slot>Click</slot>
   </button>
 </template>
