@@ -34,3 +34,10 @@ import SubtleButton from './ui/buttons/SubtleButton.vue'
     </div>
   </header>
 </template>
+
+<style scoped>
+h1 {
+  text-shadow: 1px 1px 2px hsl(222, 80%, 60%), 0 0 1em hsl(222, 40%, 40%),
+    0 0 0.2em hsl(222, 40%, 40%);
+}
+</style>
