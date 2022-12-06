@@ -11,3 +11,6 @@ vendor/
 
 # MacOS files
 .DS_store
+
+# Ignore .vscode in root
+/.vscode

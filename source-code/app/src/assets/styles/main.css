@@ -1,0 +1,10 @@
+@import './base.css';
+@import './scrollbar.css';
+
+body {
+  @apply bg-slate-200 dark:bg-slate-800 text-black dark:text-neutral-100 h-screen;
+}
+
+#app {
+  @apply h-full flex flex-col;
+}
