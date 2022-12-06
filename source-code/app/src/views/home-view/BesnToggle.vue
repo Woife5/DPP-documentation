@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // import { besAirService } from '@/services/bes-air.service'
 import { ref } from 'vue'
-import BigRedButton from './BigRedButton.vue'
+import BigFatButton from './BigFatButton.vue'
 
 const besnActivated = ref(false)
 
@@ -27,10 +27,6 @@ async function toggleButtonState() {
 
 <template>
   <div>
-    <BigRedButton
-      ref="bigRedButtonEl"
-      :activated="besnActivated"
-      @change="toggleButtonState"
-    />
+    <BigFatButton :activated="besnActivated" @change="toggleButtonState" />
   </div>
 </template>
