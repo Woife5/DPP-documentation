@@ -1,1 +1,11 @@
-{}
+{
+  "app": {
+    "title": "Bes Air",
+    "slogan": "Die unvergleichliche Art sauber zu machen."
+  },
+  "header": {
+    "settings": {
+      "label": "Einstellungen"
+    }
+  }
+}

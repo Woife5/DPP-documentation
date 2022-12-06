@@ -1,21 +1,33 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SubtleButton from './ui/buttons/SubtleButton.vue'
+</script>
 
 <template>
   <header class="flex items-center mt-6">
     <div class="w-2/12 flex justify-center"></div>
-    <div class="w-8/12 flex justify-center">
+    <div class="w-8/12">
       <RouterLink :to="{ name: 'home' }">
-        <h1 class="flex items-center gap-4">
-          <span class="text-4xl font-righteous">Bes Air</span>
-          <i class="text-4xl material-icons">cleaning_services</i>
-        </h1>
+        <div class="flex flex-col items-center">
+          <h1 class="flex items-center gap-4">
+            <span class="text-4xl font-righteous">{{ $t('app.title') }}</span>
+            <i class="hidden sm:block text-4xl material-icons"
+              >cleaning_services</i
+            >
+          </h1>
+          <div class="hidden sm:block">{{ $t('app.slogan') }}</div>
+        </div>
       </RouterLink>
     </div>
     <div class="w-2/12 flex justify-center">
       <RouterLink :to="{ name: 'settings' }">
-        <span class="text-2xl flex">
-          <i class="material-icons">settings</i>
-        </span>
+        <SubtleButton>
+          <div class="flex gap-2 items-center">
+            <span class="hidden sm:block">{{
+              $t('header.settings.label')
+            }}</span>
+            <i class="material-icons">settings</i>
+          </div></SubtleButton
+        >
       </RouterLink>
     </div>
   </header>
