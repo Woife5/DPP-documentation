@@ -2,7 +2,7 @@
 @import './scrollbar.css';
 
 body {
-  @apply bg-slate-200 dark:bg-slate-800 text-black dark:text-neutral-100 h-screen;
+  @apply text-slate-800 dark:text-slate-200 bg-slate-200 dark:bg-slate-800 h-screen;
 }
 
 #app {

@@ -1,1 +1,39 @@
-{}
+{
+  "app": {
+    "title": "Bes Air",
+    "slogan": "Das unvergleichbare Reinigungserlebnis."
+  },
+  "header": {
+    "settings": {
+      "label": "Optionen"
+    }
+  },
+  "locale": {
+    "en": {
+      "label": "English"
+    },
+    "de": {
+      "label": "Deutsch"
+    },
+    "at": {
+      "label": "Deitsch (Östarreich)"
+    }
+  },
+  "view": {
+    "settings": {
+      "heading": {
+        "label": "Optionen"
+      },
+      "language": {
+        "heading": {
+          "label": "Sprache"
+        }
+      }
+    }
+  },
+  "navigation": {
+    "back": {
+      "label": "Zurück"
+    }
+  }
+}
