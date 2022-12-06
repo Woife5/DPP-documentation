@@ -5,25 +5,24 @@
   },
   "header": {
     "settings": {
-      "label": "Einstellungen"
+      "label": "Optionen"
     }
   },
   "locale": {
-    "option": {
-      "en": {
-        "key": "en",
-        "label": "English"
-      },
-      "de": {
-        "key": "de",
-        "label": "Deutsch"
-      }
+    "en": {
+      "label": "English"
+    },
+    "de": {
+      "label": "Deutsch"
+    },
+    "at": {
+      "label": "Deitsch (Östarreich)"
     }
   },
   "view": {
     "settings": {
       "heading": {
-        "label": "Einstellungen"
+        "label": "Optionen"
       },
       "language": {
         "heading": {

@@ -1,11 +1,12 @@
 {
-  "app": {
-    "title": "Bes Air",
-    "slogan": "The incomparable cleaning experience."
+  "navigation": {
+    "back": {
+      "label": "Zruck"
+    }
   },
   "header": {
     "settings": {
-      "label": "Settings"
+      "label": "Optionan"
     }
   },
   "locale": {
@@ -22,18 +23,17 @@
   "view": {
     "settings": {
       "heading": {
-        "label": "Settings"
+        "label": "Optionan"
       },
       "language": {
         "heading": {
-          "label": "Language"
+          "label": "Sproch"
         }
       }
     }
   },
-  "navigation": {
-    "back": {
-      "label": "Back"
-    }
+  "app": {
+    "title": "Bes Air",
+    "slogan": "Sa ma ned bes, woa so host no ned greinigt."
   }
 }
