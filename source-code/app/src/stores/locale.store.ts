@@ -10,14 +10,6 @@ import {
 export const useLocaleStore = defineStore('locale', () => {
   const selectedLocale = ref<LocaleOption>('en')
 
-  // function toggleLocale() {
-  //   // Only works with 2 locales
-  //   setLocale(
-  //     localeOptions.find((option) => option != selectedLocale.value) ??
-  //       defaultLocale
-  //   )
-  // }
-
   function setLocale(locale: LocaleOption) {
     selectedLocale.value = locale
     i18n.global.locale = selectedLocale.value
