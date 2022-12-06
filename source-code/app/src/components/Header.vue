@@ -19,7 +19,9 @@ import SubtleButton from './ui/buttons/SubtleButton.vue'
       </RouterLink>
     </div>
     <div class="w-2/12 flex justify-center">
-      <RouterLink :to="{ name: 'settings' }">
+      <RouterLink
+        :to="{ name: $route.name != 'settings' ? 'settings' : 'home' }"
+      >
         <SubtleButton>
           <div class="flex gap-2 items-center">
             <span class="hidden sm:block">{{

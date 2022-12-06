@@ -4,7 +4,7 @@ import { RouterView } from 'vue-router'
 
 <template>
   <main class="flex-1 flex mt-4">
-    <div class="flex-1 flex mx-auto max-w-xl p-4">
+    <div class="container mx-auto max-w-xl p-4">
       <RouterView />
     </div>
   </main>

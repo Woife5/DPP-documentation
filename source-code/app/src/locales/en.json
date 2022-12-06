@@ -1,11 +1,40 @@
 {
   "app": {
     "title": "Bes Air",
-    "slogan": "The unforgettable cleaning experience."
+    "slogan": "The incomparable cleaning experience."
   },
   "header": {
     "settings": {
       "label": "Settings"
+    }
+  },
+  "locale": {
+    "option": {
+      "en": {
+        "key": "en",
+        "label": "English"
+      },
+      "de": {
+        "key": "de",
+        "label": "Deutsch"
+      }
+    }
+  },
+  "view": {
+    "settings": {
+      "heading": {
+        "label": "Settings"
+      },
+      "language": {
+        "heading": {
+          "label": "Language"
+        }
+      }
+    }
+  },
+  "navigation": {
+    "back": {
+      "label": "Back"
     }
   }
 }
