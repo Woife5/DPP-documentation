@@ -2,11 +2,12 @@
 // import { besAirService } from '@/services/bes-air.service'
 import { ref } from 'vue'
 import BigFatButton from './BigFatButton.vue'
+import { useBesnStore } from '@/stores/besn.store'
 
-const besnActivated = ref(false)
+const { $state, toggleBesn } = useBesnStore()
 
 async function toggleButtonState() {
-  besnActivated.value = !besnActivated.value
+  await toggleBesn()
   // if (besnActivated.value) {
   //   const res = await besAirService.startBesn()
   //   if (res.status === 200) {
@@ -27,6 +28,6 @@ async function toggleButtonState() {
 
 <template>
   <div>
-    <BigFatButton :activated="besnActivated" @change="toggleButtonState" />
+    <BigFatButton :state="$state.besnState" @change="toggleButtonState" />
   </div>
 </template>

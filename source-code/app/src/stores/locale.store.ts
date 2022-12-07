@@ -1,11 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import {
-  defaultLocale,
-  i18n,
-  type LocaleOption,
-  localeOptions,
-} from '@/locales/i18n'
+import { i18n, type LocaleOption } from '@/locales/i18n'
 
 export const useLocaleStore = defineStore('locale', () => {
   const selectedLocale = ref<LocaleOption>('en')
