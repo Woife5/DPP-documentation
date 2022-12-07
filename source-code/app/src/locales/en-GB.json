@@ -9,13 +9,13 @@
     }
   },
   "locale": {
-    "en": {
+    "en-GB": {
       "label": "English"
     },
-    "de": {
+    "de-DE": {
       "label": "Deutsch"
     },
-    "at": {
+    "de-AT": {
       "label": "Deitsch (Östarreich)"
     }
   },
