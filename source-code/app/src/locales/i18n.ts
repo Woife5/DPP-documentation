@@ -7,6 +7,9 @@ import at from '@/locales/at.json'
 export const defaultLocale = 'en'
 export const localeOptions = [defaultLocale, 'de', 'at'] as const
 export type LocaleOption = typeof localeOptions[number]
+export function isLocaleOption(value: string): value is LocaleOption {
+  return localeOptions.some((option) => option === value)
+}
 
 export const i18n = createI18n({
   locale: defaultLocale,
