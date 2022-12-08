@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TextInput from '@/components/ui/inputs/TextInput.vue'
 import { useConnectionStore } from '@/stores/connection.store'
+
 const connectionStore = useConnectionStore()
 
 function onUrlInput(value: string) {
@@ -18,16 +19,14 @@ function onUrlInput(value: string) {
         </h1>
       </legend>
 
-      <div class="flex items-center">
-        <TextInput
-          id="connection-url"
-          name="connection-url"
-          label="Connection URL"
-          placeholder="http://10.0.0.1:8352"
-          :value="connectionStore.connectionUrl"
-          @input="onUrlInput"
-        />
-      </div>
+      <TextInput
+        id="connection-url"
+        name="connection-url"
+        :label="$t('view.settings.connection.input.label')"
+        placeholder="http://10.0.0.1:8352"
+        :value="connectionStore.connectionUrl"
+        @input="onUrlInput"
+      />
     </fieldset>
   </div>
 </template>

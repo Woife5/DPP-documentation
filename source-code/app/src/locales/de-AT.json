@@ -33,6 +33,9 @@
       "connection": {
         "heading": {
           "label": "Vabindung"
+        },
+        "input": {
+          "label": "URL vom Bes Air"
         }
       }
     }

@@ -2,6 +2,7 @@ import { BesAirMockService } from './bes-air-mock.service'
 import { BesAirRestService } from './bes-air-rest.service'
 
 export interface BesAirService {
+  url: string
   startBesn(): Promise<void>
   stopBesn(): Promise<void>
   getBesnState(): Promise<GetBesnStateResponse>

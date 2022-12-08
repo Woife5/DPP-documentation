@@ -29,6 +29,7 @@ function onInputChange(event: Event) {
       :placeholder="placeholder"
       :value="value"
       @input="onInputChange"
+      autocomplete="off"
     />
   </div>
 </template>

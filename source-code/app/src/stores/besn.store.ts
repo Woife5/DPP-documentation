@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { besAirService } from '@/services/bes-air.service'
+import { useConnectionStore } from './connection.store'
 
 export type BesnState = 'offline' | 'on' | 'off'
 
