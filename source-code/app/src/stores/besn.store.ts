@@ -44,5 +44,7 @@ export const useBesnStore = defineStore('besn', () => {
     }
   }
 
-  return { besnState, connect, activateBesn, deactivateBesn, toggleBesn }
+  connect()
+
+  return { besnState, connect, toggleBesn }
 })
