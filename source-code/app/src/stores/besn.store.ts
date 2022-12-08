@@ -7,26 +7,33 @@ export type BesnState = 'offline' | 'on' | 'off'
 export const useBesnStore = defineStore('besn', () => {
   const besnState = ref<BesnState>('offline')
 
-  besAirService
-    .getBesnState()
-    .then((response) => (besnState.value = response.state))
+  async function connect() {
+    catchError(async () => {
+      const response = await besAirService.getBesnState()
+      besnState.value = response.state
+    })
+  }
 
-  async function activateBesn() {
+  async function catchError(f: () => Promise<void>) {
     try {
-      await besAirService.startBesn()
-      besnState.value = 'on'
+      await f()
     } catch {
       besnState.value = 'offline'
     }
   }
 
+  async function activateBesn() {
+    catchError(async () => {
+      await besAirService.startBesn()
+      besnState.value = 'on'
+    })
+  }
+
   async function deactivateBesn() {
-    try {
+    catchError(async () => {
       await besAirService.stopBesn()
       besnState.value = 'off'
-    } catch {
-      besnState.value = 'offline'
-    }
+    })
   }
 
   async function toggleBesn() {
@@ -37,5 +44,5 @@ export const useBesnStore = defineStore('besn', () => {
     }
   }
 
-  return { besnState, activateBesn, deactivateBesn, toggleBesn }
+  return { besnState, connect, activateBesn, deactivateBesn, toggleBesn }
 })

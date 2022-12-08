@@ -12,13 +12,10 @@ export const useLocaleStore = defineStore('locale', () => {
 
   function initFromLocalStorage() {
     const locale = localStorage.getItem('locale')
-    console.log('locale', locale)
     if (locale != null && isLocaleOption(locale)) {
       setI18nLocale(locale)
-      console.log('setI18nLocale(locale)', locale)
     } else {
       updateLocalStorage()
-      console.log('updateLocalStorage()', locale)
     }
   }
 

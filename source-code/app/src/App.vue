@@ -2,9 +2,9 @@
 import Header from './components/Header.vue'
 import Main from './components/Main.vue'
 import Footer from './components/Footer.vue'
-import { useLocaleStore } from './stores/locale.store'
+import { initStores } from './stores/init-stores'
 
-useLocaleStore().initFromLocalStorage()
+initStores()
 </script>
 
 <template>
