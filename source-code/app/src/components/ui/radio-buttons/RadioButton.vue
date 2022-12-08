@@ -10,7 +10,7 @@ defineProps<{
 
 <template>
   <div
-    class="flex items-center gap-1 rounded-full pl-3 pr-4 py-1 hover:bg-slate-400 dark:hover:bg-slate-600"
+    class="flex items-center gap-1 rounded-full pl-3 pr-4 py-1 hover:bg-slate-400 dark:hover:bg-slate-600 cursor-pointer"
     :class="{ 'bg-slate-300 dark:bg-slate-700': checked }"
   >
     <input
@@ -19,8 +19,9 @@ defineProps<{
       :name="name"
       :value="value"
       :checked="checked"
+      class="cursor-pointer"
     />
-    <label :for="id">{{ label }}</label>
+    <label :for="id" class="cursor-pointer">{{ label }}</label>
   </div>
 </template>
 

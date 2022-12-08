@@ -6,7 +6,7 @@ import ConnectionSettings from './ConnectionSettings.vue'
 
 <template>
   <div>
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-4 flex-wrap">
       <h1 class="text-4xl">{{ $t('view.settings.heading.label') }}</h1>
       <RouterLink :to="{ name: 'home' }">
         <SecondaryButton>
