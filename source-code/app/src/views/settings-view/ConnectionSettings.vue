@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import TextInput from '@/components/ui/inputs/TextInput.vue'
 import { useConnectionStore } from '@/stores/connection.store'
-const { $state, setConnectionUrl } = useConnectionStore()
+const connectionStore = useConnectionStore()
 
-function onConnectionUrlInput(value: string) {
-  setConnectionUrl(value)
+function onUrlInput(value: string) {
+  connectionStore.connectionUrl = value
 }
 </script>
 
@@ -24,8 +24,8 @@ function onConnectionUrlInput(value: string) {
           name="connection-url"
           label="Connection URL"
           placeholder="http://10.0.0.1:8352"
-          :value="$state.connectionUrl"
-          @input="onConnectionUrlInput"
+          :value="connectionStore.connectionUrl"
+          @input="onUrlInput"
         />
       </div>
     </fieldset>
