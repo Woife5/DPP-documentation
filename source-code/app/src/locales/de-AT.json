@@ -29,6 +29,11 @@
         "heading": {
           "label": "Sproch"
         }
+      },
+      "connection": {
+        "heading": {
+          "label": "Vabindung"
+        }
       }
     }
   },

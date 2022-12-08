@@ -28,6 +28,11 @@
         "heading": {
           "label": "Sprache"
         }
+      },
+      "connection": {
+        "heading": {
+          "label": "Verbindung"
+        }
       }
     }
   },

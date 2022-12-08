@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SecondaryButton from '@/components/ui/buttons/SecondaryButton.vue'
 import LanguageSettings from '@/views/settings-view/LanguageSettings.vue'
+import ConnectionSettings from './ConnectionSettings.vue'
 </script>
 
 <template>
@@ -17,10 +18,7 @@ import LanguageSettings from '@/views/settings-view/LanguageSettings.vue'
       </RouterLink>
     </div>
 
-    <div class="mt-6">
-      <LanguageSettings />
-    </div>
-
-    <div class="mt-6"></div>
+    <LanguageSettings class="mt-6" />
+    <ConnectionSettings class="mt-6" />
   </div>
 </template>
