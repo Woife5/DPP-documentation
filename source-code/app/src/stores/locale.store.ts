@@ -6,9 +6,13 @@ import { useStorage } from '@vueuse/core'
 export const useLocaleStore = defineStore('locale', () => {
   const selectedLocale = ref(useStorage<LocaleOption>('locale', 'en-GB'))
 
+  function init() {
+    i18n.global.locale = selectedLocale.value
+  }
+
   watch(selectedLocale, () => {
     i18n.global.locale = selectedLocale.value
   })
 
-  return { selectedLocale }
+  return { selectedLocale, init }
 })
