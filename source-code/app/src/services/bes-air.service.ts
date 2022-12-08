@@ -1,15 +1,15 @@
-import axios from 'axios'
+import { BesAirMockService } from './bes-air-mock.service'
+import { BesAirRestService } from './bes-air-rest.service'
 
-class BesAirService {
-  private url = 'http://192.168.43.158/api'
-
-  public async startBesn() {
-    return await axios.post(`${this.url}/start`)
-  }
-
-  public async stopBesn() {
-    return await axios.post(`${this.url}/stop`)
-  }
+export interface BesAirService {
+  startBesn(): Promise<void>
+  stopBesn(): Promise<void>
+  getBesnState(): Promise<GetBesnStateResponse>
 }
 
-export const besAirService = new BesAirService()
+export const besAirService: BesAirService = new BesAirMockService()
+// export const besAirService: BesAirService = new BesAirRestService()
+
+export type GetBesnStateResponse = {
+  state: 'on' | 'off'
+}
