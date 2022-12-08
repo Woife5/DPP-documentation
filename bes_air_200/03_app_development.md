@@ -21,8 +21,8 @@ This clearly important button turns the device on or off. It also communicates t
 
 Light Mode Turn On  |  Light Mode Turn Off
 :------------------:|:-------------------------:
-![Home_On_Light_iPhone](assets/app-screenshots/Home_On_Light_iPhone.png)  |  ![Home_Off_Light_iPhone](assets/app-screenshots/Home_Off_Light_IPhone.png)
+![Home_On_Light_iPhone](assets/app-screenshots/Home_On_Light_iPhone.png){: width="300" }  |  ![Home_Off_Light_iPhone](assets/app-screenshots/Home_Off_Light_iPhone.png){: width="300" }
 
 Dark Mode Turn Off  |  Dark Mode Reconnect
 :------------------:|:-------------------------:
-![Home_Off_Dark_iPhone](assets/app-screenshots/Home_Off_Dark_iPhone.png)  |  ![Home_Disconnected_Dark_iPhone](assets/app-screenshots/Home_Disconnected_Dark_iPhone.png)
+![Home_Off_Dark_iPhone](assets/app-screenshots/Home_Off_Dark_iPhone.png){: width="300" }  |  ![Home_Disconnected_Dark_iPhone](assets/app-screenshots/Home_Disconnected_Dark_iPhone.png){: width="300" }
