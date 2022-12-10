@@ -33,4 +33,4 @@ Dark Mode Turn Off  |  Dark Mode Reconnect
 
 Dark Mode German    |  Dark Mode English
 :------------------:|:-------------------------:
-![de-DE_Light](assets/app-screenshots/settings/de-DE_Light.png){: width="300" } | ![en-GB_Dark](assets/app-screenshots/settings/en-GB_Dark.png){: width="300" }
+![en-GB_Light](assets/app-screenshots/settings/en-GB_Light.png){: width="300" } | ![de-DE_Dark](assets/app-screenshots/settings/de-DE_Dark.png){: width="300" }

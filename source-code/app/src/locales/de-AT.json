@@ -29,6 +29,14 @@
         "heading": {
           "label": "Sproch"
         }
+      },
+      "connection": {
+        "heading": {
+          "label": "Vabindung"
+        },
+        "input": {
+          "label": "URL vom Bes Air"
+        }
       }
     }
   },

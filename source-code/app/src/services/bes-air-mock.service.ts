@@ -5,6 +5,7 @@ export class BesAirMockService implements BesAirService {
     besnState: 'off' as 'on' | 'off',
   }
   private readonly failChance = 0.2
+  public url = ''
 
   public async startBesn(): Promise<void> {
     if (Math.random() < this.failChance) throw new Error('Failed to start besn')

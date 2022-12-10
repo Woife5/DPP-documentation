@@ -3,7 +3,7 @@ import RadioButton from '@/components/ui/radio-buttons/RadioButton.vue'
 import { localeOptions } from '@/locales/i18n'
 import { useLocaleStore } from '@/stores/locale.store'
 
-const { $state, setLocale } = useLocaleStore()
+const localeStore = useLocaleStore()
 </script>
 
 <template>
@@ -19,12 +19,12 @@ const { $state, setLocale } = useLocaleStore()
       <div class="flex flex-col items-start gap-y-1">
         <RadioButton
           v-for="localeOption of localeOptions"
-          @click="() => setLocale(localeOption)"
+          @click="() => (localeStore.selectedLocale = localeOption)"
           :id="localeOption"
           :label="$t(`locale.${localeOption}.label`)"
           name="language"
           :value="localeOption"
-          :checked="localeOption === $state.selectedLocale"
+          :checked="localeOption === localeStore.selectedLocale"
         />
       </div>
     </fieldset>

@@ -1,32 +1,18 @@
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
-import { i18n, isLocaleOption, type LocaleOption } from '@/locales/i18n'
+import { i18n, type LocaleOption } from '@/locales/i18n'
+import { useStorage } from '@vueuse/core'
 
 export const useLocaleStore = defineStore('locale', () => {
-  const selectedLocale = ref<LocaleOption>('en-GB')
+  const selectedLocale = ref(useStorage<LocaleOption>('locale', 'en-GB'))
 
-  function setI18nLocale(locale: LocaleOption) {
-    selectedLocale.value = locale
+  function init() {
     i18n.global.locale = selectedLocale.value
   }
 
-  function initFromLocalStorage() {
-    const locale = localStorage.getItem('locale')
-    if (locale != null && isLocaleOption(locale)) {
-      setI18nLocale(locale)
-    } else {
-      updateLocalStorage()
-    }
-  }
+  watch(selectedLocale, () => {
+    i18n.global.locale = selectedLocale.value
+  })
 
-  function updateLocalStorage() {
-    localStorage.setItem('locale', selectedLocale.value)
-  }
-
-  function setLocale(locale: LocaleOption) {
-    setI18nLocale(locale)
-    updateLocalStorage()
-  }
-
-  return { selectedLocale, setLocale, initFromLocalStorage }
+  return { selectedLocale, init }
 })

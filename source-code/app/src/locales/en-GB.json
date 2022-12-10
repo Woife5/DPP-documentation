@@ -28,6 +28,14 @@
         "heading": {
           "label": "Language"
         }
+      },
+      "connection": {
+        "heading": {
+          "label": "Connection"
+        },
+        "input": {
+          "label": "URL to Bes Air"
+        }
       }
     }
   },
