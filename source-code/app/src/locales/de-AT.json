@@ -7,6 +7,9 @@
   "header": {
     "settings": {
       "label": "Optionan"
+    },
+    "led-settings": {
+      "label": "LEDs"
     }
   },
   "locale": {

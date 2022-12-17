@@ -6,6 +6,9 @@
   "header": {
     "settings": {
       "label": "Settings"
+    },
+    "led-settings": {
+      "label": "LEDs"
     }
   },
   "locale": {
