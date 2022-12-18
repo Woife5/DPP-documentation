@@ -4,7 +4,7 @@ import SubtleButton from './ui/buttons/SubtleButton.vue'
 
 <template>
   <header
-    class="flex flex-col sm:flex-row justify-start sm:justify-between gap-y-2 sm:items-center px-4 py-4"
+    class="flex flex-col sm:flex-row justify-start sm:justify-between gap-y-2 items-center px-4 py-4"
   >
     <div class="flex justify-start">
       <RouterLink id="home-link" :to="{ name: 'home' }">
