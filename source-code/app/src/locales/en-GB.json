@@ -37,7 +37,7 @@
           "label": "Connection"
         },
         "input": {
-          "label": "URL to Bes Air"
+          "label": "URL of Bes Air"
         }
       }
     }
