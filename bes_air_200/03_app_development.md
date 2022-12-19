@@ -7,7 +7,7 @@ nav_order: 3
 
 # App Development
 
-Try out the [*BesAir 200* app](https://bes-air-app.vercel.app/) now!
+Try out the [*BesAir 200* app](https://bes-air-app.vercel.app/){:target="_blank"} now!
 
 ## Introduction
 The idea is to extend the *BesAir 200 Esp Wroom 68* experience by developing an app which remotely controlls the *Bes Air* device. Features like turning the device on and off are a must. Other interactions like changing the LED lighting or playing a sound are planned. Only the future will tell how far we will reach into the bag of absurdity.
