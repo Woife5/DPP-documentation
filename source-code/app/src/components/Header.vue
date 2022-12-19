@@ -3,9 +3,7 @@ import SubtleButton from './ui/buttons/SubtleButton.vue'
 </script>
 
 <template>
-  <header
-    class="flex flex-col sm:flex-row justify-start sm:justify-between gap-y-2 items-center px-4 py-4"
-  >
+  <header class="mx-auto flex flex-col items-center gap-y-4 mt-4">
     <div class="flex justify-start">
       <RouterLink id="home-link" :to="{ name: 'home' }">
         <div class="flex flex-col items-center rounded-full">
@@ -17,20 +15,34 @@ import SubtleButton from './ui/buttons/SubtleButton.vue'
         </div>
       </RouterLink>
     </div>
-    <div class="flex justify-end sm:justify-start gap-1">
+    <div class="flex flex-wrap gap-1">
+      <RouterLink :to="{ name: 'home' }">
+        <SubtleButton>
+          <div class="flex gap-2 items-center">
+            <i class="material-icons">home</i>
+            <span class="hidden sm:block">{{
+              $t('navigation.home.label')
+            }}</span>
+          </div>
+        </SubtleButton>
+      </RouterLink>
       <RouterLink :to="{ name: 'led-settings' }">
         <SubtleButton>
           <div class="flex gap-2 items-center">
-            <span>{{ $t('header.led-settings.label') }}</span>
             <i class="material-icons">lightbulb</i>
+            <span class="hidden sm:block">{{
+              $t('header.led-settings.label')
+            }}</span>
           </div>
         </SubtleButton>
       </RouterLink>
       <RouterLink :to="{ name: 'settings' }">
         <SubtleButton>
           <div class="flex gap-2 items-center">
-            <span>{{ $t('header.settings.label') }}</span>
             <i class="material-icons">settings</i>
+            <span class="hidden sm:block">{{
+              $t('header.settings.label')
+            }}</span>
           </div>
         </SubtleButton>
       </RouterLink>

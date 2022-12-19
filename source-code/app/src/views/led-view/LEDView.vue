@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import HomeButton from '@/components/ui/buttons/HomeButton.vue'
 import RadioButton from '@/components/ui/radio-buttons/RadioButton.vue'
 import { useLocalStorage } from '@vueuse/core'
 import type { Color } from 'csstype'
-import { ref, computed } from 'vue'
 
 const selectedColor = useLocalStorage<Color>('led-color', '#ffffff')
 
@@ -18,13 +16,13 @@ function onPatternClick(patternOption: PatternOption) {
 
 <template>
   <div>
-    <div class="flex items-center gap-4 flex-wrap">
-      <h1 class="text-4xl">{{ $t('view.led-settings.heading.label') }}</h1>
-      <HomeButton />
-    </div>
+    <h1 class="text-4xl">{{ $t('view.led-settings.heading.label') }}</h1>
 
     <div class="mt-4 flex flex-col">
-      <label for="led-color" class="text-2xl">LED Color</label>
+      <h2 class="text-2xl">LED Color</h2>
+      <label for="led-color" class="hidden" aria-hidden="false">
+        LED Color
+      </label>
       <input
         class="rounded-sm px-[2px] min-w-[60px] min-h-[40px] dark:bg-slate-700 dark:hover:bg-slate-600 translate-colors duration-200"
         v-model="selectedColor"
@@ -36,10 +34,10 @@ function onPatternClick(patternOption: PatternOption) {
     </div>
     <fieldset class="mt-4">
       <legend class="mb-2">
-        <h1 class="flex items-center gap-2 text-2xl">
+        <h2 class="flex items-center gap-2 text-2xl">
           <span>{{ $t('view.led-settings.pattern.heading.label') }}</span>
           <i class="material-icons">pattern</i>
-        </h1>
+        </h2>
       </legend>
 
       <div class="flex flex-col items-start gap-y-1">
