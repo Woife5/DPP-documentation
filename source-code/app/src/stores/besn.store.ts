@@ -1,7 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { besAirService } from '@/services/bes-air.service'
-import { useConnectionStore } from './connection.store'
 import axios from 'axios'
 
 export type BesnState = 'offline' | 'on' | 'off'
@@ -21,15 +20,25 @@ export const useBesnStore = defineStore('besn', () => {
       return Promise.reject(error)
     }
   )
-  axios.interceptors.response.use(function (response) {
-    pending.value = false
-    return response
-  })
+  axios.interceptors.response.use(
+    function (response) {
+      pending.value = false
+      return response
+    },
+    function (error) {
+      pending.value = false
+      return Promise.reject(error)
+    }
+  )
 
   async function connect() {
     catchError(async () => {
       const response = await besAirService.getBesnState()
-      besnState.value = response.data.state
+      if (response.data.state === 'on' || response.data.state === 'off') {
+        besnState.value = response.data.state
+      } else {
+        besnState.value = 'offline'
+      }
     })
   }
 

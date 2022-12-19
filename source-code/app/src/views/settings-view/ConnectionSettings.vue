@@ -5,26 +5,39 @@ import TestConnectionButton, {
   type TestState,
 } from './TestConnectionButton.vue'
 import { besAirService } from '@/services/bes-air.service'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const connectionStore = useConnectionStore()
 
+const showInvalidUrlError = ref(false)
+const connectionTest = ref<TestState>('unset')
+
+connectionStore.$subscribe(() => (connectionTest.value = 'unset'))
+
+onMounted(() => validateInput(connectionStore.connectionUrl))
+
 function onUrlInput(value: string) {
+  validateInput(value)
   connectionStore.connectionUrl = value
 }
 
-const testConnectionState = ref<TestState>('unset')
-
-connectionStore.$subscribe(() => (testConnectionState.value = 'unset'))
+function validateInput(value: string) {
+  const validator = /^https?:\/\/(localhost|[\w.-]{1,256})(:\d{1,4})?$/
+  if (validator.test(value)) {
+    showInvalidUrlError.value = false
+  } else {
+    showInvalidUrlError.value = true
+  }
+}
 
 async function testConnection() {
-  if (testConnectionState.value === 'pending') return
-  testConnectionState.value = 'pending'
+  if (connectionTest.value === 'pending') return
+  connectionTest.value = 'pending'
   try {
     await besAirService.getBesnState()
-    testConnectionState.value = 'success'
+    connectionTest.value = 'success'
   } catch (error) {
-    testConnectionState.value = 'fail'
+    connectionTest.value = 'fail'
   }
 }
 </script>
@@ -49,10 +62,15 @@ async function testConnection() {
           :value="connectionStore.connectionUrl"
           @input="onUrlInput"
         />
-        <TestConnectionButton
-          :state="testConnectionState"
-          @click="testConnection"
-        />
+        <TestConnectionButton :state="connectionTest" @click="testConnection" />
+      </div>
+      <div v-show="showInvalidUrlError" class="text-red-600 dark:text-red-500 flex flex-col">
+        <div class="leading-tight mt-2">
+          {{ $t('view.settings.connection.input.error.invalid-url.label') }}
+        </div>
+        <div class="leading-tight">
+          {{ $t('view.settings.connection.input.error.invalid-url.pattern', {pattern:'<http(s)>://<url>'}) }}
+        </div>
       </div>
     </fieldset>
   </div>

@@ -16,5 +16,5 @@ export interface BesAirService {
 export const besAirService: BesAirService = new BesAirRestService()
 
 export type GetBesnStateResponse = {
-  state: 'on' | 'off'
+  state: unknown
 }

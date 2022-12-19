@@ -41,7 +41,13 @@
           "label": "Vabindung"
         },
         "input": {
-          "label": "URL vom Bes Air"
+          "label": "URL vom Bes Air",
+          "error": {
+            "invalid-url": {
+              "label": "De URL passt ned",
+              "pattern": "So gherts: {pattern}"
+            }
+          }
         },
         "test-url": {
           "label": "Vabindung testn"

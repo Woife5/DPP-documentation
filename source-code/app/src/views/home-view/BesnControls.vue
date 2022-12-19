@@ -2,8 +2,11 @@
 import BigFatButton from './BigFatButton.vue'
 import { useBesnStore } from '@/stores/besn.store'
 import TryReconnect from './TryReconnect.vue'
+import { onMounted } from 'vue'
 
 const besnStore = useBesnStore()
+
+onMounted(() => besnStore.connect())
 
 async function toggleButtonState() {
   await besnStore.toggleBesn()
