@@ -42,6 +42,9 @@
         },
         "input": {
           "label": "URL vom Bes Air"
+        },
+        "test-url": {
+          "label": "URL testen"
         }
       }
     },

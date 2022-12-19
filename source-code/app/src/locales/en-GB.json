@@ -38,6 +38,9 @@
         },
         "input": {
           "label": "URL of Bes Air"
+        },
+        "test-url": {
+          "label": "Test URL"
         }
       }
     },
