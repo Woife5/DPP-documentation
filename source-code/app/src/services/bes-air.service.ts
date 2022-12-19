@@ -8,9 +8,11 @@ export interface BesAirService {
   getBesnState(): Promise<GetBesnStateResponse>
 }
 
-export const besAirService: BesAirService = import.meta.env.PROD
-  ? new BesAirRestService()
-  : new BesAirMockService()
+// export const besAirService: BesAirService = import.meta.env.PROD
+//   ? new BesAirRestService()
+//   : new BesAirMockService()
+
+export const besAirService: BesAirService = new BesAirRestService()
 
 export type GetBesnStateResponse = {
   state: 'on' | 'off'

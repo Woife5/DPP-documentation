@@ -18,6 +18,7 @@ const testConnectionState = ref<TestState>('unset')
 connectionStore.$subscribe(() => (testConnectionState.value = 'unset'))
 
 async function testConnection() {
+  if (testConnectionState.value === 'pending') return
   testConnectionState.value = 'pending'
   try {
     await besAirService.getBesnState()
