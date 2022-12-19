@@ -41,7 +41,16 @@
           "label": "Vabindung"
         },
         "input": {
-          "label": "URL vom Bes Air"
+          "label": "URL vom Bes Air",
+          "error": {
+            "invalid-url": {
+              "label": "De URL passt ned",
+              "pattern": "So gherts: {pattern}"
+            }
+          }
+        },
+        "test-url": {
+          "label": "Vabindung testn"
         }
       }
     },
@@ -67,6 +76,6 @@
   },
   "app": {
     "title": "Bes Air",
-    "slogan": "Sa ma ned bes, woa so host no ned greinigt."
+    "slogan": "Sa ma ned bes, owa so host no ned greinigt."
   }
 }

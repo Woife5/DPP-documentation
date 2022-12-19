@@ -1,11 +1,11 @@
-import axios from 'axios'
+import axios, { type AxiosResponse } from 'axios'
 import type { BesAirService, GetBesnStateResponse } from './bes-air.service'
 
 export class BesAirRestService implements BesAirService {
-  public url = 'http://192.168.43.158/api'
+  public url = ''
 
   public get apiUrl() {
-    return `${this.url}/api}`
+    return `${this.url}/api`
   }
 
   public async startBesn(): Promise<void> {
@@ -16,7 +16,7 @@ export class BesAirRestService implements BesAirService {
     await axios.post(`${this.apiUrl}/stop`)
   }
 
-  public async getBesnState(): Promise<GetBesnStateResponse> {
+  public async getBesnState(): Promise<AxiosResponse<GetBesnStateResponse>> {
     return await axios.get(`${this.apiUrl}/state`)
   }
 }

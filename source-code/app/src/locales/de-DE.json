@@ -37,7 +37,16 @@
           "label": "Verbindung"
         },
         "input": {
-          "label": "URL von Bes Air"
+          "label": "URL von Bes Air",
+          "error": {
+            "invalid-url": {
+              "label": "Ungültige URL",
+              "pattern": "Pattern: {pattern}"
+            }
+          }
+        },
+        "test-url": {
+          "label": "Verbindung testen"
         }
       }
     },
