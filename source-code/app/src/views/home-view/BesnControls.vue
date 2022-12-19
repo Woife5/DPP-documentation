@@ -12,7 +12,11 @@ async function toggleButtonState() {
 
 <template>
   <div class="flex flex-col items-center gap-y-2">
-    <BigFatButton :state="besnStore.besnState" @change="toggleButtonState" />
+    <BigFatButton
+      :state="besnStore.besnState"
+      :pending="besnStore.pending"
+      @change="toggleButtonState"
+    />
     <TryReconnect />
   </div>
 </template>

@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import LoadingCircle from '@/components/ui/loading-spinners/LoadingCircle.vue'
 import type { BesnState } from '@/stores/besn.store'
 import { computed, ref } from 'vue'
 
 const props = defineProps<{
   state: BesnState
+  pending: boolean
 }>()
 
 const emits = defineEmits<{
@@ -11,6 +13,7 @@ const emits = defineEmits<{
 }>()
 
 const classes = computed(() => {
+  console.log('Besn state', props.state)
   return {
     'from-red-300 to-red-500 hover:from-red-400 hover:to-red-600 motion-safe:animate-shake':
       props.state === 'on',
@@ -31,16 +34,19 @@ function onButtonClick() {
 </script>
 
 <template>
-  <button
-    ref="buttonEl"
-    type="button"
-    class="p-20 rounded-full shadow-md transition-all duration-200 uppercase bg-gradient-to-br select-none"
-    :disabled="state === 'offline'"
-    @click="onButtonClick"
-    :class="classes"
-  >
-    <div class="w-10 h-10 flex justify-center items-center">
-      <i class="text-5xl material-icons">power_settings_new</i>
-    </div>
-  </button>
+  <div class="flex flex-col items-center gap-y-2">
+    <button
+      ref="buttonEl"
+      type="button"
+      class="p-20 rounded-full shadow-md transition-all duration-200 uppercase bg-gradient-to-br select-none"
+      :disabled="state === 'offline'"
+      @click="onButtonClick"
+      :class="classes"
+    >
+      <div class="w-10 h-10 flex justify-center items-center">
+        <LoadingCircle v-if="pending" />
+        <i v-else class="text-5xl material-icons">power_settings_new</i>
+      </div>
+    </button>
+  </div>
 </template>

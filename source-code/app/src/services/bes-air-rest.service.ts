@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { type AxiosResponse } from 'axios'
 import type { BesAirService, GetBesnStateResponse } from './bes-air.service'
 
 export class BesAirRestService implements BesAirService {
@@ -16,7 +16,7 @@ export class BesAirRestService implements BesAirService {
     await axios.post(`${this.apiUrl}/stop`)
   }
 
-  public async getBesnState(): Promise<GetBesnStateResponse> {
+  public async getBesnState(): Promise<AxiosResponse<GetBesnStateResponse>> {
     return await axios.get(`${this.apiUrl}/state`)
   }
 }
