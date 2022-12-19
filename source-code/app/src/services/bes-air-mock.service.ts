@@ -1,3 +1,4 @@
+import type { AxiosResponse } from 'axios'
 import type { BesAirService, GetBesnStateResponse } from './bes-air.service'
 
 export class BesAirMockService implements BesAirService {
@@ -16,9 +17,15 @@ export class BesAirMockService implements BesAirService {
     this.serverData.besnState = 'off'
   }
 
-  public async getBesnState(): Promise<GetBesnStateResponse> {
+  public async getBesnState(): Promise<AxiosResponse<GetBesnStateResponse>> {
     return {
-      state: this.serverData.besnState,
+      config: {},
+      headers: {},
+      statusText: 'OK',
+      status: 200,
+      data: {
+        state: this.serverData.besnState,
+      },
     }
   }
 }

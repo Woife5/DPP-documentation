@@ -9,11 +9,9 @@ export interface BesAirService {
   getBesnState(): Promise<AxiosResponse<GetBesnStateResponse>>
 }
 
-// export const besAirService: BesAirService = import.meta.env.PROD
-//   ? new BesAirRestService()
-//   : new BesAirMockService()
-
-export const besAirService: BesAirService = new BesAirRestService()
+export const besAirService: BesAirService = import.meta.env.PROD
+  ? new BesAirRestService()
+  : new BesAirMockService()
 
 export type GetBesnStateResponse = {
   state: unknown
