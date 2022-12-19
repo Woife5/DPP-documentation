@@ -40,11 +40,33 @@
           "label": "URL von Bes Air"
         }
       }
+    },
+    "led-settings": {
+      "heading": {
+        "label": "LED-Einstellungen"
+      },
+      "pattern": {
+        "heading": {
+          "label": "LED-Muster"
+        },
+        "static": {
+          "label": "Statisch"
+        },
+        "blink": {
+          "label": "Blinken"
+        },
+        "pulse": {
+          "label": "Pulsieren"
+        }
+      }
     }
   },
   "navigation": {
     "back": {
       "label": "Zurück"
+    },
+    "home": {
+      "label": "Home"
     }
   }
 }

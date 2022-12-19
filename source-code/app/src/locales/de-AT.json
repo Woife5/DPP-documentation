@@ -2,6 +2,9 @@
   "navigation": {
     "back": {
       "label": "Zruck"
+    },
+    "home": {
+      "label": "Home"
     }
   },
   "header": {
@@ -39,6 +42,25 @@
         },
         "input": {
           "label": "URL vom Bes Air"
+        }
+      }
+    },
+    "led-settings": {
+      "heading": {
+        "label": "LED-Einstellungen"
+      },
+      "pattern": {
+        "heading": {
+          "label": "LED-Muster"
+        },
+        "static": {
+          "label": "Statisch"
+        },
+        "blink": {
+          "label": "Blinken"
+        },
+        "pulse": {
+          "label": "Pulsieren"
         }
       }
     }
