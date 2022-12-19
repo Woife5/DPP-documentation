@@ -3,6 +3,7 @@
 
 body {
   @apply text-slate-800 dark:text-slate-200 bg-slate-200 dark:bg-slate-800 h-screen;
+  color-scheme: dark light;
 }
 
 #app {

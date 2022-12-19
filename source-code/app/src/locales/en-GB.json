@@ -6,6 +6,9 @@
   "header": {
     "settings": {
       "label": "Settings"
+    },
+    "led-settings": {
+      "label": "LEDs"
     }
   },
   "locale": {
@@ -34,7 +37,26 @@
           "label": "Connection"
         },
         "input": {
-          "label": "URL to Bes Air"
+          "label": "URL of Bes Air"
+        }
+      }
+    },
+    "led-settings": {
+      "heading": {
+        "label": "LED Settings"
+      },
+      "pattern": {
+        "heading": {
+          "label": "LED Pattern"
+        },
+        "static": {
+          "label": "Static"
+        },
+        "blink": {
+          "label": "Blink"
+        },
+        "pulse": {
+          "label": "Pulse"
         }
       }
     }
@@ -42,6 +64,9 @@
   "navigation": {
     "back": {
       "label": "Back"
+    },
+    "home": {
+      "label": "Home"
     }
   }
 }

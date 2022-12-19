@@ -34,7 +34,7 @@ function onButtonClick() {
   <button
     ref="buttonEl"
     type="button"
-    class="p-20 rounded-full shadow-md transition-all duration-200 uppercase bg-gradient-to-r select-none"
+    class="p-20 rounded-full shadow-md transition-all duration-200 uppercase bg-gradient-to-br select-none"
     :disabled="state === 'offline'"
     @click="onButtonClick"
     :class="classes"
