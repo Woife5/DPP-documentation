@@ -3,23 +3,19 @@
 #include <Wire.h>
 #include <SPI.h>
 #include <Adafruit_CAP1188.h>
+#include "rest-server.h"
+
+using namespace BesAirWebserver;
 
 // Replace with your network credentials
 const char *ssid = "Rathalin";
 const char *password = "Besn2022";
 
-// Besn state
-bool besnOn = false;
-
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
 
-// stores the content of the index.html file we want the webserver to send
-extern const char index_html[] PROGMEM;
-
-void on_setup()
+void BesAirWebserver::on_setup()
 {
-  
   // Connect to Wi-Fi
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED)
@@ -42,20 +38,20 @@ void on_setup()
   server.on("/api/start", HTTP_POST, [](AsyncWebServerRequest *request)
             {
     Serial.println("Starting Besn");
-    besnOn = true;
+    besnState = true;
     request->send_P(200, "json/application", "{ \"state\": \"on\" }"); });
 
   server.on("/api/stop", HTTP_POST, [](AsyncWebServerRequest *request)
             {
     Serial.println("Stoping Besn");
-    besnOn = false;
+    besnState = false;
     request->send_P(200, "json/application", "{ \"state\": \"off\" }"); });
 
   server.on("/api/state", HTTP_GET, [](AsyncWebServerRequest *request)
             {
     Serial.println("Sending Besn state");
     String responseBody = "{ \"state\": \"";
-    responseBody += besnOn ? "on" : "off";
+    responseBody += besnState ? "on" : "off";
     responseBody += "\" }";
     request->send_P(200, "json/application", responseBody.c_str()); });
 

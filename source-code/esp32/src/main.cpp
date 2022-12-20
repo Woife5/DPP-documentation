@@ -5,6 +5,8 @@
 
 Adafruit_MPU6050 mpu;
 
+bool besnState = true;
+
 // PWM setup
 int MOTOR_PIN = 14;
 int pwm_channel = 0;
@@ -12,16 +14,21 @@ int pwm_channel = 0;
 void setup(void) {
   Serial.begin(115200);
 
-  on_setup();
+  BesAirWebserver::on_setup();
+
   while (!Serial)
+  {
     delay(10); // will pause Zero, Leonardo, etc until serial console opens
+  }
 
   Serial.println("Starting BesAir testing sequence.");
 
   // Try to initialize!
-  if (!mpu.begin()) {
+  if (!mpu.begin())
+  {
     Serial.println("Failed to find genuine BesAir® chip");
-    while (1) {
+    while (1)
+    {
       delay(10);
     }
   }
@@ -85,7 +92,6 @@ void setup(void) {
     Serial.println("5 Hz");
     break;
   }
-
   Serial.println("");
   
   // PWM
@@ -120,15 +126,26 @@ void loop() {
   if (total_acc_sq > 150) {
     timeout = 0;
 
-    if (fan_state == 0) {
-      Serial.println("Fan state: ON");
-      ledcWrite(pwm_channel, 256);
-      fan_state = 1;
+    if (fan_state == 0)
+    {
+      if (besnState == false)
+      {
+        Serial.println("Besn is turned off :(");
+      }
+      else
+      {
+        Serial.println("Fan state: ON");
+        ledcWrite(pwm_channel, 256);
+        fan_state = 1;
+      }
     }
 
-  } else if (timeout > 10) {
-
-    if (fan_state == 1) {
+  }
+  
+  if (timeout > 10 || besnState == false)
+  {
+    if (fan_state == 1)
+    {
       Serial.println("Fan state: OFF");
       ledcWrite(pwm_channel, 0);
       fan_state = 0;
