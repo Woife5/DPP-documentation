@@ -16,9 +16,9 @@ module.exports = {
         },
         shakeX: {
           '0%, 100%': { transform: 'translate3d(0px, 0px, 0)' },
-          '25%': { transform: 'translate3d(2px, 0px, 0)' },
-          '50%': { transform: 'translate3d(2px, 2px, 0)' },
-          '75%': { transform: 'translate3d(0px, 2px, 0)' },
+          '25%': { transform: 'translate3d(6px, 0px, 0)' },
+          '50%': { transform: 'translate3d(6px, 6px, 0)' },
+          '75%': { transform: 'translate3d(0px, 6px, 0)' },
         },
       },
       fontFamily: {
