@@ -52,7 +52,7 @@ async function testConnection() {
         </h1>
       </legend>
 
-      <div class="flex items-end gap-2 flex-wrap">
+      <div class="">
         <TextInput
           class="grow"
           id="connection-url"
@@ -62,15 +62,17 @@ async function testConnection() {
           :value="connectionStore.connectionUrl"
           @input="onUrlInput"
         />
-        <TestConnectionButton :state="connectionTest" @click="testConnection" />
-      </div>
-      <div
-        v-show="showInvalidUrlError"
-        class="text-red-600 dark:text-red-500 flex flex-col"
-      >
-        <div class="leading-tight mt-2">
+        <div
+          v-show="showInvalidUrlError"
+          class="text-red-600 dark:text-red-500"
+        >
           {{ $t('view.settings.connection.input.error.invalid-url.label') }}
         </div>
+        <TestConnectionButton
+          class="mt-2"
+          :state="connectionTest"
+          @click="testConnection"
+        />
       </div>
     </fieldset>
   </div>
