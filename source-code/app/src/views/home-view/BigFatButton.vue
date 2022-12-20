@@ -15,14 +15,14 @@ const emits = defineEmits<{
 const classes = computed(() => {
   console.log('Besn state', props.state)
   return {
-    'from-red-300 to-red-500 hover:from-red-400 hover:to-red-600 motion-safe:animate-shake':
-      props.state === 'on',
+    'from-red-300 to-red-500 hover:from-red-400 hover:to-red-600':
+      props.state === 'off',
     'dark:from-red-600 dark:to-red-800 dark:hover:from-red-500 dark:hover:to-red-700':
+      props.state === 'off',
+    'from-green-300 to-green-500 hover:from-green-400 hover:to-green-600 motion-safe:animate-shake':
       props.state === 'on',
-    'from-green-300 to-green-500 hover:from-green-400 hover:to-green-600':
-      props.state === 'off',
     'dark:from-green-600 dark:to-green-800 dark:hover:from-green-500 dark:hover:to-green-700':
-      props.state === 'off',
+      props.state === 'on',
     'from-gray-300 to-gray-400 dark:from-gray-500 dark:to-gray-600':
       props.state === 'offline',
   }
