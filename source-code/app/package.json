@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "dev:host": "vite --host",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
+    "preview:host": "vite preview --host",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"

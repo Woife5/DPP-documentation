@@ -8,6 +8,10 @@ export class BesAirRestService implements BesAirService {
     return `${this.url}/api`
   }
 
+  public async isAlive(): Promise<void> {
+    await axios.get(`${this.apiUrl}/alive`)
+  }
+
   public async startBesn(): Promise<void> {
     await axios.post(`${this.apiUrl}/start`)
   }

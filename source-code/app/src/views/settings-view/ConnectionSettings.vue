@@ -34,7 +34,7 @@ async function testConnection() {
   if (connectionTest.value === 'pending') return
   connectionTest.value = 'pending'
   try {
-    await besAirService.getBesnState()
+    await besAirService.isAlive()
     connectionTest.value = 'success'
   } catch (error) {
     connectionTest.value = 'fail'
@@ -52,7 +52,7 @@ async function testConnection() {
         </h1>
       </legend>
 
-      <div class="flex items-end gap-x-2">
+      <div class="flex items-end gap-2 flex-wrap">
         <TextInput
           class="grow"
           id="connection-url"
@@ -64,12 +64,12 @@ async function testConnection() {
         />
         <TestConnectionButton :state="connectionTest" @click="testConnection" />
       </div>
-      <div v-show="showInvalidUrlError" class="text-red-600 dark:text-red-500 flex flex-col">
+      <div
+        v-show="showInvalidUrlError"
+        class="text-red-600 dark:text-red-500 flex flex-col"
+      >
         <div class="leading-tight mt-2">
           {{ $t('view.settings.connection.input.error.invalid-url.label') }}
-        </div>
-        <div class="leading-tight">
-          {{ $t('view.settings.connection.input.error.invalid-url.pattern', {pattern:'<http(s)>://<url>'}) }}
         </div>
       </div>
     </fieldset>
