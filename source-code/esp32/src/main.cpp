@@ -1,6 +1,7 @@
 #include <Adafruit_MPU6050.h>
 #include <Adafruit_Sensor.h>
 #include <Wire.h>
+#include "rest-server.h"
 
 Adafruit_MPU6050 mpu;
 
@@ -10,6 +11,8 @@ int pwm_channel = 0;
 
 void setup(void) {
   Serial.begin(115200);
+
+  on_setup();
   while (!Serial)
     delay(10); // will pause Zero, Leonardo, etc until serial console opens
 
@@ -112,7 +115,9 @@ void loop() {
   sensors_event_t a, g, temp;
   mpu.getEvent(&a, &g, &temp);
 
-  if (a.acceleration.x > 1.4) {
+  float total_acc_sq = a.acceleration.x * a.acceleration.x + a.acceleration.y * a.acceleration.y + a.acceleration.z * a.acceleration.z;
+
+  if (total_acc_sq > 150) {
     timeout = 0;
 
     if (fan_state == 0) {

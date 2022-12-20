@@ -17,11 +17,9 @@ AsyncWebServer server(80);
 // stores the content of the index.html file we want the webserver to send
 extern const char index_html[] PROGMEM;
 
-void setup()
+void on_setup()
 {
-  // Serial port for debugging purposes
-  Serial.begin(9600);
-
+  
   // Connect to Wi-Fi
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED)
@@ -64,8 +62,4 @@ void setup()
   // Start server
   DefaultHeaders::Instance().addHeader("Access-Control-Allow-Origin", "*");
   server.begin();
-}
-
-void loop()
-{
 }
