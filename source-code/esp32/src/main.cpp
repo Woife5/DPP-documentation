@@ -11,6 +11,8 @@ bool besnState = true;
 int MOTOR_PIN = 14;
 int pwm_channel = 0;
 
+int motor2_pin = 15;
+
 void setup(void) {
   Serial.begin(115200);
 
@@ -98,6 +100,8 @@ void setup(void) {
   ledcSetup(pwm_channel, 1000, 8);
   ledcAttachPin(MOTOR_PIN, pwm_channel);
 
+  pinMode(motor2_pin, OUTPUT);
+
   // BesAir starting sequence (needs cooling)
   Serial.print("Starting BesAir 200 Beta 3.2");
   ledcWrite(pwm_channel, 256);
@@ -136,6 +140,7 @@ void loop() {
       {
         Serial.println("Fan state: ON");
         ledcWrite(pwm_channel, 256);
+        digitalWrite(motor2_pin, HIGH);
         fan_state = 1;
       }
     }
@@ -148,6 +153,7 @@ void loop() {
     {
       Serial.println("Fan state: OFF");
       ledcWrite(pwm_channel, 0);
+      digitalWrite(motor2_pin, LOW);
       fan_state = 0;
     }
 
