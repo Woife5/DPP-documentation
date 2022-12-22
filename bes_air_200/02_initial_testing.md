@@ -72,6 +72,12 @@ The code basically went through the following steps:
 
 ## Integrating the prototypes
 
+After the software was ready and been tested with the server fan, we added the code for the webserver and connection to the app.
+With the help of the app the user can enable or disable the _BesAir 200_ and also should be able to change the light strip colors.
+
+The connection between the esp and the relay which should eventually control the hair dryer motor was initially quire challanging, as we built the prototypes so far apart.
+We had to connect the two with a long cable and were able to verify that the esp can control the relay and activate the hair dryer plugged into it.
+
 ![Connection from the esp to the cable](assets/ba_esp-cable.jpg){: height="500" }
 
 ![Connection from the cable to the relay controlling the hair dryer](assets/ba_relay-cable.jpg){: height="500" }
