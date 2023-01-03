@@ -37,13 +37,13 @@ void BesAirWebserver::on_setup()
   // API
   server.on("/api/start", HTTP_POST, [](AsyncWebServerRequest *request)
             {
-    Serial.println("Starting Besn");
+    Serial.println("Besn activated");
     besnState = true;
     request->send_P(200, "json/application", "{ \"state\": \"on\" }"); });
 
   server.on("/api/stop", HTTP_POST, [](AsyncWebServerRequest *request)
             {
-    Serial.println("Stoping Besn");
+    Serial.println("Besn deactivated");
     besnState = false;
     request->send_P(200, "json/application", "{ \"state\": \"off\" }"); });
 

@@ -4,15 +4,13 @@
 #include <Wire.h>
 
 Adafruit_MPU6050 mpu;
-const int PWM_MOTOR_PIN = 14;
+const int PWM_MOTOR_PIN = 27;
 const int PWM_MOTOR_CHANNEL = 0;
 
-const int MOTOR_PIN = 15;
+const int MOTOR_PIN = 12;
 
 void BesAir::on_setup()
 {
-    Serial.begin(115200);
-
     while (!Serial)
     {
         delay(10); // will pause Zero, Leonardo, etc until serial console opens
@@ -113,6 +111,9 @@ void BesAir::stop_motor()
     digitalWrite(MOTOR_PIN, LOW);
 }
 
+/**
+ * @brief Get the squared acceleration of the BesAir® device.
+ */
 float BesAir::get_acceleration()
 {
     sensors_event_t a, g, temp;

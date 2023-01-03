@@ -3,12 +3,13 @@
 #include <Wire.h>
 #include "rest-server.h"
 #include "hardware-communicator.h"
+#include "esp_timer.h"
 
 bool besnState = true;
 
 void setup(void)
 {
-
+    Serial.begin(115200);
     BesAirWebserver::on_setup();
     BesAir::on_setup();
 
@@ -27,42 +28,29 @@ void setup(void)
     Serial.println("");
 }
 
-int timeout = 0;
+uint64_t last_viable_acc = 0.0;
 int fan_state = 0;
 
 void loop()
 {
     float total_acc_sq = BesAir::get_acceleration();
-
     if (total_acc_sq > 150)
     {
-        timeout = 0;
+        last_viable_acc = esp_timer_get_time();
 
-        if (fan_state == 0)
+        if (fan_state == 0 && besnState == true)
         {
-            if (besnState == false)
-            {
-                Serial.println("Besn is turned off :(");
-            }
-            else
-            {
-                Serial.println("Fan state: ON");
-                BesAir::start_motor();
-                fan_state = 1;
-            }
+            Serial.println("Fan state: ON");
+            BesAir::start_motor();
+            fan_state = 1;
         }
     }
 
-    if (timeout > 10 || besnState == false)
+    uint64_t passed_time = esp_timer_get_time() - last_viable_acc;
+    if ((passed_time > 1000000 || besnState == false) && fan_state == 1)
     {
-        if (fan_state == 1)
-        {
-            Serial.println("Fan state: OFF");
-            BesAir::stop_motor();
-            fan_state = 0;
-        }
+        Serial.println("Fan state: OFF");
+        BesAir::stop_motor();
+        fan_state = 0;
     }
-
-    timeout += 1;
-    delay(100);
 }
