@@ -118,7 +118,7 @@ void BesAirSound::on_setup()
     // printDirectory(SD.open("/"), 0);
 
     // Set volume for left, right channels. lower numbers == louder volume!
-    musicPlayer.setVolume(50, 50);
+    musicPlayer.setVolume(30, 30);
 
     musicPlayer.sciWrite(VS1053_REG_WRAMADDR, VS1053_GPIO_DDR);
     musicPlayer.sciWrite(VS1053_REG_WRAM, 3);

@@ -33,18 +33,19 @@ void setup(void)
     }
 
     BesAirSound::on_setup();
+    BesAirSound::play_sound("ini1.mp3");
+
     BesAirWebserver::on_setup();
     BesAir::on_setup();
 
     // BesAir starting sequence (needs cooling)
-    BesAirSound::play_sound("ini1.mp3");
-    Serial.print("Starting BesAir 200 Beta 3.2");
+    Serial.print("Starting BesAir 200 Beta 4.3");
     BesAir::start_motor();
 
     for (int i = 0; i < 20; i++)
     {
         Serial.print(".");
-        delay(200);
+        delay(100);
     }
 
     BesAir::stop_motor();
@@ -52,7 +53,9 @@ void setup(void)
     BesAirSound::play_sound("ini2.mp3");
 }
 
-uint64_t last_viable_acc = 0.0;
+uint64_t last_voice_line = esp_timer_get_time();
+int voice_timeout = 15;
+uint64_t last_viable_acc = 0;
 int fan_state = 0;
 
 void loop()
@@ -60,7 +63,7 @@ void loop()
     BesAirSound::on_loop();
 
     float total_acc_sq = BesAir::get_acceleration();
-    if (total_acc_sq > 150)
+    if (total_acc_sq > 160)
     {
         last_viable_acc = esp_timer_get_time();
 
@@ -69,8 +72,37 @@ void loop()
             Serial.println("Fan state: ON");
             BesAir::start_motor();
             fan_state = 1;
+        }
+    }
+
+    uint64_t passed_voice_time = (esp_timer_get_time() - last_voice_line) / 1000000;
+    if (passed_voice_time > voice_timeout)
+    {
+        int random = esp_random() % 5;
+
+        if (random == 0)
+        {
+            BesAirSound::queue_sound("charge1.mp3");
+        }
+        else if (random == 1)
+        {
+            BesAirSound::queue_sound("slogan1.mp3");
+        }
+        else if (random == 2)
+        {
+            BesAirSound::queue_sound("slogan2.mp3");
+        }
+        else if (random == 3)
+        {
+            BesAirSound::queue_sound("slogan3.mp3");
+        }
+        else if (random == 4)
+        {
             BesAirSound::queue_sound("problem.mp3");
         }
+
+        last_voice_line = esp_timer_get_time();
+        voice_timeout = 5 + esp_random() % 500;
     }
 
     uint64_t passed_time = esp_timer_get_time() - last_viable_acc;

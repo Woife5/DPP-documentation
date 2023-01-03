@@ -42,12 +42,14 @@ void BesAirWebserver::on_setup()
             {
     Serial.println("Besn activated");
     besnState = true;
+    BesAirSound::queue_sound("ini2.mp3");
     request->send_P(200, "json/application", "{ \"state\": \"on\" }"); });
 
   server.on("/api/stop", HTTP_POST, [](AsyncWebServerRequest *request)
             {
     Serial.println("Besn deactivated");
     besnState = false;
+    BesAirSound::queue_sound("shutdown.mp3");
     request->send_P(200, "json/application", "{ \"state\": \"off\" }"); });
 
   server.on("/api/state", HTTP_GET, [](AsyncWebServerRequest *request)

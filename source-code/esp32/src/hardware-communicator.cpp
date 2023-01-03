@@ -93,21 +93,21 @@ void BesAir::on_setup()
     Serial.println("");
 
     // Initialize PWM channels (pwm motor)
-    ledcSetup(PWM_MOTOR_CHANNEL, 1000, 8);
-    ledcAttachPin(PWM_MOTOR_PIN, PWM_MOTOR_CHANNEL);
+    // ledcSetup(PWM_MOTOR_CHANNEL, 1000, 8);
+    // ledcAttachPin(PWM_MOTOR_PIN, PWM_MOTOR_CHANNEL);
 
-    pinMode(PWM_MOTOR_PIN, OUTPUT);
+    pinMode(MOTOR_PIN, OUTPUT);
 }
 
 void BesAir::start_motor()
 {
-    ledcWrite(PWM_MOTOR_CHANNEL, 256);
+    // ledcWrite(PWM_MOTOR_CHANNEL, 256);
     digitalWrite(MOTOR_PIN, HIGH);
 }
 
 void BesAir::stop_motor()
 {
-    ledcWrite(PWM_MOTOR_CHANNEL, 0);
+    // ledcWrite(PWM_MOTOR_CHANNEL, 0);
     digitalWrite(MOTOR_PIN, LOW);
 }
 
