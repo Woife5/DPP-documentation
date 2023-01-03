@@ -4,12 +4,13 @@
 #include <SPI.h>
 #include <Adafruit_CAP1188.h>
 #include "rest-server.h"
+#include "sound-player.h"
 
 using namespace BesAirWebserver;
 
 // Replace with your network credentials
-const char *ssid = "Rathalin";
-const char *password = "Besn2022";
+const char *ssid = "TheBois";
+const char *password = "a1234567890";
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
@@ -20,12 +21,14 @@ void BesAirWebserver::on_setup()
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED)
   {
-    delay(1000);
     Serial.println("Connecting to WiFi..");
+    BesAirSound::play_sound("wifi1.mp3");
   }
   Serial.print("Connected to ");
   Serial.print(ssid);
   Serial.println();
+
+  BesAirSound::play_sound("wifi2.mp3");
 
   // Print ESP32 Local IP Address
   Serial.println(WiFi.localIP());

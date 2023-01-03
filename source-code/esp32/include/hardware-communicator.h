@@ -1,3 +1,5 @@
+#pragma once
+
 /**
  * @file hardware-communicator.h
  * @brief This file contains all hardware-communication functions.

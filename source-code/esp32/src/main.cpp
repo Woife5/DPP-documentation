@@ -4,16 +4,40 @@
 #include "rest-server.h"
 #include "hardware-communicator.h"
 #include "esp_timer.h"
+#include "sound-player.h"
 
 bool besnState = true;
 
 void setup(void)
 {
     Serial.begin(115200);
+
+    // Initialize a random language for BesAir®
+    switch (esp_random() % 5)
+    {
+    case 0:
+        BesAirSound::change_language("ru");
+        break;
+    case 1:
+        BesAirSound::change_language("jp");
+        break;
+    case 2:
+        BesAirSound::change_language("us");
+        break;
+    case 3:
+        BesAirSound::change_language("ch");
+        break;
+    case 4:
+        BesAirSound::change_language("de");
+        break;
+    }
+
+    BesAirSound::on_setup();
     BesAirWebserver::on_setup();
     BesAir::on_setup();
 
     // BesAir starting sequence (needs cooling)
+    BesAirSound::play_sound("ini1.mp3");
     Serial.print("Starting BesAir 200 Beta 3.2");
     BesAir::start_motor();
 
@@ -24,8 +48,8 @@ void setup(void)
     }
 
     BesAir::stop_motor();
-
     Serial.println("");
+    BesAirSound::play_sound("ini2.mp3");
 }
 
 uint64_t last_viable_acc = 0.0;
@@ -33,6 +57,8 @@ int fan_state = 0;
 
 void loop()
 {
+    BesAirSound::on_loop();
+
     float total_acc_sq = BesAir::get_acceleration();
     if (total_acc_sq > 150)
     {
@@ -43,6 +69,7 @@ void loop()
             Serial.println("Fan state: ON");
             BesAir::start_motor();
             fan_state = 1;
+            BesAirSound::queue_sound("problem.mp3");
         }
     }
 
