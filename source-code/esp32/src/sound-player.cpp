@@ -148,6 +148,22 @@ void BesAirSound::on_loop()
     }
 }
 
+// Available sound files:
+// ini1.mp3
+// ini2.mp3
+// wifi1.mp3
+// wifi2.mp3
+// calibr1.mp3
+// calibr2.mp3
+// slogan1.mp3
+// slogan2.mp3
+// slogan3.mp3
+// charge1.mp3
+// charge2.mp3
+// problem.mp3
+// lang.mp3
+// shutdown.mp3
+
 char language[4] = "/ru";
 void BesAirSound::queue_sound(const String &filename)
 {
@@ -175,4 +191,5 @@ void BesAirSound::change_language(const char *new_lang)
 {
     language[1] = new_lang[0];
     language[2] = new_lang[1];
+    Serial.println("Switched to language: " + String(language));
 }

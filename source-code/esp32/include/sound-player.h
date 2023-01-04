@@ -10,6 +10,7 @@ namespace BesAirSound
 {
     void on_setup();
     void on_loop();
+
     void queue_sound(const String &filename);
     void play_sound(const String &filename);
     void change_language(const char *new_lang);

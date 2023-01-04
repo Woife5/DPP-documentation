@@ -60,6 +60,39 @@ void BesAirWebserver::on_setup()
     responseBody += "\" }";
     request->send_P(200, "json/application", responseBody.c_str()); });
 
+  /**
+   * Endpoint for changing the spoken language of BesAir®
+   */
+  server.on("/api/language", HTTP_POST, [](AsyncWebServerRequest *request)
+            {
+    if (request->hasParam("lang", true))
+    {
+      String lang = request->getParam("lang", true)->value();
+      BesAirSound::change_language(lang.c_str());
+      BesAirSound::queue_sound("lang.mp3");
+      request->send_P(200, "json/application", "{ \"status\": \"ok\" }");
+    }
+    else
+    {
+      request->send_P(400, "json/application", "{ \"status\": \"error\" }");
+    } });
+
+  /**
+   * Endpoint for immediately queueing a sound file
+   */
+  server.on("/api/sound", HTTP_POST, [](AsyncWebServerRequest *request)
+            {
+    if (request->hasParam("file", true))
+    {
+      String sound = request->getParam("file", true)->value();
+      BesAirSound::queue_sound(sound.c_str());
+      request->send_P(200, "json/application", "{ \"status\": \"ok\" }");
+    }
+    else
+    {
+      request->send_P(400, "json/application", "{ \"status\": \"error\" }");
+    } });
+
   // Start server
   DefaultHeaders::Instance().addHeader("Access-Control-Allow-Origin", "*");
   server.begin();
