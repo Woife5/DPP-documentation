@@ -18,6 +18,7 @@
     "pinia": "^2.0.26",
     "vue": "^3.2.45",
     "vue-i18n": "^9.2.2",
+    "vue-query": "^1.26.0",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {

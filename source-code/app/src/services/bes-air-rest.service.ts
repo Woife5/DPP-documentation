@@ -1,5 +1,10 @@
 import axios, { type AxiosResponse } from 'axios'
-import type { BesAirService, GetBesnStateResponse } from './bes-air.service'
+import type {
+  BesAirService,
+  GetBesnStateData,
+  GetLanguageData,
+  SetLanguageData,
+} from './bes-air.service'
 
 export class BesAirRestService implements BesAirService {
   public url = ''
@@ -20,7 +25,17 @@ export class BesAirRestService implements BesAirService {
     await axios.post(`${this.apiUrl}/stop`)
   }
 
-  public async getBesnState(): Promise<AxiosResponse<GetBesnStateResponse>> {
+  public async getBesnState(): Promise<AxiosResponse<GetBesnStateData>> {
     return await axios.get(`${this.apiUrl}/state`)
+  }
+
+  public async getLanguage(): Promise<AxiosResponse<GetLanguageData>> {
+    return await axios.get(`${this.apiUrl}/lang`)
+  }
+
+  public async setLanguage(
+    language: string
+  ): Promise<AxiosResponse<SetLanguageData>> {
+    return await axios.post(`${this.apiUrl}/lang`, { language })
   }
 }

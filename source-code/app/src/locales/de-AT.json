@@ -15,7 +15,7 @@
       "label": "LEDs"
     }
   },
-  "locale": {
+  "app-locale": {
     "en-GB": {
       "label": "English"
     },
@@ -26,6 +26,23 @@
       "label": "Deitsch (Östarreich)"
     }
   },
+  "besn-lang": {
+    "de": {
+      "label": "Deitsch"
+    },
+    "us": {
+      "label": "Englisch"
+    },
+    "ru": {
+      "label": "Russisch"
+    },
+    "jp": {
+      "label": "Japanisch"
+    },
+    "ch": {
+      "label": "Gschrapp"
+    }
+  },
   "view": {
     "settings": {
       "heading": {
@@ -33,7 +50,7 @@
       },
       "language": {
         "heading": {
-          "label": "Sproch"
+          "label": "App-Sproch"
         }
       },
       "connection": {
@@ -51,6 +68,11 @@
         },
         "test-url": {
           "label": "Vabindung testn"
+        }
+      },
+      "besn-language": {
+        "heading": {
+          "label": "Audio-Sproch"
         }
       }
     },
@@ -77,5 +99,10 @@
   "app": {
     "title": "Bes Air",
     "slogan": "Sa ma ned bes, owa so host no ned greinigt."
+  },
+  "bes-air-service": {
+    "error": {
+      "no-response": "Server gibt ka Antwort."
+    }
   }
 }

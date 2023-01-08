@@ -19,4 +19,5 @@ export const i18n = createI18n({
     'de-DE': deDE,
     'de-AT': deAT,
   },
+  legacy: false,
 })

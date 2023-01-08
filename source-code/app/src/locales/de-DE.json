@@ -11,7 +11,7 @@
       "label": "LEDs"
     }
   },
-  "locale": {
+  "app-locale": {
     "en-GB": {
       "label": "English"
     },
@@ -22,6 +22,23 @@
       "label": "Deitsch (Östarreich)"
     }
   },
+  "besn-lang": {
+    "de": {
+      "label": "Deutsch"
+    },
+    "us": {
+      "label": "Englisch"
+    },
+    "ru": {
+      "label": "Russisch"
+    },
+    "jp": {
+      "label": "Japanisch"
+    },
+    "ch": {
+      "label": "Kind"
+    }
+  },
   "view": {
     "settings": {
       "heading": {
@@ -29,7 +46,7 @@
       },
       "language": {
         "heading": {
-          "label": "Sprache"
+          "label": "App-Sprache"
         }
       },
       "connection": {
@@ -47,6 +64,11 @@
         },
         "test-url": {
           "label": "Verbindung testen"
+        }
+      },
+      "besn-language": {
+        "heading": {
+          "label": "Audio-Sprache"
         }
       }
     },
@@ -76,6 +98,11 @@
     },
     "home": {
       "label": "Home"
+    }
+  },
+  "bes-air-service": {
+    "error": {
+      "no-response": "Keine Verbindung zum Server."
     }
   }
 }

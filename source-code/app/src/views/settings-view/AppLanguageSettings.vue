@@ -7,7 +7,7 @@ const localeStore = useLocaleStore()
 </script>
 
 <template>
-  <div>
+  <article>
     <fieldset>
       <legend class="mb-2">
         <h1 class="flex items-center gap-2 text-2xl">
@@ -19,14 +19,16 @@ const localeStore = useLocaleStore()
       <div class="flex flex-col items-start gap-y-1">
         <RadioButton
           v-for="localeOption of localeOptions"
-          @click="() => (localeStore.selectedLocale = localeOption)"
-          :id="localeOption"
-          :label="$t(`locale.${localeOption}.label`)"
-          name="language"
+          :id="`app-locale-${localeOption}`"
+          :key="`app-locale-${localeOption}`"
+          :label="$t(`app-locale.${localeOption}.label`)"
+          name="app-locale"
           :value="localeOption"
+          @click="() => (localeStore.selectedLocale = localeOption)"
           :checked="localeOption === localeStore.selectedLocale"
+          :title="localeOption"
         />
       </div>
     </fieldset>
-  </div>
+  </article>
 </template>
