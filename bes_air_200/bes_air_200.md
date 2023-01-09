@@ -32,28 +32,30 @@ The final idea we decided on can be found in the [project proposal section](01_p
 
 ## Implementation
 
-Describe how you implemented your project. Which iterations did go through? What did work and what did not work? Did you adapt your original idea to practical difficulties during implementation?
-
-### Iteration A
-
-Lorem ipsum dolor sit amet.
-
-### Iteration B
-
-Lorem ipsum dolor sit amet.
-
-### Iteration C
-
-Lorem ipsum dolor sit amet.
+For the most part of the semester we worked on each component of the final project individually.
+All components were tested on their own first and then in combination with the others they have to interact with.
+Only after the christmas break we started integrating all different hardware and software-parts into a final prototype.
+The different stages of the implementation described more detailed in the dedicated subpages, starting with the [initial testing](02_initial_testing.md).
 
 ## Materials and tools
 
-What materials and hardware did you use in your iterations and your final prototypes? Did you modify any ready-made devices? Did you build it from scratch? What tools did you use to implement your prototype?
+Used materials:
+
+-   2x hair dryer (from Willhaben and ASZ Hagenberg)
+-   2x 18.5V batteries
+-   USB powerbank
+-   step-down converter
+-   relay
+-   amplifier
+-   speaker
+-   ESP32 plus sound-module
+-   accelerometer
+-   plastic pipe
+-   a **LOT** of tape
+
+Besides the "standard" tools present in an electronic lab we used a 3D printer to print enclosures for the batteries and a nozzle for the broom.
 
 ## Conclusion
 
 Shortly summarize your project implementation process and the resulting outcome.
 What problems and limitations did you face? What experiences did you make
-
-{: .note }
-Edit this page and all the subpages according to the specifics of your project. You don't need to use the provided headlines, just keep it well structured. If one part of the documentation gets too lengthy put it into a subpage.
