@@ -7,6 +7,14 @@ defineProps<{
   checked: boolean
   disabled?: boolean
 }>()
+
+const emits = defineEmits<{
+  (e: 'change'): void
+}>()
+
+function onInputChange(_event: Event) {
+  emits('change')
+}
 </script>
 
 <template>
@@ -26,6 +34,7 @@ defineProps<{
       :checked="checked"
       :disabled="disabled"
       :class="{ 'cursor-pointer': disabled !== true }"
+      @change="onInputChange"
     />
     <label :for="id" :class="{ 'cursor-pointer': disabled !== true }">
       {{ label }}

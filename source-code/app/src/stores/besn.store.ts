@@ -3,9 +3,9 @@ import { defineStore } from 'pinia'
 import { besAirService } from '@/services/bes-air-rest.service'
 import axios from 'axios'
 
-export type BesnState = 'offline' | 'on' | 'off'
+type BesnState = 'offline' | 'on' | 'off'
 
-export const useBesnStore = defineStore('besn', () => {
+const useBesnStore = defineStore('besn', () => {
   const besnState = ref<BesnState>('offline')
   const pending = ref(false)
 

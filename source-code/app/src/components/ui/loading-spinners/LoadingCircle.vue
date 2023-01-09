@@ -2,7 +2,7 @@
 
 <template>
   <span
-    class="loader w-9 h-9 rounded-full inline-block border-[4px] border-white border-solid"
+    class="loader rounded-full inline-block border-[4px] border-white border-solid"
   ></span>
 </template>
 

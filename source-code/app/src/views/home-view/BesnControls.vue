@@ -1,25 +1,50 @@
 <script setup lang="ts">
+import { useMutation, useQuery, useQueryClient } from 'vue-query'
 import BigFatButton from './BigFatButton.vue'
-import { useBesnStore } from '@/stores/besn.store'
 import TryReconnect from './TryReconnect.vue'
-import { onMounted } from 'vue'
+import { computed } from 'vue'
+import { besAirService, type BesnState } from '@/services/bes-air-rest.service'
 
-const besnStore = useBesnStore()
+export type BesnButtonState = BesnState | 'offline'
 
-onMounted(() => besnStore.connect())
+const queryClient = useQueryClient()
 
-async function toggleButtonState() {
-  await besnStore.toggleBesn()
+const { data, isLoading, isFetching, isError } = useQuery('q-besn-state', () =>
+  besAirService.getBesnState()
+)
+
+const { mutate } = useMutation(
+  'm-besn-state',
+  () => {
+    if (data.value?.data.state === 'on') {
+      return besAirService.stopBesn()
+    }
+    return besAirService.startBesn()
+  },
+  {
+    onSuccess: () => {
+      queryClient.invalidateQueries('q-besn-state')
+    },
+  }
+)
+
+const isPending = isLoading || isFetching
+const besnButtonState = computed<BesnButtonState>(
+  () => data.value?.data.state ?? 'offline'
+)
+
+function onBigFatButtonClick() {
+  mutate()
 }
 </script>
 
 <template>
   <div class="flex flex-col items-center gap-y-2">
     <BigFatButton
-      :state="besnStore.besnState"
-      :pending="besnStore.pending"
-      @change="toggleButtonState"
+      :state="besnButtonState"
+      :pending="isPending"
+      @change="onBigFatButtonClick"
     />
-    <TryReconnect />
+    <TryReconnect v-if="!isPending" :state="besnButtonState" />
   </div>
 </template>

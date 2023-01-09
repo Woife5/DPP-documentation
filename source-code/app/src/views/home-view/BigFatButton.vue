@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import LoadingCircle from '@/components/ui/loading-spinners/LoadingCircle.vue'
-import type { BesnState } from '@/stores/besn.store'
 import { computed, ref } from 'vue'
+import type { BesnButtonState } from './BesnControls.vue'
 
 const props = defineProps<{
-  state: BesnState
+  state: BesnButtonState
   pending: boolean
 }>()
 
@@ -13,7 +13,6 @@ const emits = defineEmits<{
 }>()
 
 const classes = computed(() => {
-  console.log('Besn state', props.state)
   return {
     'from-red-300 to-red-500 hover:from-red-400 hover:to-red-600':
       props.state === 'off',
@@ -44,7 +43,7 @@ function onButtonClick() {
       :class="classes"
     >
       <div class="w-10 h-10 flex justify-center items-center">
-        <LoadingCircle v-if="pending" />
+        <LoadingCircle v-if="pending" class="h-9 w-9" />
         <i v-else class="text-5xl material-icons">power_settings_new</i>
       </div>
     </button>

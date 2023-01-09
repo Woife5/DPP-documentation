@@ -16,9 +16,9 @@ iconMap.set('fail', 'error')
 const icon = computed(() => iconMap.get(props.state))
 
 const classMap = new Map<TestState, string>()
-classMap.set('pending', 'text-yellow-600 dark:text-yellow-400')
-classMap.set('success', 'text-green-600 dark:text-green-400')
-classMap.set('fail', 'text-red-600 dark:text-red-400')
+classMap.set('pending', 'text-light-warn dark:text-dark-warn')
+classMap.set('success', 'text-light-success dark:text-dark-success')
+classMap.set('fail', 'text-light-error dark:text-dark-error')
 const classes = computed(() => classMap.get(props.state))
 </script>
 

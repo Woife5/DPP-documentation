@@ -12,11 +12,12 @@ const queryClient = useQueryClient()
 const showInvalidUrlError = ref(false)
 
 connectionStore.$subscribe(() => {
-  queryClient.invalidateQueries('is-alive')
+  queryClient.invalidateQueries(['q-is-alive'])
+  queryClient.invalidateQueries(['q-audio-language'])
 })
 
 const { data, isSuccess, isError, isFetching, isLoading } = useQuery(
-  ['is-alive'],
+  'q-is-alive',
   () => besAirService.isAlive()
 )
 
@@ -64,7 +65,7 @@ function validateInput(value: string) {
         />
         <div
           v-show="showInvalidUrlError"
-          class="text-red-600 dark:text-red-500"
+          class="text-light-error dark:text-dark-error"
         >
           {{ $t('view.settings.connection.input.error.invalid-url.label') }}
         </div>

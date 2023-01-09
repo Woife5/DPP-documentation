@@ -1,17 +1,12 @@
 <script setup lang="ts">
-import { useBesnStore } from '@/stores/besn.store'
 import ReconnectButton from './ReconnectButton.vue'
+import type { BesnButtonState } from './BesnControls.vue'
 
-const { $state, connect } = useBesnStore()
-
-function onReconnectClick() {
-  connect()
-}
+defineProps<{
+  state: BesnButtonState
+}>()
 </script>
 
 <template>
-  <ReconnectButton
-    v-if="$state.besnState === 'offline'"
-    @click="onReconnectClick"
-  />
+  <ReconnectButton v-if="state === 'offline'" />
 </template>

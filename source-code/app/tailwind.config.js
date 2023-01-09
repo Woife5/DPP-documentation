@@ -1,8 +1,22 @@
+const colors = require('tailwindcss/colors')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./index.html', './src/**/*.{ts,vue}'],
   theme: {
     extend: {
+      textColor: {
+        dark: {
+          success: colors.green[400],
+          warn: colors.yellow[400],
+          error: colors.red[400],
+        },
+        light: {
+          success: colors.green[600],
+          warn: colors.yellow[600],
+          error: colors.red[600],
+        },
+      },
       animation: {
         vibrate: 'vibrate 100ms ease-in-out infinite',
         shake:

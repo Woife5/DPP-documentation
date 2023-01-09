@@ -9,25 +9,38 @@ import {
 import { useI18n } from 'vue-i18n'
 import { useMutation, useQuery, useQueryClient } from 'vue-query'
 import LoadingCircle from '@/components/ui/loading-spinners/LoadingCircle.vue'
+import ConnectionPending from '@/components/ui/connection/ConnectionPending.vue'
+import ConnectionError from '@/components/ui/connection/ConnectionError.vue'
 
 const queryClient = useQueryClient()
 const {
   data: queryData,
-  error: queryError,
+  isError: isErrorQuery,
   isLoading: isLoadingQuery,
+  isFetching: isFetchingQuery,
 } = useLangQuery()
 const {
   mutate,
-  error: mutateError,
-  isLoading: isLoadingMutation,
+  isError: isErrorMutate,
+  isLoading: isLoadingMutate,
 } = useLangMutation()
 
-const isLoading = computed(
-  () => isLoadingQuery.value || isLoadingMutation.value
+const isPendingQuery = computed(
+  () => isLoadingQuery.value || isFetchingQuery.value
 )
-const isError = computed(
-  () => queryError.value != null || mutateError.value != null
+
+const radioButtonsDisabled = computed(
+  () =>
+    isPendingQuery.value ||
+    isErrorQuery.value ||
+    isLoadingMutate.value ||
+    isErrorMutate.value
 )
+
+function onRadioButtonClick(languageOption: BesnLanguageOption) {
+  if (radioButtonsDisabled.value) return
+  mutate(languageOption)
+}
 
 function useLangQuery() {
   return useQuery('q-audio-language', () => besAirService.getLanguage())
@@ -38,7 +51,7 @@ function useLangMutation() {
     'm-audio-language',
     (language: BesnLanguageOption) => besAirService.setLanguage(language),
     {
-      onSuccess: () => {
+      onSuccess: (data) => {
         queryClient.invalidateQueries(['q-audio-language'])
       },
     }
@@ -64,29 +77,15 @@ function useLangMutation() {
           :label="$t(`besn-lang.${languageOption}.label`)"
           name="besn-lang"
           :value="languageOption"
-          @change="mutate(languageOption)"
-          :disabled="isLoading || isError"
+          @change="() => onRadioButtonClick(languageOption)"
           :checked="languageOption === queryData?.data.lang"
+          :disabled="radioButtonsDisabled"
           :title="languageOption"
         />
       </div>
 
-      <div v-if="isLoading" class="flex items-center gap-2 mt-2">
-        <LoadingCircle
-          class="border-yellow-600 dark:border-yellow-400 h-5 w-5"
-        />
-        <div class="text-yellow-600 dark:text-yellow-400">
-          Trying to reach the device
-        </div>
-      </div>
-
-      <div
-        v-if="isError"
-        class="mt-2 text-red-700 dark:text-red-500 flex items-center gap-2"
-      >
-        <i class="material-icons">error</i>
-        <span>{{ $t('bes-air-service.error.no-response') }}</span>
-      </div>
+      <ConnectionPending v-if="isPendingQuery" />
+      <ConnectionError v-if="isErrorQuery || isErrorMutate" />
     </fieldset>
   </article>
 </template>
