@@ -13,18 +13,6 @@ class BesAirRestService {
     })
   }
 
-  public async startBesn(): Promise<Response> {
-    return fetch(`${this.apiUrl}/start`, {
-      method: 'POST',
-    })
-  }
-
-  public async stopBesn(): Promise<Response> {
-    return fetch(`${this.apiUrl}/stop`, {
-      method: 'POST',
-    })
-  }
-
   public async getBesnState(): Promise<
     ResponseWithData<{
       state: BesnState
@@ -37,6 +25,18 @@ class BesAirRestService {
       response: res,
       data: await res.json(),
     }
+  }
+
+  public async startBesn(): Promise<Response> {
+    return fetch(`${this.apiUrl}/start`, {
+      method: 'POST',
+    })
+  }
+
+  public async stopBesn(): Promise<Response> {
+    return fetch(`${this.apiUrl}/stop`, {
+      method: 'POST',
+    })
   }
 
   public async getLanguage(): Promise<

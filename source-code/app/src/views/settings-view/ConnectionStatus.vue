@@ -23,12 +23,7 @@ const classes = computed(() => classMap.get(props.state))
 </script>
 
 <template>
-  <SecondaryButton>
-    <div class="flex flex-wrap gap-2">
-      <span>{{ $t('view.settings.connection.test-url.label') }}</span>
-      <i v-if="icon != null" class="material-icons" :class="classes">
-        {{ icon }}
-      </i>
-    </div>
-  </SecondaryButton>
+  <i v-if="icon != null" class="material-icons" :class="classes">
+    {{ icon }}
+  </i>
 </template>

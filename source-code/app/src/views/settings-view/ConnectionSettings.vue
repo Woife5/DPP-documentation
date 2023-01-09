@@ -1,20 +1,31 @@
 <script setup lang="ts">
 import TextInput from '@/components/ui/inputs/TextInput.vue'
 import { useConnectionStore } from '@/stores/connection.store'
-import TestConnectionButton, {
-  type TestState,
-} from './TestConnectionButton.vue'
+import ConnectionStatus, { type TestState } from './ConnectionStatus.vue'
 import { besAirService } from '@/services/bes-air-rest.service'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
+import { useQuery, useQueryClient } from 'vue-query'
 
 const connectionStore = useConnectionStore()
+const queryClient = useQueryClient()
 
 const showInvalidUrlError = ref(false)
-const connectionTest = ref<TestState>('unset')
 
-connectionStore.$subscribe(() => (connectionTest.value = 'unset'))
+connectionStore.$subscribe(() => {
+  queryClient.invalidateQueries('is-alive')
+})
 
-onMounted(() => validateInput(connectionStore.connectionUrl))
+const { data, isSuccess, isError, isFetching, isLoading } = useQuery(
+  ['is-alive'],
+  () => besAirService.isAlive()
+)
+
+const connectionTestState = computed<TestState>(() => {
+  if (isLoading.value || isFetching.value) return 'pending'
+  if (isSuccess.value) return 'success'
+  if (isError.value) return 'fail'
+  return 'unset'
+})
 
 function onUrlInput(value: string) {
   validateInput(value)
@@ -29,17 +40,6 @@ function validateInput(value: string) {
     showInvalidUrlError.value = true
   }
 }
-
-async function testConnection() {
-  if (connectionTest.value === 'pending') return
-  connectionTest.value = 'pending'
-  try {
-    await besAirService.isAlive()
-    connectionTest.value = 'success'
-  } catch (error) {
-    connectionTest.value = 'fail'
-  }
-}
 </script>
 
 <template>
@@ -52,7 +52,7 @@ async function testConnection() {
         </h1>
       </legend>
 
-      <div class="">
+      <div class="flex items-end gap-1">
         <TextInput
           class="grow"
           id="connection-url"
@@ -68,11 +68,7 @@ async function testConnection() {
         >
           {{ $t('view.settings.connection.input.error.invalid-url.label') }}
         </div>
-        <TestConnectionButton
-          class="mt-2"
-          :state="connectionTest"
-          @click="testConnection"
-        />
+        <ConnectionStatus class="mb-2" :state="connectionTestState" />
       </div>
     </fieldset>
   </div>

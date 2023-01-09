@@ -56,23 +56,6 @@ function useLangMutation() {
         </h1>
       </legend>
 
-      <div v-if="isLoading" class="flex items-center gap-2 mb-2">
-        <LoadingCircle
-          class="border-yellow-600 dark:border-yellow-400 h-6 w-6"
-        />
-        <div class="text-yellow-600 dark:text-yellow-400">
-          Trying to reach the device
-        </div>
-      </div>
-
-      <div
-        v-if="isError"
-        class="mb-2 text-red-700 dark:text-red-500 flex items-center gap-2"
-      >
-        <i class="material-icons">error</i>
-        <span>{{ $t('bes-air-service.error.no-response') }}</span>
-      </div>
-
       <div class="flex flex-col items-start gap-y-1">
         <RadioButton
           v-for="languageOption of besnLanguageOptions"
@@ -86,6 +69,23 @@ function useLangMutation() {
           :checked="languageOption === queryData?.data.lang"
           :title="languageOption"
         />
+      </div>
+
+      <div v-if="isLoading" class="flex items-center gap-2 mt-2">
+        <LoadingCircle
+          class="border-yellow-600 dark:border-yellow-400 h-5 w-5"
+        />
+        <div class="text-yellow-600 dark:text-yellow-400">
+          Trying to reach the device
+        </div>
+      </div>
+
+      <div
+        v-if="isError"
+        class="mt-2 text-red-700 dark:text-red-500 flex items-center gap-2"
+      >
+        <i class="material-icons">error</i>
+        <span>{{ $t('bes-air-service.error.no-response') }}</span>
       </div>
     </fieldset>
   </article>
