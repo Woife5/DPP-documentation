@@ -11,14 +11,14 @@ nav_order: 2
 
 The very first motor we aquired was from an old, broken hair dryer.
 
-![Broken hair dryer](assets/ba_hairdryer.png){: width="300" }
-![Slightly dismanteled hairdryer](assets/ba_hairdryer-2.png){: width="500" }
-![Dismanteled hairdryer](assets/ba_debloated-hairdryer.png){: width="400" }
+![Broken hair dryer](assets/component-tests/ba_hairdryer.png){: width="300" }
+![Slightly dismanteled hairdryer](assets/component-tests/ba_hairdryer-2.png){: width="500" }
+![Dismanteled hairdryer](assets/component-tests/ba_debloated-hairdryer.png){: width="400" }
 
 We had to 3D-print a new fan for the motor because the installed one was already broken from being thrown away.
 After extracting the motor and adding the new fan, we tested the motor with different power sources.
 
-![Dismanteled hairdryer](assets/ba_deconstructed-motor.JPEG){: height="400" }
+![Dismanteled hairdryer](assets/component-tests/ba_deconstructed-motor.JPEG){: height="400" }
 
 While testing the motor with a 18V LiPo battery we sadly overwhelmed and broke the motor.
 We found however that one or maybe even two of these motors should be able to power the _BesAir 200_.
@@ -27,7 +27,7 @@ We later luckily found a new motor in the form of an old server fan.
 It was not as strong as the hair dryer motor, but it was sufficient as a starting point for a first prototype.
 We however still ordered a few old hair dryers from Willhaben to eventually get a stronger motor for a later prototype.
 
-![Initial Version of the BesAir with a server fan](assets/ba_servermotor-1.jpg){: height="400" }
+![Initial Version of the BesAir with a server fan](assets/component-tests/ba_servermotor-1.jpg){: height="400" }
 
 The depicted prototype above using the server fan also had a nozzle attached to it.
 It was made out of carton and tape and we hypothesized that it would be able direct the airflow in a more precise way.
@@ -37,7 +37,7 @@ It also was not able to spin down to a complete stop if no signal was provided b
 
 ## Sensors and Software
 
-![Initial Version of the BesAir with a server fan](assets/ba_esp-laptop.jpg){: height="500" }
+![Initial Version of the BesAir with a server fan](assets/component-tests/ba_esp-laptop.jpg){: height="500" }
 
 After aquiring an accelerometer, we started implementing the software for the _BesAir 200_.
 The first step was to get the current acceleration and check if it is above a certain threshold.
@@ -78,8 +78,8 @@ With the help of the app the user can enable or disable the _BesAir 200_ and als
 The connection between the esp and the relay which should eventually control the hair dryer motor was initially quire challanging, as we built the prototypes so far apart.
 We had to connect the two with a long cable and were able to verify that the esp can control the relay and activate the hair dryer plugged into it.
 
-![Connection from the esp to the cable](assets/ba_esp-cable.jpg){: height="500" }
+![Connection from the esp to the cable](assets/component-tests/ba_esp-cable.jpg){: height="500" }
 
-![Connection from the cable to the relay controlling the hair dryer](assets/ba_relay-cable.jpg){: height="500" }
+![Connection from the cable to the relay controlling the hair dryer](assets/component-tests/ba_relay-cable.jpg){: height="500" }
 
-![Full overview of the entire setup](assets/ba_full-integration.jpeg){: height="500" }
+![Full overview of the entire setup](assets/component-tests/ba_full-integration.jpeg){: height="500" }
