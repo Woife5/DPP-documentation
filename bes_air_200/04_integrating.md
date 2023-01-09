@@ -36,10 +36,10 @@ All the components were sticked onto a plastic pipe and a cardboard box was used
 
 In this version the accelerometer was also already working as intended and the motor could be controlled by moving the device faster than a certain threshold.
 
-{% Video assets/prototype-1/ba_activasion.mp4 %}
+<iframe width="420" height="315" src="https://youtube.com/shorts/fMgb1iOq1RA" frameborder="0" allowfullscreen></iframe>
 
 ## App
 
 Activating or deactivating the device using the app was also already possible:
 
-{% Video assets/prototype-1/ba_app-child-voice.mp4 %}
+<iframe width="420" height="315" src="https://youtube.com/shorts/-DQ8Hcarxg4" frameborder="0" allowfullscreen></iframe>
