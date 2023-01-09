@@ -1,41 +1,83 @@
-import axios, { type AxiosResponse } from 'axios'
-import type {
-  BesAirService,
-  GetBesnStateData,
-  GetLanguageData,
-  SetLanguageData,
-} from './bes-air.service'
+import qs from 'qs'
 
-export class BesAirRestService implements BesAirService {
+class BesAirRestService {
   public url = ''
 
   public get apiUrl() {
     return `${this.url}/api`
   }
 
-  public async isAlive(): Promise<void> {
-    await axios.get(`${this.apiUrl}/alive`)
+  public async isAlive(): Promise<Response> {
+    return fetch(`${this.apiUrl}/alive`, {
+      method: 'GET',
+    })
   }
 
-  public async startBesn(): Promise<void> {
-    await axios.post(`${this.apiUrl}/start`)
+  public async startBesn(): Promise<Response> {
+    return fetch(`${this.apiUrl}/start`, {
+      method: 'POST',
+    })
   }
 
-  public async stopBesn(): Promise<void> {
-    await axios.post(`${this.apiUrl}/stop`)
+  public async stopBesn(): Promise<Response> {
+    return fetch(`${this.apiUrl}/stop`, {
+      method: 'POST',
+    })
   }
 
-  public async getBesnState(): Promise<AxiosResponse<GetBesnStateData>> {
-    return await axios.get(`${this.apiUrl}/state`)
+  public async getBesnState(): Promise<
+    ResponseWithData<{
+      state: BesnState
+    }>
+  > {
+    const res = await fetch(`${this.apiUrl}/state`, {
+      method: 'GET',
+    })
+    return {
+      response: res,
+      data: await res.json(),
+    }
   }
 
-  public async getLanguage(): Promise<AxiosResponse<GetLanguageData>> {
-    return await axios.get(`${this.apiUrl}/lang`)
+  public async getLanguage(): Promise<
+    ResponseWithData<{
+      lang: BesnLanguageOption
+    }>
+  > {
+    const res = await fetch(`${this.apiUrl}/language`, {
+      method: 'GET',
+    })
+    return {
+      response: res,
+      data: await res.json(),
+    }
   }
 
-  public async setLanguage(
-    language: string
-  ): Promise<AxiosResponse<SetLanguageData>> {
-    return await axios.post(`${this.apiUrl}/lang`, { language })
+  public async setLanguage(language: string): Promise<
+    ResponseWithData<{
+      lang: BesnLanguageOption
+    }>
+  > {
+    const res = await fetch(`${this.apiUrl}/language`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: qs.stringify({ lang: language }),
+    })
+    return {
+      response: res,
+      data: await res.json(),
+    }
   }
 }
+
+export const besAirService = new BesAirRestService()
+
+export type ResponseWithData<T> = {
+  response: Response
+  data: T
+}
+export type BesnState = 'on' | 'off'
+export const besnLanguageOptions = ['de', 'us', 'ru', 'jp', 'ch'] as const
+export type BesnLanguageOption = (typeof besnLanguageOptions)[number]

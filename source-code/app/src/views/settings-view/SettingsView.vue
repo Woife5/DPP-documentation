@@ -7,8 +7,8 @@ import AudioLanguageSettings from './AudioLanguageSettings.vue'
 <template>
   <div>
     <h1 class="text-4xl">{{ $t('view.settings.heading.label') }}</h1>
-    <AppLanguageSettings class="mt-6" />
-    <AudioLanguageSettings class="mt-6" />
     <ConnectionSettings class="mt-6" />
+    <AudioLanguageSettings class="mt-6" />
+    <AppLanguageSettings class="mt-6" />
   </div>
 </template>

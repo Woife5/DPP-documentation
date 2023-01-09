@@ -4,7 +4,7 @@ import { useConnectionStore } from '@/stores/connection.store'
 import TestConnectionButton, {
   type TestState,
 } from './TestConnectionButton.vue'
-import { besAirService } from '@/services/bes-air.service'
+import { besAirService } from '@/services/bes-air-rest.service'
 import { onMounted, ref } from 'vue'
 
 const connectionStore = useConnectionStore()

@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { besAirService } from '@/services/bes-air.service'
+import { besAirService } from '@/services/bes-air-rest.service'
 import axios from 'axios'
 
 export type BesnState = 'offline' | 'on' | 'off'
@@ -33,9 +33,9 @@ export const useBesnStore = defineStore('besn', () => {
 
   async function connect() {
     catchError(async () => {
-      const response = await besAirService.getBesnState()
-      if (response.data.state === 'on' || response.data.state === 'off') {
-        besnState.value = response.data.state
+      const { data } = await besAirService.getBesnState()
+      if (data.state === 'on' || data.state === 'off') {
+        besnState.value = data.state
       } else {
         besnState.value = 'offline'
       }
@@ -52,14 +52,22 @@ export const useBesnStore = defineStore('besn', () => {
 
   async function activateBesn() {
     catchError(async () => {
-      await besAirService.startBesn()
+      const response = await besAirService.startBesn()
+      if (response.status !== 200) {
+        besnState.value = 'offline'
+        return
+      }
       besnState.value = 'on'
     })
   }
 
   async function deactivateBesn() {
     catchError(async () => {
-      await besAirService.stopBesn()
+      const response = await besAirService.stopBesn()
+      if (response.status !== 200) {
+        besnState.value = 'offline'
+        return
+      }
       besnState.value = 'off'
     })
   }

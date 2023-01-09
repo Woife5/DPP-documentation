@@ -5,9 +5,10 @@ import {
   besAirService,
   type BesnLanguageOption,
   besnLanguageOptions,
-} from '@/services/bes-air.service'
+} from '@/services/bes-air-rest.service'
 import { useI18n } from 'vue-i18n'
 import { useMutation, useQuery, useQueryClient } from 'vue-query'
+import LoadingCircle from '@/components/ui/loading-spinners/LoadingCircle.vue'
 
 const queryClient = useQueryClient()
 const {
@@ -55,6 +56,23 @@ function useLangMutation() {
         </h1>
       </legend>
 
+      <div v-if="isLoading" class="flex items-center gap-2 mb-2">
+        <LoadingCircle
+          class="border-yellow-600 dark:border-yellow-400 h-6 w-6"
+        />
+        <div class="text-yellow-600 dark:text-yellow-400">
+          Trying to reach the device
+        </div>
+      </div>
+
+      <div
+        v-if="isError"
+        class="mb-2 text-red-700 dark:text-red-500 flex items-center gap-2"
+      >
+        <i class="material-icons">error</i>
+        <span>{{ $t('bes-air-service.error.no-response') }}</span>
+      </div>
+
       <div class="flex flex-col items-start gap-y-1">
         <RadioButton
           v-for="languageOption of besnLanguageOptions"
@@ -63,17 +81,11 @@ function useLangMutation() {
           :label="$t(`besn-lang.${languageOption}.label`)"
           name="besn-lang"
           :value="languageOption"
-          @click="mutate(languageOption)"
-          :checked="languageOption === selectedBesnLanguage"
+          @change="mutate(languageOption)"
+          :disabled="isLoading || isError"
+          :checked="languageOption === queryData?.data.lang"
           :title="languageOption"
         />
-      </div>
-      <div
-        v-if="isError"
-        class="mt-2 text-red-700 dark:text-red-500 flex items-center gap-2"
-      >
-        <i class="material-icons">error</i>
-        <span>{{ $t('bes-air-service.error.no-response') }}</span>
       </div>
     </fieldset>
   </article>

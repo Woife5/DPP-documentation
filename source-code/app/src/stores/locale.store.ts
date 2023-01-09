@@ -1,19 +1,21 @@
 import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
-import { i18n, type LocaleOption } from '@/locales/i18n'
+import type { LocaleOption } from '@/locales/i18n'
 import { useStorage } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
 
 export type BesnLocale = ''
 
 export const useLocaleStore = defineStore('locale', () => {
+  const { locale } = useI18n()
   const selectedLocale = ref(useStorage<LocaleOption>('locale', 'en-GB'))
 
   function init() {
-    i18n.global.locale = selectedLocale.value
+    locale.value = selectedLocale.value
   }
 
   watch(selectedLocale, () => {
-    i18n.global.locale = selectedLocale.value
+    locale.value = selectedLocale.value
   })
 
   return { selectedLocale, init }
