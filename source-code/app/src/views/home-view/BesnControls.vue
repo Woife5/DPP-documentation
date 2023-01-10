@@ -32,7 +32,10 @@ const {
   }
 )
 
-const isPending = isLoading || isFetching || isLoadingMutation
+const isPending = computed(
+  () => isLoading.value || isFetching.value || isLoadingMutation.value
+)
+
 const besnButtonState = computed<BesnButtonState>(() => {
   if (isError.value || isErrorMutation.value) {
     return 'offline'
