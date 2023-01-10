@@ -187,6 +187,11 @@ void BesAirSound::play_sound(const String &filename)
     }
 }
 
+String BesAirSound::get_language()
+{
+    return String(language);
+}
+
 void BesAirSound::change_language(const char *new_lang)
 {
     language[1] = new_lang[0];
