@@ -15,7 +15,7 @@ async function triggerAlarm() {
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center">
+  <div class="flex flex-col items-center">
     <PrimaryButton class="flex gap-2" @click="triggerAlarm">
       <div>Bes Air Alarm</div>
       <i class="material-icons">cleaning_services</i>

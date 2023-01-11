@@ -102,7 +102,8 @@
   },
   "bes-air-service": {
     "error": {
-      "no-response": "Server gibt ka Antwort."
-    }
+      "no-response": "Gerät gibt ka Antwort."
+    },
+    "pending": "Des Gerät wird gsucht."
   }
 }

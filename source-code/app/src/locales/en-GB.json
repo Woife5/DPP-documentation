@@ -93,8 +93,9 @@
     }
   },
   "bes-air-service": {
+    "pending": "Trying to reach the device.",
     "error": {
-      "no-response": "Could not reach the server."
+      "no-response": "Could not reach the device."
     }
   },
   "navigation": {

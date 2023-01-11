@@ -4,6 +4,7 @@ import BigFatButton from './BigFatButton.vue'
 import TryReconnect from './TryReconnect.vue'
 import { computed } from 'vue'
 import { besAirService, type BesnState } from '@/services/bes-air-rest.service'
+import ConnectionPending from '@/components/ui/connection/ConnectionPending.vue'
 
 export type BesnButtonState = BesnState | 'offline'
 
@@ -64,5 +65,6 @@ function onTryReconnectClick() {
       :state="besnButtonState"
       @click="onTryReconnectClick"
     />
+    <ConnectionPending v-if="isFetching" />
   </div>
 </template>
