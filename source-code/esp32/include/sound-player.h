@@ -8,11 +8,15 @@
  */
 namespace BesAirSound
 {
+    void log(String msg);
     void on_setup();
     void on_loop();
 
     void queue_sound(const String &filename);
     void play_sound(const String &filename);
-    void get_language();
+    String get_language();
     void change_language(const char *new_lang);
+
+    void speak_string(String str);
+    void emergency_shutdown();
 }

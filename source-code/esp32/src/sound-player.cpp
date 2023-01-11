@@ -61,6 +61,12 @@ Adafruit_VS1053_FilePlayer musicPlayer =
 
 bool sound_available = true;
 
+void BesAirSound::log(String msg)
+{
+    Serial.print("[Audio ] ");
+    Serial.println(msg);
+}
+
 // File listing helper
 void printDirectory(File dir, int numTabs)
 {
@@ -94,25 +100,25 @@ void printDirectory(File dir, int numTabs)
 
 void BesAirSound::on_setup()
 {
-    Serial.println("Sound playe initializing.");
-    Serial.println("\nAdafruit VS1053 Feather Test");
+    BesAirSound::log("Sound playe initializing.");
+    BesAirSound::log("\nAdafruit VS1053 Feather Test");
 
     if (!musicPlayer.begin())
     {
-        Serial.println(F("Couldn't find VS1053, do you have the right pins defined?"));
+        BesAirSound::log(F("Couldn't find VS1053, do you have the right pins defined?"));
         sound_available = false;
     }
 
-    Serial.println(F("VS1053 found"));
+    BesAirSound::log(F("VS1053 found"));
 
     // musicPlayer.sineTest(0x44, 500);    // Make a tone to indicate VS1053 is working
 
     if (!SD.begin(CARDCS))
     {
-        Serial.println(F("SD failed, or not present"));
+        BesAirSound::log(F("SD failed, or not present"));
         sound_available = false;
     }
-    Serial.println("SD OK!");
+    BesAirSound::log("SD OK!");
 
     // list files
     // printDirectory(SD.open("/"), 0);
@@ -171,7 +177,7 @@ void BesAirSound::queue_sound(const String &filename)
     {
         char buf[100];
         sprintf(buf, "%s/%s", language, filename.c_str());
-        Serial.println("Queueing file: " + String(buf));
+        BesAirSound::log("Queueing file: " + String(buf));
         musicPlayer.startPlayingFile(buf);
     }
 }
@@ -182,19 +188,37 @@ void BesAirSound::play_sound(const String &filename)
     {
         char buf[100];
         sprintf(buf, "%s/%s", language, filename.c_str());
-        Serial.println("Playing file: " + String(buf));
+        BesAirSound::log("Playing file: " + String(buf));
         musicPlayer.playFullFile(buf);
     }
 }
 
 String BesAirSound::get_language()
 {
-    return String(language);
+    return String(language[1]) + String(language[2]);
 }
 
 void BesAirSound::change_language(const char *new_lang)
 {
     language[1] = new_lang[0];
     language[2] = new_lang[1];
-    Serial.println("Switched to language: " + String(language));
+    BesAirSound::log("Switched to language: " + String(language));
+}
+
+void BesAirSound::speak_string(String str)
+{
+    for (size_t i = 0; i < str.length(); i++)
+    {
+        char buf[30];
+        if (str[i] == '.')
+        {
+            sprintf(buf, "%s.mp3", "dot");
+        }
+        else
+        {
+            sprintf(buf, "%c.mp3", str[i]);
+        }
+
+        BesAirSound::play_sound(buf);
+    }
 }

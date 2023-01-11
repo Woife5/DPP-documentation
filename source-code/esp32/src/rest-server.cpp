@@ -6,13 +6,15 @@
 #include "rest-server.h"
 #include "sound-player.h"
 
-using namespace BesAirWebserver;
-
 // Replace with your network credentials
-const char *ssid = "TheBois";
+const char *ssid = "Wolfgangs iPhone";
 const char *password = "a1234567890";
 
-String appPrefix = "[WEB] ";
+void BesAirWebserver::log(String msg)
+{
+  Serial.print("[Server] ");
+  Serial.println(msg);
+}
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
@@ -24,24 +26,17 @@ void BesAirWebserver::on_setup()
   int wifiConnectionTries = 1;
   while (WiFi.status() != WL_CONNECTED)
   {
-    Serial.print(appPrefix);
-    Serial.print("Connecting to WiFi ");
-    Serial.print("(");
-    Serial.print(wifiConnectionTries);
-    Serial.println(")");
+    BesAirWebserver::log("Connecting to WiFi (" + String(wifiConnectionTries) + ")");
     wifiConnectionTries++;
     BesAirSound::play_sound("wifi1.mp3");
+    delay(100);
   }
-  Serial.print(appPrefix);
-  Serial.print("Connected to ");
-  Serial.print(ssid);
-  Serial.println();
+  BesAirWebserver::log("Connected to " + String(ssid));
 
   BesAirSound::play_sound("wifi2.mp3");
 
   // Print ESP32 Local IP Address
-  Serial.print(appPrefix);
-  Serial.println(WiFi.localIP());
+  BesAirWebserver::log("IP address: " + WiFi.localIP().toString());
 
   // Route for root / web page
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request)
@@ -50,20 +45,24 @@ void BesAirWebserver::on_setup()
   // API
   server.on("/api/alive", HTTP_GET, [](AsyncWebServerRequest *request)
             {
-    Serial.print(appPrefix);
-    Serial.println("Confirming connection");
+    BesAirWebserver::log("Confirming connection");
     request->send_P(200, "json/application", "{}"); });
 
   server.on("/api/start", HTTP_POST, [](AsyncWebServerRequest *request)
             {
-    Serial.print(appPrefix);
+    if (emergency == true)
+    {
+      request->send_P(500, "json/application", "{ \"status\": \"error\" }");
+      return;
+    }
+
     if (besnState)
     {
-      Serial.println("Already ON");
+      BesAirWebserver::log("Already ON");
     }
     else
     {
-      Serial.println("Turning ON");
+      BesAirWebserver::log("Turning ON");
       besnState = true;
       BesAirSound::queue_sound("ini2.mp3");
     }
@@ -71,11 +70,16 @@ void BesAirWebserver::on_setup()
 
   server.on("/api/stop", HTTP_POST, [](AsyncWebServerRequest *request)
             {
-    Serial.print(appPrefix);
+    if (emergency == true)
+    {
+      request->send_P(500, "json/application", "{ \"status\": \"error\" }");
+      return;
+    }
+
     if (!besnState) {
-      Serial.println("Already OFF");
+      BesAirWebserver::log("Already OFF");
     } else {
-      Serial.println("Turning OFF");
+      BesAirWebserver::log("Turning OFF");
       besnState = false;
       BesAirSound::queue_sound("shutdown.mp3");
     }
@@ -86,9 +90,7 @@ void BesAirWebserver::on_setup()
     String stateStr = besnState ? "on" : "off";
     String stateStrUpper = stateStr;
     stateStrUpper.toUpperCase();
-    Serial.print(appPrefix);
-    Serial.print("Sending state ");
-    Serial.println(stateStrUpper);
+    BesAirWebserver::log("Sending state " + stateStrUpper);
     String responseBody = "{ \"state\": \"";
     responseBody += stateStr;
     responseBody += "\" }";
@@ -96,24 +98,26 @@ void BesAirWebserver::on_setup()
 
   server.on("/api/language", HTTP_GET, [](AsyncWebServerRequest *request)
             {
-    Serial.print(appPrefix);
-    Serial.print("Sending language ");
     String language = BesAirSound::get_language();
     String langUpper = String(language);
     langUpper.toUpperCase();
-    Serial.println(langUpper);
+    BesAirWebserver::log("Sending language " + langUpper);
     request->send_P(200, "json/application", String{ "{ \"lang\": \"" + language + "\" }" }.c_str()); });
 
   server.on("/api/language", HTTP_POST, [](AsyncWebServerRequest *request)
             {
+    if (emergency == true)
+    {
+      request->send_P(500, "json/application", "{ \"status\": \"error\" }");
+      return;
+    }
+
     if (request->hasParam("lang", true))
     {
       String language = request->getParam("lang", true)->value();
-      Serial.print(appPrefix);
-      Serial.print("Set language to ");
       String langUpper = String(language);
       langUpper.toUpperCase();
-      Serial.println(langUpper);
+      BesAirWebserver::log("Set language to " + langUpper);
       BesAirSound::change_language(language.c_str());
       BesAirSound::queue_sound("lang.mp3");
       String responseBody = "{ \"lang\": \"" + language + "\" }";
@@ -129,6 +133,12 @@ void BesAirWebserver::on_setup()
    */
   server.on("/api/sound", HTTP_POST, [](AsyncWebServerRequest *request)
             {
+    if (emergency == true)
+    {
+      request->send_P(500, "json/application", "{ \"status\": \"error\" }");
+      return;
+    }
+
     if (request->hasParam("file", true))
     {
       String sound = request->getParam("file", true)->value();
@@ -140,7 +150,28 @@ void BesAirWebserver::on_setup()
       request->send_P(400, "json/application", "{ \"status\": \"error\" }");
     } });
 
+  /**
+   * Endpoint for emergency procedure
+   */
+  server.on("/api/alarm", HTTP_POST, [](AsyncWebServerRequest *request)
+            {
+    if (emergency == true)
+    {
+      request->send_P(500, "json/application", "{ \"status\": \"error\" }");
+      return;
+    }
+
+    BesAirSound::queue_sound("problem.mp3");
+    emergency = true;
+    request->send_P(200, "json/application", "{ \"status\": \"ok\" }"); });
+
   // Start server
   DefaultHeaders::Instance().addHeader("Access-Control-Allow-Origin", "*");
+  DefaultHeaders::Instance().addHeader("Access-Control-Allow-Private-Network", "true");
   server.begin();
+}
+
+const String BesAirWebserver::get_ip()
+{
+  return WiFi.localIP().toString();
 }

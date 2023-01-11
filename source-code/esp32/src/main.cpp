@@ -6,7 +6,14 @@
 #include "esp_timer.h"
 #include "sound-player.h"
 
-bool besnState = true;
+bool besnState = false;
+bool emergency = false;
+
+void log(String msg)
+{
+    Serial.print("[main  ] ");
+    Serial.println(msg);
+}
 
 void setup(void)
 {
@@ -45,7 +52,7 @@ void setup(void)
     for (int i = 0; i < 20; i++)
     {
         Serial.print(".");
-        delay(100);
+        delay(200);
     }
 
     BesAir::stop_motor();
@@ -58,9 +65,27 @@ int voice_timeout = 15;
 uint64_t last_viable_acc = 0;
 int fan_state = 0;
 
+bool emergency_flag = false;
+uint64_t emergency_timer = 0;
+
 void loop()
 {
     BesAirSound::on_loop();
+
+    if (emergency_flag == true && emergency_timer + 40000000 < esp_timer_get_time())
+    {
+        ESP.restart();
+    }
+
+    if (emergency == true)
+    {
+        if (emergency_flag == false)
+        {
+            emergency_timer = esp_timer_get_time();
+            emergency_flag = true;
+        }
+        return;
+    }
 
     float total_acc_sq = BesAir::get_acceleration();
     if (total_acc_sq > 160)
@@ -69,9 +94,16 @@ void loop()
 
         if (fan_state == 0 && besnState == true)
         {
-            Serial.println("Fan state: ON");
+            log("Fan state: ON");
             BesAir::start_motor();
             fan_state = 1;
+        }
+
+        /* Announce BesAir® IP if it is not already connected and turned on */
+        if (besnState == false)
+        {
+            BesAirSound::play_sound("ip.mp3");
+            BesAirSound::speak_string(BesAirWebserver::get_ip());
         }
     }
 
@@ -98,7 +130,7 @@ void loop()
         }
         else if (random == 4)
         {
-            BesAirSound::queue_sound("problem.mp3");
+            BesAirSound::queue_sound("calibr1.mp3");
         }
 
         last_voice_line = esp_timer_get_time();
@@ -108,7 +140,7 @@ void loop()
     uint64_t passed_time = esp_timer_get_time() - last_viable_acc;
     if ((passed_time > 1000000 || besnState == false) && fan_state == 1)
     {
-        Serial.println("Fan state: OFF");
+        log("Fan state: OFF");
         BesAir::stop_motor();
         fan_state = 0;
     }

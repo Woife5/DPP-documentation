@@ -9,6 +9,12 @@ const int PWM_MOTOR_CHANNEL = 0;
 
 const int MOTOR_PIN = 12;
 
+void log_besair(String msg)
+{
+    Serial.print("[BesAir] ");
+    Serial.println(msg);
+}
+
 void BesAir::on_setup()
 {
     while (!Serial)
@@ -16,21 +22,21 @@ void BesAir::on_setup()
         delay(10); // will pause Zero, Leonardo, etc until serial console opens
     }
 
-    Serial.println("Starting BesAir testing sequence.");
+    log_besair("Starting BesAir testing sequence.");
 
     // Initialize the mpu (gyro and accelerometer)
     if (!mpu.begin())
     {
-        Serial.println("Failed to find genuine BesAir® chip");
+        log_besair("Failed to find genuine BesAir® chip");
         while (1)
         {
             delay(10);
         }
     }
-    Serial.println("BesAir® genuine hardware found");
+    log_besair("BesAir® genuine hardware found");
 
     mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
-    Serial.print("Accelerometer range set to: ");
+    Serial.print("[BesAir] Accelerometer range set to: ");
     switch (mpu.getAccelerometerRange())
     {
     case MPU6050_RANGE_2_G:
@@ -47,7 +53,7 @@ void BesAir::on_setup()
         break;
     }
     mpu.setGyroRange(MPU6050_RANGE_500_DEG);
-    Serial.print("Gyro range set to: ");
+    Serial.print("[BesAir] Gyro range set to: ");
     switch (mpu.getGyroRange())
     {
     case MPU6050_RANGE_250_DEG:
@@ -65,7 +71,7 @@ void BesAir::on_setup()
     }
 
     mpu.setFilterBandwidth(MPU6050_BAND_5_HZ);
-    Serial.print("Filter bandwidth set to: ");
+    Serial.print("[BesAir] Filter bandwidth set to: ");
     switch (mpu.getFilterBandwidth())
     {
     case MPU6050_BAND_260_HZ:
