@@ -70,6 +70,22 @@ class BesAirRestService {
       data: await res.json(),
     }
   }
+
+  public async playProblemMp3(): Promise<Response> {
+    return fetch(`${this.apiUrl}/sound`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: qs.stringify({ file: 'problem.mp3' }),
+    })
+  }
+
+  public async restartDevice(): Promise<Response> {
+    return fetch(`${this.apiUrl}/restart`, {
+      method: 'POST',
+    })
+  }
 }
 
 export const besAirService = new BesAirRestService()
