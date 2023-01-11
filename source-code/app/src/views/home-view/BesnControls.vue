@@ -13,7 +13,11 @@ const { data, isLoading, isFetching, isError } = useQuery('q-besn-state', () =>
   besAirService.getBesnState()
 )
 
-const { mutate } = useMutation(
+const {
+  mutate,
+  isLoading: isLoadingMutation,
+  isError: isErrorMutation,
+} = useMutation(
   'm-besn-state',
   () => {
     if (data.value?.data.state === 'on') {
@@ -28,13 +32,23 @@ const { mutate } = useMutation(
   }
 )
 
-const isPending = isLoading || isFetching
-const besnButtonState = computed<BesnButtonState>(
-  () => data.value?.data.state ?? 'offline'
+const isPending = computed(
+  () => isLoading.value || isFetching.value || isLoadingMutation.value
 )
+
+const besnButtonState = computed<BesnButtonState>(() => {
+  if (isError.value || isErrorMutation.value) {
+    return 'offline'
+  }
+  return data.value?.data.state ?? 'offline'
+})
 
 function onBigFatButtonClick() {
   mutate()
+}
+
+function onTryReconnectClick() {
+  queryClient.invalidateQueries('q-besn-state')
 }
 </script>
 
@@ -45,6 +59,10 @@ function onBigFatButtonClick() {
       :pending="isPending"
       @change="onBigFatButtonClick"
     />
-    <TryReconnect v-if="!isPending" :state="besnButtonState" />
+    <TryReconnect
+      v-if="!isPending"
+      :state="besnButtonState"
+      @click="onTryReconnectClick"
+    />
   </div>
 </template>
