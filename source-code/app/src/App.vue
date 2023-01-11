@@ -2,6 +2,7 @@
 import Header from './components/Header.vue'
 import Main from './components/Main.vue'
 import Footer from './components/Footer.vue'
+import DialogsContainer from './components/DialogsContainer.vue'
 import { useLocaleStore } from './stores/locale.store'
 import { useConnectionStore } from './stores/connection.store'
 import { besAirService } from './services/bes-air-rest.service'
@@ -20,4 +21,6 @@ connectionStore.$subscribe(
   <Header />
   <Main />
   <Footer />
+
+  <DialogsContainer />
 </template>

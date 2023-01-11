@@ -5,6 +5,18 @@ module.exports = {
   content: ['./index.html', './src/**/*.{ts,vue}'],
   theme: {
     extend: {
+      colors: {
+        light: {
+          dialog: {
+            backdrop: 'hsla(0, 0%, 10%, 0.75)',
+          },
+        },
+        dark: {
+          dialog: {
+            backdrop: 'hsla(0, 0%, 80%, 0.25)',
+          },
+        },
+      },
       textColor: {
         dark: {
           success: colors.green[400],

@@ -1,37 +1,32 @@
 <script setup lang="ts">
 import RadioButton from '@/components/ui/radio-buttons/RadioButton.vue'
-import { onMounted, ref, computed } from 'vue'
+import { computed } from 'vue'
 import {
   besAirService,
   type BesnLanguageOption,
   besnLanguageOptions,
 } from '@/services/bes-air-rest.service'
-import { useI18n } from 'vue-i18n'
 import { useMutation, useQuery, useQueryClient } from 'vue-query'
-import LoadingCircle from '@/components/ui/loading-spinners/LoadingCircle.vue'
 import ConnectionPending from '@/components/ui/connection/ConnectionPending.vue'
 import ConnectionError from '@/components/ui/connection/ConnectionError.vue'
 
 const queryClient = useQueryClient()
 const {
   data: queryData,
-  isError: isErrorQuery,
   isLoading: isLoadingQuery,
   isFetching: isFetchingQuery,
+  isError: isErrorQuery,
 } = useLangQuery()
 const {
   mutate,
-  isError: isErrorMutate,
   isLoading: isLoadingMutate,
+  isError: isErrorMutate,
 } = useLangMutation()
-
-const isPendingQuery = computed(
-  () => isLoadingQuery.value || isFetchingQuery.value
-)
 
 const radioButtonsDisabled = computed(
   () =>
-    isPendingQuery.value ||
+    isLoadingQuery.value ||
+    isFetchingQuery.value ||
     isErrorQuery.value ||
     isLoadingMutate.value ||
     isErrorMutate.value
@@ -51,7 +46,7 @@ function useLangMutation() {
     'm-audio-language',
     (language: BesnLanguageOption) => besAirService.setLanguage(language),
     {
-      onSuccess: (data) => {
+      onSuccess: () => {
         queryClient.invalidateQueries(['q-audio-language'])
       },
     }
@@ -77,10 +72,10 @@ function useLangMutation() {
           :label="$t(`besn-lang.${languageOption}.label`)"
           name="besn-lang"
           :value="languageOption"
-          @change="() => onRadioButtonClick(languageOption)"
           :checked="languageOption === queryData?.data.lang"
           :disabled="radioButtonsDisabled"
           :title="languageOption"
+          @change="() => onRadioButtonClick(languageOption)"
         />
       </div>
 
