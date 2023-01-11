@@ -84,7 +84,7 @@ function useLangMutation() {
         />
       </div>
 
-      <ConnectionPending v-if="isPendingQuery" />
+      <ConnectionPending v-if="isFetchingQuery" />
       <ConnectionError v-if="isErrorQuery || isErrorMutate" />
     </fieldset>
   </article>
