@@ -31,30 +31,28 @@ function onButtonClick() {
   emits('change')
 }
 
-watch(props, () => {
-  if (props.state === 'on') {
-    startPersistentVibrate(1000, 1000)
-  } else {
-    stopVibrate()
+watch(
+  () => props.state,
+  () => {
+    if (props.state === 'on') {
+      startPersistentVibrate(1000, 1000)
+    } else {
+      stopVibrate()
+    }
   }
-})
+)
 
 let vibrateInterval: number | undefined
 
-// Starts vibration at passed in level
 function startVibrate(duration: number) {
   navigator.vibrate(duration)
 }
 
-// Stops vibration
 function stopVibrate() {
-  // Clear interval and stop persistent vibrating
   if (vibrateInterval !== null) clearInterval(vibrateInterval)
   navigator.vibrate(0)
 }
 
-// Start persistent vibration at given duration and interval
-// Assumes a number value is given
 function startPersistentVibrate(duration: number, interval: number) {
   vibrateInterval = setInterval(() => {
     startVibrate(duration)
