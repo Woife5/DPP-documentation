@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from './views/home-view/HomeView.vue'
 import SettingsView from './views/settings-view/SettingsView.vue'
-import LEDView from './views/led-view/LEDView.vue'
+import AlarmView from './views/alarm-view/AlarmView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,14 +20,14 @@ const router = createRouter({
       component: () => import('./views/about-view/AboutView.vue'),
     },
     {
-      path: '/led-settings',
-      name: 'led-settings',
-      component: LEDView,
-    },
-    {
       path: '/settings',
       name: 'settings',
       component: SettingsView,
+    },
+    {
+      path: '/alarm',
+      name: 'alarm',
+      component: AlarmView,
     },
   ],
 })

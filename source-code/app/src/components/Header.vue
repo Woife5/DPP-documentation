@@ -26,16 +26,6 @@ import SubtleButton from './ui/buttons/SubtleButton.vue'
           </div>
         </SubtleButton>
       </RouterLink>
-      <RouterLink :to="{ name: 'led-settings' }">
-        <SubtleButton>
-          <div class="flex gap-2 items-center">
-            <i class="material-icons">lightbulb</i>
-            <span class="hidden sm:block">{{
-              $t('header.led-settings.label')
-            }}</span>
-          </div>
-        </SubtleButton>
-      </RouterLink>
       <RouterLink :to="{ name: 'settings' }">
         <SubtleButton>
           <div class="flex gap-2 items-center">
