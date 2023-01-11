@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import LoadingCircle from '@/components/ui/loading-spinners/LoadingCircle.vue'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import type { BesnButtonState } from './BesnControls.vue'
 
 const props = defineProps<{
@@ -29,6 +29,36 @@ const classes = computed(() => {
 
 function onButtonClick() {
   emits('change')
+}
+
+watch(props, () => {
+  if (props.state === 'on') {
+    startPersistentVibrate(1000, 1000)
+  } else {
+    stopVibrate()
+  }
+})
+
+let vibrateInterval: number | undefined
+
+// Starts vibration at passed in level
+function startVibrate(duration: number) {
+  navigator.vibrate(duration)
+}
+
+// Stops vibration
+function stopVibrate() {
+  // Clear interval and stop persistent vibrating
+  if (vibrateInterval) clearInterval(vibrateInterval)
+  navigator.vibrate(0)
+}
+
+// Start persistent vibration at given duration and interval
+// Assumes a number value is given
+function startPersistentVibrate(duration: number, interval: number) {
+  vibrateInterval = setInterval(() => {
+    startVibrate(duration)
+  }, interval)
 }
 </script>
 
