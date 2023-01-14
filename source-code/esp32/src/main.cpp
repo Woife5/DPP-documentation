@@ -19,6 +19,10 @@ void setup(void)
 {
     Serial.begin(115200);
 
+    BesAir::on_setup();
+    BesAir::reset_lights();
+    BesAir::show_lights();
+
     // Initialize a random language for BesAir®
     switch (esp_random() % 5)
     {
@@ -43,7 +47,6 @@ void setup(void)
     BesAirSound::play_sound("ini1.mp3");
 
     BesAirWebserver::on_setup();
-    BesAir::on_setup();
 
     // BesAir starting sequence (needs cooling)
     Serial.print("Starting BesAir 200 Beta 4.3");
@@ -88,7 +91,9 @@ void loop()
     }
 
     float total_acc_sq = BesAir::get_acceleration();
-    if (total_acc_sq > 160)
+    BesAir::update_lights(total_acc_sq);
+
+    if (total_acc_sq > 60)
     {
         last_viable_acc = esp_timer_get_time();
 

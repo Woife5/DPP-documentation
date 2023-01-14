@@ -6,6 +6,12 @@ extern const char index_html[] PROGMEM;
 extern bool besnState;
 extern bool emergency;
 
+/**
+ * @file rest-server.h
+ * @brief This file contains all rest server ralated functions.
+ *
+ * Copyright (C) BesAir Foundation 2023
+ */
 namespace BesAirWebserver
 {
     void log(String msg);

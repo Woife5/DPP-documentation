@@ -154,6 +154,11 @@ void BesAirSound::on_loop()
     }
 }
 
+bool BesAirSound::is_playing()
+{
+    return musicPlayer.playingMusic;
+}
+
 // Available sound files:
 // ini1.mp3
 // ini2.mp3
