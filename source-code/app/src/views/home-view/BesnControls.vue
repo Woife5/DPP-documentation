@@ -65,6 +65,6 @@ function onTryReconnectClick() {
       :state="besnButtonState"
       @click="onTryReconnectClick"
     />
-    <ConnectionPending v-if="isFetching" />
+    <ConnectionPending v-if="isLoading" />
   </div>
 </template>

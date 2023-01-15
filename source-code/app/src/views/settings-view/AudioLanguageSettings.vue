@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import RadioButton from '@/components/ui/radio-buttons/RadioButton.vue'
-import { computed } from 'vue'
+import { computed, type Ref } from 'vue'
 import {
   besAirService,
   type BesnLanguageOption,
   besnLanguageOptions,
+  type ResponseWithData,
 } from '@/services/bes-air-rest.service'
 import { useMutation, useQuery, useQueryClient } from 'vue-query'
 import ConnectionPending from '@/components/ui/connection/ConnectionPending.vue'
 import ConnectionError from '@/components/ui/connection/ConnectionError.vue'
+import type { QueryDataRef } from '@/utilities/tanstack-types'
 
 const queryClient = useQueryClient()
 const {
@@ -16,12 +18,32 @@ const {
   isLoading: isLoadingQuery,
   isFetching: isFetchingQuery,
   isError: isErrorQuery,
-} = useLangQuery()
+} = useQuery('q-audio-language', () => besAirService.getLanguage())
+
 const {
   mutate,
   isLoading: isLoadingMutate,
   isError: isErrorMutate,
-} = useLangMutation()
+} = useMutation(
+  'm-audio-language',
+  (language: BesnLanguageOption) => besAirService.setLanguage(language),
+  {
+    onSuccess: (res) => {
+      queryClient.setQueryData<QueryDataRef<typeof queryData>>(
+        ['q-audio-language'],
+        {
+          data: {
+            lang: res.data.lang,
+          },
+          response: new Response(),
+        }
+      )
+    },
+  }
+)
+
+const isPending = computed(() => isFetchingQuery.value)
+const isError = computed(() => isErrorQuery.value || isErrorMutate.value)
 
 const radioButtonsDisabled = computed(
   () =>
@@ -35,22 +57,6 @@ const radioButtonsDisabled = computed(
 function onRadioButtonClick(languageOption: BesnLanguageOption) {
   if (radioButtonsDisabled.value) return
   mutate(languageOption)
-}
-
-function useLangQuery() {
-  return useQuery('q-audio-language', () => besAirService.getLanguage())
-}
-
-function useLangMutation() {
-  return useMutation(
-    'm-audio-language',
-    (language: BesnLanguageOption) => besAirService.setLanguage(language),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(['q-audio-language'])
-      },
-    }
-  )
 }
 </script>
 
@@ -79,8 +85,8 @@ function useLangMutation() {
         />
       </div>
 
-      <ConnectionPending v-if="isFetchingQuery" />
-      <ConnectionError v-if="isErrorQuery || isErrorMutate" />
+      <ConnectionPending v-if="isPending" />
+      <ConnectionError v-if="!isPending && isError" />
     </fieldset>
   </article>
 </template>
