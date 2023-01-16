@@ -1,10 +1,10 @@
 ---
-title: BesAir 200 Esp Wroom 68
+title: BesAir
 layout: home
 has_children: true
 ---
 
-# BesAir 200 Esp Wroom 68
+# BesAir
 
 Project documentation for the **Design for Physical Prototyping** course 2022/23 focusing on the topic of **Uncomfortable Devices**.
 

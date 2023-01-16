@@ -1,7 +1,7 @@
 ---
 title: Component testing
 layout: default
-parent: BesAir 200 Esp Wroom 68
+parent: BesAir
 nav_order: 2
 ---
 
@@ -21,7 +21,7 @@ After extracting the motor and adding the new fan, we tested the motor with diff
 ![Dismanteled hairdryer](assets/component-tests/ba_deconstructed-motor.JPEG){: height="400" }
 
 While testing the motor with a 18V LiPo battery we sadly overwhelmed and broke the motor.
-We found however that one or maybe even two of these motors should be able to power the _BesAir 200_.
+We found however that one or maybe even two of these motors should be able to power the _BesAir_.
 
 We later luckily found a new motor in the form of an old server fan.
 It was not as strong as the hair dryer motor, but it was sufficient as a starting point for a first prototype.
@@ -39,7 +39,7 @@ It also was not able to spin down to a complete stop if no signal was provided b
 
 ![Initial Version of the BesAir with a server fan](assets/component-tests/ba_esp-laptop.jpg){: height="500" }
 
-After aquiring an accelerometer, we started implementing the software for the _BesAir 200_.
+After aquiring an accelerometer, we started implementing the software for the _BesAir_.
 The first step was to get the current acceleration and check if it is above a certain threshold.
 This however turned out to be slightly more challenging than expected.
 The accelerometer constantly measured a value of 9.8 m/s², which is the acceleration due to gravity.
@@ -73,7 +73,7 @@ The code basically went through the following steps:
 ## Integrating the prototypes
 
 After the software was ready and been tested with the server fan, we added the code for the webserver and connection to the app.
-With the help of the app the user can enable or disable the _BesAir 200_ and also should be able to change the light strip colors.
+With the help of the app the user can enable or disable the _BesAir_ and also should be able to change the light strip colors.
 
 The connection between the esp and the relay which should eventually control the hair dryer motor was initially quire challanging, as we built the prototypes so far apart.
 We had to connect the two with a long cable and were able to verify that the esp can control the relay and activate the hair dryer plugged into it.

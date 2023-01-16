@@ -1,7 +1,7 @@
 ---
 title: Final prototype
 layout: default
-parent: BesAir 200 Esp Wroom 68
+parent: BesAir
 nav_order: 5
 ---
 

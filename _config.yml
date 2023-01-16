@@ -1,4 +1,4 @@
-title: BesAir 200 Esp Wroom 68
+title: BesAir
 description: A futuristic broom for the modern human.
 theme: just-the-docs
 
@@ -7,20 +7,20 @@ url: https://Woife5.github.io/DPP-documentation
 color_scheme: nil
 callouts_level: quiet # or loud
 callouts:
-  highlight:
-    color: yellow
-  important:
-    title: Important
-    color: blue
-  new:
-    title: New
-    color: green
-  note:
-    title: Note
-    color: purple
-  warning:
-    title: Warning
-    color: red
+    highlight:
+        color: yellow
+    important:
+        title: Important
+        color: blue
+    new:
+        title: New
+        color: green
+    note:
+        title: Note
+        color: purple
+    warning:
+        title: Warning
+        color: red
 
 aux_links:
-  Repository: https://github.com/Woife5/DPP-documentation
+    Repository: https://github.com/Woife5/DPP-documentation
