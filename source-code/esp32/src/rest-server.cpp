@@ -7,8 +7,8 @@
 #include "sound-player.h"
 
 // Replace with your network credentials
-const char *ssid = "Wolfgangs iPhone";
-const char *password = "a1234567890";
+const char *ssid = "BesAir";
+const char *password = "BesAir200";
 
 void BesAirWebserver::log(String msg)
 {
