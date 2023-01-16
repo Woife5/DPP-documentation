@@ -98,7 +98,19 @@
   },
   "app": {
     "title": "Bes Air",
-    "slogan": "Sa ma ned bes, owa so host no ned greinigt."
+    "slogan": "Sa ma ned bes, owa so host no ned greinigt.",
+    "cookie-disclaimer": {
+      "content": "Bitte beachten Sie, dass unsere Website keine Cookies verwendet, um Ihre Website zu verbessern Browsing-Erfahrung und um Inhalte und Werbung zu personalisieren. Von Wenn Sie unsere Website weiterhin nutzen, stimmen Sie unserer Nichtverwendung von Cookies zu gemäß unserer Datenschutzrichtlinie. Cookies sind kleine Dateien, die auf Ihrem Gerät platziert werden, wenn Sie eine Website besuchen. Sie sind gemeinhin daran gewöhnt sich an Ihre Einstellungen, Anmeldeinformationen und den Browserverlauf erinnern. Unser Website verwendet keine Sitzungscookies, die ablaufen, wenn Sie Ihre schließen Browser, noch dauerhafte Cookies, die auf Ihrem Gerät verbleiben, bis sie gelöscht werden verfallen oder gelöscht werden. Wir verwenden keine Cookies, um zu verstehen, wie unsere Website funktioniert verwendet wird und um das Benutzererlebnis zu verbessern. Wir zum Beispiel nicht Verwenden Sie Cookies, um sich Ihre Anmeldeinformationen zu merken, damit Sie dies nicht tun müssen geben Sie es bei jedem Besuch unserer Website ein. Wir verwenden auch keine Cookies Sammeln Sie Informationen über die Seiten, die Sie besuchen, und die Links, die Sie verwenden klicke auf. Diese Informationen helfen uns nicht zu verstehen, wie unsere Website funktioniert verwendet werden und um den Inhalt und die Funktionalität unserer Website zu verbessern. Wir verwenden Cookies auch nicht, um Inhalte und Anzeigen zu personalisieren. Für Beispielsweise verwenden wir keine Cookies, um Ihnen relevantere Anzeigen zu zeigen deine Interessen. Wir dürfen Cookies auch nicht verwenden, um die Häufigkeit zu begrenzen Sie eine Werbung sehen, oder um die Effektivität einer zu messen Werbekampagne. Wir verwenden keine Drittanbieter, um zu helfen uns zu verstehen, wie unsere Website verwendet wird, und Inhalte zu personalisieren und Anzeige. Diese Dienstleister verwenden möglicherweise keine Cookies zum Sammeln Informationen über Ihren Browserverlauf und Ihre Präferenzen. Wir nicht alle personenbezogenen Daten mit diesen Diensten teilen Anbieter. Sie können die Verwendung von Cookies auf unserer Website durch Einstellen steuern Ihre Browsereinstellungen. Die meisten Webbrowser ermöglichen Ihnen das Blockieren oder Löschen Cookies, aber bitte beachten Sie, dass dies Sie am Zugriff hindern kann einige Funktionen unserer Website. Wir möchten Sie daran erinnern, dass Ihre Annahme unserer Verwendung von Cookies ist rein optional und es steht Ihnen frei, sie zu blockieren, zu löschen oder deaktivieren Sie sie, indem Sie Ihre Browsereinstellungen anpassen. Bitte beachten Sie jedoch dass das Blockieren, Löschen oder Deaktivieren von Cookies Sie daran hindern kann Zugriff auf bestimmte Funktionen unserer Website oder kann bestimmte Teile davon verursachen unsere Website nicht richtig funktioniert. Durch die Nutzung unserer Website erkennen Sie dies an und stimmen Sie unserer Verwendung von Cookies zu, wie in diesem Cookie-Disclaimer beschrieben. Wenn Sie stimmen unserer Verwendung von Cookies nicht zu, bitte verwenden Sie unsere Website nicht. Wenn Wenn Sie Fragen oder Bedenken bezüglich unserer Verwendung von Cookies haben, wenden Sie sich bitte an uns kontaktiere uns.",
+      "heading": "Cookie-Richtlinie 🍪",
+      "button": {
+        "accept": {
+          "label": "Basst"
+        },
+        "decline": {
+          "label": "Na"
+        }
+      }
+    }
   },
   "bes-air-service": {
     "error": {
