@@ -1,6 +1,5 @@
-#include <Adafruit_MPU6050.h>
-#include <Wire.h>
 #include "sound-player.h"
+#include <Wire.h>
 
 // Specifically for use with the Adafruit Feather, the pins are pre-set here!
 
@@ -160,6 +159,7 @@ bool BesAirSound::is_playing()
 }
 
 // Available sound files:
+// active.mp3
 // ini1.mp3
 // ini2.mp3
 // wifi1.mp3
@@ -174,13 +174,24 @@ bool BesAirSound::is_playing()
 // problem.mp3
 // lang.mp3
 // shutdown.mp3
+// 0.mp3
+// 1.mp3
+// 2.mp3
+// 3.mp3
+// 4.mp3
+// 5.mp3
+// 6.mp3
+// 7.mp3
+// 8.mp3
+// 9.mp3
+// dot.mp3
 
 char language[4] = "/ru";
 void BesAirSound::queue_sound(const String &filename)
 {
     if (sound_available)
     {
-        char buf[100];
+        char buf[50];
         sprintf(buf, "%s/%s", language, filename.c_str());
         BesAirSound::log("Queueing file: " + String(buf));
         musicPlayer.startPlayingFile(buf);
@@ -191,7 +202,7 @@ void BesAirSound::play_sound(const String &filename)
 {
     if (sound_available)
     {
-        char buf[100];
+        char buf[50];
         sprintf(buf, "%s/%s", language, filename.c_str());
         BesAirSound::log("Playing file: " + String(buf));
         musicPlayer.playFullFile(buf);

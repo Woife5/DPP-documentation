@@ -17,7 +17,9 @@ namespace BesAir
     void stop_motor();
 
     void reset_lights();
+    void init_lights();
     void update_lights(float acc);
+    void danger_lights();
     void show_lights();
 
     float get_acceleration();

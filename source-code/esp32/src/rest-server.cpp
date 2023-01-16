@@ -23,7 +23,7 @@ void BesAirWebserver::on_setup()
 {
   // Connect to Wi-Fi
   WiFi.begin(ssid, password);
-  int wifiConnectionTries = 1;
+  uint wifiConnectionTries = 1;
   while (WiFi.status() != WL_CONNECTED)
   {
     BesAirWebserver::log("Connecting to WiFi (" + String(wifiConnectionTries) + ")");
@@ -56,15 +56,15 @@ void BesAirWebserver::on_setup()
       return;
     }
 
-    if (besnState)
-    {
-      BesAirWebserver::log("Already ON");
-    }
-    else
+    if (besnState == false)
     {
       BesAirWebserver::log("Turning ON");
       besnState = true;
-      BesAirSound::queue_sound("ini2.mp3");
+      BesAirSound::queue_sound("active.mp3");
+    }
+    else
+    {
+      BesAirWebserver::log("Already ON");
     }
     request->send_P(200, "json/application", "{ \"state\": \"on\" }"); });
 

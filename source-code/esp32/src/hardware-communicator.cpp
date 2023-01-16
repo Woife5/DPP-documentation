@@ -5,9 +5,10 @@
 #include <Adafruit_Sensor.h>
 #include <Wire.h>
 
+// const int PWM_MOTOR_PIN = 27;
+// const int PWM_MOTOR_CHANNEL = 0;
+
 Adafruit_MPU6050 mpu;
-const int PWM_MOTOR_PIN = 27;
-const int PWM_MOTOR_CHANNEL = 0;
 
 const int MOTOR_PIN = 12;
 
@@ -20,8 +21,15 @@ const int LED_RING_PIXELS = 30;
 const float EARTH_GRAVITY_SQ = 96.3;
 const uint8_t LED_STRIP_MAX_ACC = 150;
 
+// Interval between two LED updated in nanoseconds
+const uint32_t LED_UPDATE_INTERVAL_NS = 10 * 1000;
+
 Adafruit_NeoPixel led_strip(LED_STRIP_PIXELS, LED_STRIP_PIN, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel led_ring(LED_RING_PIXELS, LED_RING_PIN, NEO_GRB + NEO_KHZ800);
+
+const uint32_t LED_RING_ON_COLOR = led_ring.Color(3, 244, 252);
+const uint32_t LED_RING_OFF_COLOR = led_ring.Color(255, 0, 0);
+const uint8_t LED_RING_ON_COUNT = 3;
 
 bool motor_on = false;
 
@@ -175,20 +183,17 @@ uint32_t get_pixel_color(size_t pixel, size_t total_pixels)
 
 uint64_t last_led_update = esp_timer_get_time();
 
-const uint32_t LED_RING_ON_COLOR = led_ring.Color(3, 244, 252);
-const uint32_t LED_RING_OFF_COLOR = led_ring.Color(255, 0, 0);
-const uint8_t LED_RING_ON_COUNT = 3;
 uint8_t ring_leds_on[LED_RING_ON_COUNT] = {0, 1, 2};
 uint32_t strip_led_colors[LED_STRIP_PIXELS] = {0};
 
 void BesAir::reset_lights()
 {
-    for (size_t i = 0; i < led_strip.numPixels(); i++)
+    for (size_t i = 0; i < LED_STRIP_PIXELS; i++)
     {
         led_strip.setPixelColor(i, led_strip.Color(0, 0, 0));
     }
 
-    for (size_t i = 0; i < led_ring.numPixels(); i++)
+    for (size_t i = 0; i < LED_RING_PIXELS; i++)
     {
         led_ring.setPixelColor(i, led_ring.Color(0, 0, 0));
     }
@@ -198,9 +203,14 @@ float average_acc = 0;
 
 void BesAir::update_lights(float acc)
 {
-    average_acc = (average_acc * 0.9) + (acc * 0.1);
+    if (emergency == true)
+    {
+        return;
+    }
 
-    if (esp_timer_get_time() - last_led_update < 10000)
+    average_acc = (average_acc * 0.8) + (acc * 0.2);
+
+    if (esp_timer_get_time() - last_led_update < LED_UPDATE_INTERVAL_NS)
     {
         return;
     }
@@ -209,7 +219,7 @@ void BesAir::update_lights(float acc)
     BesAir::reset_lights();
 
     // LEDs should be turned off if sound is currently playing
-    if (BesAirSound::is_playing() || emergency == true)
+    if (BesAirSound::is_playing())
     {
         BesAir::show_lights();
         return;
@@ -233,7 +243,6 @@ void BesAir::update_lights(float acc)
     }
 
     // LED strip should be lit up based on the acceleration
-    Serial.printf("Acceleration: %f\n", average_acc);
     long max_led = map(average_acc, 0, LED_STRIP_MAX_ACC, 0, LED_STRIP_PIXELS);
     for (size_t i = 0; i < LED_STRIP_PIXELS; i++)
     {
@@ -250,6 +259,31 @@ void BesAir::update_lights(float acc)
     for (size_t i = 0; i < LED_STRIP_PIXELS; i++)
     {
         led_strip.setPixelColor(LED_STRIP_PIXELS - i, strip_led_colors[i]);
+    }
+
+    BesAir::show_lights();
+}
+
+void BesAir::danger_lights()
+{
+    for (size_t i = 0; i < LED_STRIP_PIXELS; i++)
+    {
+        led_strip.setPixelColor(i, led_strip.Color(0, 0, 0));
+    }
+
+    for (size_t i = 0; i < LED_RING_PIXELS; i++)
+    {
+        led_ring.setPixelColor(i, LED_RING_OFF_COLOR);
+    }
+
+    BesAir::show_lights();
+}
+
+void BesAir::init_lights()
+{
+    for (size_t i = 0; i < LED_RING_ON_COUNT; i++)
+    {
+        led_ring.setPixelColor(ring_leds_on[i], LED_RING_OFF_COLOR);
     }
 
     BesAir::show_lights();

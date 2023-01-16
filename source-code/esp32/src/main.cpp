@@ -9,6 +9,12 @@
 bool besnState = false;
 bool emergency = false;
 
+// How long the fan will stay on once it is turned on
+const size_t FAN_TIMEOUT = 0.7 * 1000 * 1000;
+
+// The minimum squared accelleration at which the fan will turn on
+const uint8_t FAN_ACTIVASION_THRESHOLD = 65;
+
 void log(String msg)
 {
     Serial.print("[main  ] ");
@@ -20,11 +26,11 @@ void setup(void)
     Serial.begin(115200);
 
     BesAir::on_setup();
-    BesAir::reset_lights();
+    BesAir::init_lights();
     BesAir::show_lights();
 
     // Initialize a random language for BesAir®
-    switch (esp_random() % 5)
+    switch (esp_random() % 4)
     {
     case 0:
         BesAirSound::change_language("ru");
@@ -36,9 +42,6 @@ void setup(void)
         BesAirSound::change_language("us");
         break;
     case 3:
-        BesAirSound::change_language("ch");
-        break;
-    case 4:
         BesAirSound::change_language("de");
         break;
     }
@@ -49,7 +52,7 @@ void setup(void)
     BesAirWebserver::on_setup();
 
     // BesAir starting sequence (needs cooling)
-    Serial.print("Starting BesAir 200 Beta 4.3");
+    Serial.print("Starting BesAir");
     BesAir::start_motor();
 
     for (int i = 0; i < 20; i++)
@@ -64,9 +67,9 @@ void setup(void)
 }
 
 uint64_t last_voice_line = esp_timer_get_time();
-int voice_timeout = 15;
 uint64_t last_viable_acc = 0;
-int fan_state = 0;
+uint16_t random_voice_timeout = 15;
+bool fan_state = false;
 
 bool emergency_flag = false;
 uint64_t emergency_timer = 0;
@@ -84,6 +87,7 @@ void loop()
     {
         if (emergency_flag == false)
         {
+            BesAir::danger_lights();
             emergency_timer = esp_timer_get_time();
             emergency_flag = true;
         }
@@ -93,15 +97,15 @@ void loop()
     float total_acc_sq = BesAir::get_acceleration();
     BesAir::update_lights(total_acc_sq);
 
-    if (total_acc_sq > 60)
+    if (total_acc_sq > FAN_ACTIVASION_THRESHOLD)
     {
         last_viable_acc = esp_timer_get_time();
 
-        if (fan_state == 0 && besnState == true)
+        if (fan_state == false && besnState == true)
         {
             log("Fan state: ON");
             BesAir::start_motor();
-            fan_state = 1;
+            fan_state = true;
         }
 
         /* Announce BesAir® IP if it is not already connected and turned on */
@@ -113,7 +117,7 @@ void loop()
     }
 
     uint64_t passed_voice_time = (esp_timer_get_time() - last_voice_line) / 1000000;
-    if (passed_voice_time > voice_timeout)
+    if (passed_voice_time > random_voice_timeout)
     {
         int random = esp_random() % 5;
 
@@ -139,14 +143,14 @@ void loop()
         }
 
         last_voice_line = esp_timer_get_time();
-        voice_timeout = 5 + esp_random() % 500;
+        random_voice_timeout = 20 + esp_random() % 500;
     }
 
     uint64_t passed_time = esp_timer_get_time() - last_viable_acc;
-    if ((passed_time > 1000000 || besnState == false) && fan_state == 1)
+    if ((passed_time > FAN_TIMEOUT || besnState == false) && fan_state == true)
     {
         log("Fan state: OFF");
         BesAir::stop_motor();
-        fan_state = 0;
+        fan_state = false;
     }
 }
