@@ -10,5 +10,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <DisclaimerDialog ref="disclaimerDialog" />
+  <DisclaimerDialog
+    header-translation-key="app.cookie-disclaimer.heading"
+    content-translation-key="app.cookie-disclaimer.content"
+    ref="disclaimerDialog"
+  />
 </template>

@@ -3,6 +3,16 @@ import { ref } from 'vue'
 import BasicDialog from '@/components/ui/dialogs/BasicDialog.vue'
 import PrimaryButton from '@/components/ui/buttons/PrimaryButton.vue'
 
+const props = defineProps<{
+  headerTranslationKey: string
+  contentTranslationKey: string
+}>()
+
+const emits = defineEmits<{
+  (e: 'close'): void
+  (e: 'accept'): void
+}>()
+
 const dialog = ref<InstanceType<typeof BasicDialog>>()
 
 function open() {
@@ -10,6 +20,7 @@ function open() {
 }
 
 function close() {
+  emits('close')
   dialog.value?.close()
 }
 
@@ -24,9 +35,18 @@ defineExpose({
     <template v-slot:header>
       <div class="flex flex-wrap items-center justify-between">
         <span class="text-xl font-bold">
-          {{ $t('app.cookie-disclaimer.heading') }}
+          <i18n-t tag="p" :keypath="props.headerTranslationKey">
+            <template #newline><br /></template>
+          </i18n-t>
         </span>
-        <PrimaryButton @click="close">
+        <PrimaryButton
+          @click="
+            () => {
+              emits('accept')
+              close()
+            }
+          "
+        >
           <div class="text-3xl p-2">
             {{ $t('app.cookie-disclaimer.button.accept.label') }}
           </div></PrimaryButton
@@ -35,7 +55,9 @@ defineExpose({
     </template>
     <div class="flex flex-col items-end">
       <div>
-        {{ $t('app.cookie-disclaimer.content') }}
+        <i18n-t tag="p" :keypath="props.contentTranslationKey">
+          <template #newline><br /></template>
+        </i18n-t>
       </div>
       <PrimaryButton @click="close">
         <div class="text-xs">

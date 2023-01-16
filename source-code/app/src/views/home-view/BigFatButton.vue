@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import LoadingCircle from '@/components/ui/loading-spinners/LoadingCircle.vue'
+import { FlagService } from '@/services/flag.service'
 import { computed, ref, watch } from 'vue'
 import type { BesnButtonState } from './BesnControls.vue'
+import DisclaimerDialog from '@/components/ui/dialogs/DisclaimerDialog.vue'
+
+const dataDisclaimer = ref<InstanceType<typeof DisclaimerDialog>>()
 
 const props = defineProps<{
   state: BesnButtonState
@@ -28,7 +32,12 @@ const classes = computed(() => {
 })
 
 function onButtonClick() {
-  emits('change')
+  if (!FlagService.getFlag('data-collection-accepted')) {
+    dataDisclaimer.value?.open()
+    FlagService.setFlag('data-collection-accepted', true)
+  } else {
+    emits('change')
+  }
 }
 
 watch(
@@ -76,4 +85,11 @@ function startPersistentVibrate(duration: number, interval: number) {
       </div>
     </button>
   </div>
+
+  <DisclaimerDialog
+    header-translation-key="app.data-disclaimer.heading"
+    content-translation-key="app.data-disclaimer.content"
+    @accept="onButtonClick"
+    ref="dataDisclaimer"
+  />
 </template>

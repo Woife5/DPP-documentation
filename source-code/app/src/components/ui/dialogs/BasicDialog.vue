@@ -38,7 +38,7 @@ defineExpose({
 <template>
   <dialog
     ref="dialogEl"
-    class="w-full bg-transparent p-0 backdrop:bg-light-dialog-backdrop backdrop:backdrop-blur-sm dark:backdrop:bg-dark-dialog-backdrop md:w-2/3 lg:w-1/2 2xl:w-1/3"
+    class="w-full bg-transparent p-0 backdrop:bg-light-dialog-backdrop backdrop:backdrop-blur-sm dark:backdrop:bg-dark-dialog-backdrop md:w-2/3 lg:w-1/2 2xl:w-1/3 md:h-1/3"
   >
     <form
       class="flex flex-col gap-y-2 rounded-sm bg-neutral-100 p-8 dark:bg-slate-800 dark:text-dark-normal"
