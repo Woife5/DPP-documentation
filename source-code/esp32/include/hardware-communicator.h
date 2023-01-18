@@ -1,7 +1,8 @@
 #pragma once
 
-extern bool besnState;
+extern bool besair_active;
 extern bool emergency;
+extern bool fan_state;
 
 /**
  * @file hardware-communicator.h

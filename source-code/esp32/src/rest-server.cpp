@@ -56,10 +56,10 @@ void BesAirWebserver::on_setup()
       return;
     }
 
-    if (besnState == false)
+    if (besair_active == false)
     {
       BesAirWebserver::log("Turning ON");
-      besnState = true;
+      besair_active = true;
       BesAirSound::queue_sound("active.mp3");
     }
     else
@@ -76,18 +76,18 @@ void BesAirWebserver::on_setup()
       return;
     }
 
-    if (!besnState) {
+    if (!besair_active) {
       BesAirWebserver::log("Already OFF");
     } else {
       BesAirWebserver::log("Turning OFF");
-      besnState = false;
+      besair_active = false;
       BesAirSound::queue_sound("shutdown.mp3");
     }
     request->send_P(200, "json/application", "{ \"state\": \"off\" }"); });
 
   server.on("/api/state", HTTP_GET, [](AsyncWebServerRequest *request)
             {
-    String stateStr = besnState ? "on" : "off";
+    String stateStr = besair_active ? "on" : "off";
     String stateStrUpper = stateStr;
     stateStrUpper.toUpperCase();
     BesAirWebserver::log("Sending state " + stateStrUpper);

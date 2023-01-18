@@ -6,8 +6,9 @@
 #include "esp_timer.h"
 #include "sound-player.h"
 
-bool besnState = false;
+bool besair_active = false;
 bool emergency = false;
+bool fan_state = false;
 
 // How long the fan will stay on once it is turned on
 const size_t FAN_TIMEOUT = 0.7 * 1000 * 1000;
@@ -69,7 +70,6 @@ void setup(void)
 uint64_t last_voice_line = esp_timer_get_time();
 uint64_t last_viable_acc = 0;
 uint16_t random_voice_timeout = 15;
-bool fan_state = false;
 
 bool emergency_flag = false;
 uint64_t emergency_timer = 0;
@@ -78,7 +78,7 @@ void loop()
 {
     BesAirSound::on_loop();
 
-    if (emergency_flag == true && emergency_timer + 40000000 < esp_timer_get_time())
+    if (emergency_flag == true && emergency_timer + 42000000 < esp_timer_get_time())
     {
         ESP.restart();
     }
@@ -87,6 +87,7 @@ void loop()
     {
         if (emergency_flag == false)
         {
+            BesAir::stop_motor();
             BesAir::danger_lights();
             emergency_timer = esp_timer_get_time();
             emergency_flag = true;
@@ -101,7 +102,7 @@ void loop()
     {
         last_viable_acc = esp_timer_get_time();
 
-        if (fan_state == false && besnState == true)
+        if (fan_state == false && besair_active == true)
         {
             log("Fan state: ON");
             BesAir::start_motor();
@@ -109,7 +110,7 @@ void loop()
         }
 
         /* Announce BesAir® IP if it is not already connected and turned on */
-        if (besnState == false)
+        if (besair_active == false)
         {
             BesAirSound::play_sound("ip.mp3");
             BesAirSound::speak_string(BesAirWebserver::get_ip());
@@ -147,7 +148,7 @@ void loop()
     }
 
     uint64_t passed_time = esp_timer_get_time() - last_viable_acc;
-    if ((passed_time > FAN_TIMEOUT || besnState == false) && fan_state == true)
+    if ((passed_time > FAN_TIMEOUT || besair_active == false) && fan_state == true)
     {
         log("Fan state: OFF");
         BesAir::stop_motor();

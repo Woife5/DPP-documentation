@@ -27,11 +27,10 @@ const uint32_t LED_UPDATE_INTERVAL_NS = 10 * 1000;
 Adafruit_NeoPixel led_strip(LED_STRIP_PIXELS, LED_STRIP_PIN, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel led_ring(LED_RING_PIXELS, LED_RING_PIN, NEO_GRB + NEO_KHZ800);
 
+const uint32_t LED_STRIP_COLOR_OFF = led_strip.Color(0, 0, 0);
 const uint32_t LED_RING_ON_COLOR = led_ring.Color(3, 244, 252);
 const uint32_t LED_RING_OFF_COLOR = led_ring.Color(255, 0, 0);
 const uint8_t LED_RING_ON_COUNT = 3;
-
-bool motor_on = false;
 
 void log_besair(String msg)
 {
@@ -182,15 +181,13 @@ uint32_t get_pixel_color(size_t pixel, size_t total_pixels)
 }
 
 uint64_t last_led_update = esp_timer_get_time();
-
 uint8_t ring_leds_on[LED_RING_ON_COUNT] = {0, 1, 2};
-uint32_t strip_led_colors[LED_STRIP_PIXELS] = {0};
 
 void BesAir::reset_lights()
 {
     for (size_t i = 0; i < LED_STRIP_PIXELS; i++)
     {
-        led_strip.setPixelColor(i, led_strip.Color(0, 0, 0));
+        led_strip.setPixelColor(i, LED_STRIP_COLOR_OFF));
     }
 
     for (size_t i = 0; i < LED_RING_PIXELS; i++)
@@ -226,11 +223,11 @@ void BesAir::update_lights(float acc)
     }
 
     // LED ring should flash when motor is on and spin if it is off.
-    if (motor_on == false)
+    if (fan_state == false)
     {
         for (size_t i = 0; i < LED_RING_ON_COUNT; i++)
         {
-            led_ring.setPixelColor(ring_leds_on[i], besnState == true ? LED_RING_ON_COLOR : LED_RING_OFF_COLOR);
+            led_ring.setPixelColor(ring_leds_on[i], besair_active == true ? LED_RING_ON_COLOR : LED_RING_OFF_COLOR);
             ring_leds_on[i] = (ring_leds_on[i] + 1) % LED_RING_PIXELS;
         }
     }
@@ -248,17 +245,12 @@ void BesAir::update_lights(float acc)
     {
         if (i < max_led)
         {
-            strip_led_colors[i] = get_pixel_color(i, LED_STRIP_PIXELS);
+            led_strip.setPixelColor(LED_STRIP_PIXELS - i, get_pixel_color(i, LED_STRIP_PIXELS));
         }
         else
         {
-            strip_led_colors[i] = led_strip.Color(0, 0, 0);
+            led_strip.setPixelColor(LED_STRIP_PIXELS - i, LED_STRIP_COLOR_OFF);
         }
-    }
-
-    for (size_t i = 0; i < LED_STRIP_PIXELS; i++)
-    {
-        led_strip.setPixelColor(LED_STRIP_PIXELS - i, strip_led_colors[i]);
     }
 
     BesAir::show_lights();
@@ -268,7 +260,7 @@ void BesAir::danger_lights()
 {
     for (size_t i = 0; i < LED_STRIP_PIXELS; i++)
     {
-        led_strip.setPixelColor(i, led_strip.Color(0, 0, 0));
+        led_strip.setPixelColor(i, LED_STRIP_COLOR_OFF);
     }
 
     for (size_t i = 0; i < LED_RING_PIXELS; i++)
@@ -299,14 +291,12 @@ void BesAir::start_motor()
 {
     // ledcWrite(PWM_MOTOR_CHANNEL, 256);
     digitalWrite(MOTOR_PIN, HIGH);
-    motor_on = true;
 }
 
 void BesAir::stop_motor()
 {
     // ledcWrite(PWM_MOTOR_CHANNEL, 0);
     digitalWrite(MOTOR_PIN, LOW);
-    motor_on = false;
 }
 
 /**
