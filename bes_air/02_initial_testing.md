@@ -83,3 +83,12 @@ We had to connect the two with a long cable and were able to verify that the esp
 ![Connection from the cable to the relay controlling the hair dryer](assets/component-tests/ba_relay-cable.jpg){: height="500" }
 
 ![Full overview of the entire setup](assets/component-tests/ba_full-integration.jpeg){: height="500" }
+
+
+## Adding Audio
+
+Audio is an essential part of the _BesAir_ experience. Initial ideas for what audio could be used for where a booting sequence and playing brushing sounds of a broom when _BesAir_ is in use. Or alteratively amplifying the motor sound to make it more uncomfortable to use.
+
+Audio is supplied by a 'Adafruit Music Maker FeatherWing' board which mounts on top of the ESP32 Feather. The 'Adafruit_VS1053 library' can then be used to play sound files from a micro SD card that inserts into the FeatherWing.
+
+![First audio test with the FeatherWing and Amplifier](assets/component-tests/first-audio-test.jpeg){: height="500" }
