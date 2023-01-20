@@ -44,6 +44,74 @@ LEDs were planned early on, but later completely disregarded from the developmen
 
 One LED strip was added internally along the long side of the main electronics casing and an LED ring was mounted in the top speaker housing. For the casing only one side received an LED strip as using any more LEDs would overshoot the power budget of the USB power delivery. For this reason the LEDs could also not be turned to their full brightness.
 
+### LED software
+
+A lot of the software used in the previous prototype was reused but had to be extended to accommodate a lot of new features.
+Mainly the code used to detect the current accelleration of the device was changed to detect the total acceleration without the gravity component.
+This was done by substracting the total value from the earth gravity value which was prviosly measured and stored in a constant.
+To not get a negative value the absolute value had to be taken:
+
+```cpp
+    float total_acc = acc.x * acc.x + acc.y * acc.y + acc.z * acc.z;
+    return abs(EARTH_GRAVITY_SQ - total_acc);
+```
+
+A lot of code also had to be added to be able to control both the LED strip and the LED ring.
+These were both controlled using Adafruit's NeoPixel library.
+The LED ring has about 60 LEDs and four different modes:
+
+-   **Off**: Three red LEDs are lit up and moved around the ring
+-   **Active**: Three blue LEDs are lit up and moved around the ring
+-   **On**: All LEDs light up with random colors that change every update call
+-   **Error**: All LEDs light up red
+
+The LED strip always shows the average acceleration value of the device.
+The rolling average is calculated using the following code:
+
+```cpp
+float average_acc = 0;
+
+void on_update(float acc) {
+    average_acc = (average_acc * 0.8) + (acc * 0.2);
+
+    // ...
+}
+```
+
+The hue of every single LED is calculated by mapping the acceleration value to a value between 0 and 360.
+This value is then mapped to a RGB color and sent to the LED strip.
+
 ## Audio Signal Interference
+
+### Speaker software
+
+It was important that we do not include any screen or external port on BesAir, so we decided to use the speaker to read the current IP address of the device.
+There was a lot of different approaches on when to read the IP address, but we decided to read it every time the device is turned off and someone tries to use it.
+To be able to read the IP, we created sound files for every number and the dot.
+The IP address can be obtained from the ESP Async Webserver library and converted to a string.
+The string is then split into single characters and the corresponding sound file is played.
+
+```cpp
+void BesAirSound::speak_string(String str)
+{
+    for (size_t i = 0; i < str.length(); i++)
+    {
+        char buf[30];
+        if (str[i] == '.')
+        {
+            sprintf(buf, "%s.mp3", "dot");
+        }
+        else
+        {
+            sprintf(buf, "%c.mp3", str[i]);
+        }
+
+        BesAirSound::play_sound(buf);
+    }
+}
+```
+
+In this case we used the blocking call to `play_sound` because each file shpould be played in order and not at the same time.
+This also has the consequence that if the IP is being read and an async webrequest turnes the device on, it will say "Activated" and then continue reading the IP before being able to turn on the motors.
 
 ## Final Assembly
