@@ -115,3 +115,18 @@ In this case, we used the blocking call to `play_sound` because each file should
 This also has the consequence that if the IP is being read and an async web request turns the device on, it will say "Activated" and then continue reading the IP before being able to turn on the motors.
 
 ## Final Assembly
+
+During the final assembly phase a lot of small problems turned up which made this phase take longer than anticipated.
+We decided to solder the ESP and all of the different sensor and actor connections to avoid them falling apart when the device is all closed up and in use.
+Some of the connections went apart quite often in the first prototype due to the high forces acting on the broom.
+
+![The final soldered ESP](assets/final-prototype/assembly/esp-soldered.jpg){: width="200" }
+
+Before closing everything up we decided to add connectors to almost every cable in order be able to easily reopen and work on the device.
+This way we can dismantle everything and work on each component on its own before putting everything together again.
+
+![Connectors of the speaker and LED ring](assets/final-prototype/assembly/speaker-connectors.jpg){: width="200" }
+
+Finally with all components soldered and connected we could test if everything would fit into the enclosure as planned and if the device would work as expected.
+
+![Every component fitted into the enclosure](assets/final-prototype/assembly/everything-fitted.jpg)
