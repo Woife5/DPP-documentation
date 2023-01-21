@@ -11,7 +11,7 @@ Project documentation for the **Design for Physical Prototyping** course 2022/23
 ## Abstract
 
 This project aims to create an extremely overengineered, futuristic broom.
-This broom does not include any brisks or brushes, but instead use an air stream to relocate dust and dirt.
+This broom does not include any bristles or brushes, but instead uses an air stream to relocate dust and dirt.
 It should only be active when it is in motion, and the user is using it like a normal broom.
 Otherwise the device should be turned off.
 
@@ -32,10 +32,10 @@ The final idea we decided on can be found in the [project proposal section](01_p
 
 ## Implementation
 
-For the most part of the semester we worked on each component of the final project individually.
+For the most part of the semester, we worked on each component of the final project individually.
 All components were tested on their own first and then in combination with the others they have to interact with.
-Only after the christmas break we started integrating all different hardware and software-parts into a final prototype.
-The different stages of the implementation described more detailed in the dedicated subpages, starting with the [initial testing](02_initial_testing.md).
+Only after the christmas break, we started integrating all different hardware and software-parts into a final prototype.
+The different stages of the implementation are described more detailed in the dedicated subpages, starting with the [initial testing](02_initial_testing.md).
 
 ## Materials and tools
 
@@ -53,7 +53,7 @@ Used materials:
 -   plastic pipe
 -   a **LOT** of tape
 
-Besides the "standard" tools present in an electronic lab we used a 3D printer to print enclosures for the batteries and a nozzle for the broom.
+Besides the "standard" tools present in an electronic lab, we used a 3D printer to print enclosures for the batteries and a nozzle for the broom.
 
 ## Conclusion
 

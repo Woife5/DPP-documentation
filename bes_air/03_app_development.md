@@ -11,15 +11,15 @@ Try out the [_BesAir_ app](http://bes-air.😡🤖.ml/){:target="\_blank"} now!
 
 ## Introduction
 
-The idea is to extend the _BesAir_ experience by developing an app which remotely controlls the _Bes Air_ device. Features like turning the device on and off are a must. Other interactions like changing the LED lighting or playing a sound are planned. Only the future will tell how far we will reach into the bag of absurdity.
+The idea is to extend the _BesAir_ experience by developing an app that remotely controls the _Bes Air_ device. Features like turning the device on and off are a must. Other interactions like changing the LED lighting or playing a sound are planned. Only the future will tell how far we will reach into the bag of absurdity.
 
 ## Development Documentation
 
-The web app is optimized for mobile but works on all devices.
+The web app is optimized for mobile, but works on all devices.
 
-### Cookie Disclaimer Dialog
+### Cookie Disclaimer Dialogue
 
-Every uncomfortable app needs an awfully long cookie disclaimer with no obvious decline button. Litterally every time a user opens the app, a cookie disclaimer is shown. It explains exactly how we don't use any cookie data. While the big accept button is visible at the top, the small decline button is located at the very bottom.
+Every uncomfortable app needs an awfully long cookie disclaimer with no obvious decline button. Literally every time a user opens the app, a cookie disclaimer is shown. It explains exactly how we don't use any cookie data. While the big accept button is visible at the top, the small decline button is located at the very bottom.
 
 | Cookie Disclaimer (Dark) |
 | :-----: |
@@ -49,6 +49,6 @@ The app language can be switched with radio buttons. Besides `German` and `Engli
 
 #### Audio Language
 
-As the _Bes Air_ device speaks to the user, we also provide the option to change the audio language. All options are an English version with a specific accent. So, naturally you can let the device talk as a child.
+As the _Bes Air_ device speaks to the user, we also provide the option to change the audio language. All options are an English version with a specific accent. So, naturally, you can let the device talk as a child.
 
 ![en-GB_Light_Presentation](assets/app-screenshots/settings/en-GB_Light_Presentation.jpg){: width="500" }

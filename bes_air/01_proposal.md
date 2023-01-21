@@ -7,12 +7,12 @@ nav_order: 1
 
 # Project proposal
 
-The inital project concept.
+The initial project concept.
 
 ## Idea
 
 -   What action does the device perform? How long does it take?
-    -   Instead of swiping with bristles the broom uses a state of the art guided air stream to not leave any fine particles in their original place.
+    -   Instead of swiping with bristles, the broom uses a state-of-the-art guided air stream to not leave any fine particles in their original place.
 -   What is a successful result? What is an unsuccessful result?
     -   SUCCESSFUL: The dirt in front of the broom is no longer in front of the broom.
     -   UNSUCCESSFUL: Dirt stays where it was
@@ -30,11 +30,11 @@ The inital project concept.
     -   Overengineered, does not give you more control than a regular broom
     -   Broom must be recharged regularly OR wired connection always
     -   Vacuum like sounds without any advantages of a vacuum compared to a broom
-    -   Never comes into direct contact with dirt so it does not have to be cleaned
+    -   Never comes into direct contact with dirt, so it does not have to be cleaned
 
 ## Implementation
 
-The broom requires a power source, a microcontroller, an acceleration sensor and a powerful motor.
+The broom requires a power source, a microcontroller, an acceleration sensor, and a powerful motor.
 The user does not have to interact with the broom other than use it like a normal broom.
 It will turn on and off by itself when it senses motion.
 
@@ -46,7 +46,7 @@ It will turn on and off by itself when it senses motion.
 
 | Description                                                           | Due date        |
 | --------------------------------------------------------------------- | --------------- |
-| Aquire some (most) required materials                                 | End of November |
+| Acquire some (most) required materials                                | End of November |
 | Test motor with chosen power delivers (battery/power line)            | 9.12.           |
 | First prototype of broom software                                     | 23.12.          |
 | Put hardware and software prototypes together into a single prototype | January 2023    |
