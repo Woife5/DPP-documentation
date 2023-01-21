@@ -17,6 +17,12 @@ The idea is to extend the _BesAir_ experience by developing an app which remotel
 
 The web app is optimized for mobile but works on all devices.
 
+### Cookie Disclaimer
+
+Every uncomfortable app needs an awfully long cookie disclaimer with no obvious decline button. Litterally every time a user opens the app, a cookie disclaimer is shown. It explains exactly how we don't use any cookie data. While the big accept button is visible at the top, the small decline button is located at the very bottom.
+
+![de-AT_Dark_Cookie](assets/app-screenshots/disclaimers/de-AT_Dark_Cookie.png){: width="300"  }
+
 ### Big Fat Button
 
 This clearly important button turns the device on or off. It also communicates to the user when the _Bes Air_ lost connection.
@@ -33,6 +39,14 @@ This clearly important button turns the device on or off. It also communicates t
 
 #### Language
 
+The app language can be switched with radio buttons. Besides `German` and `English` we also included `Austrian German` for a good laugh. For persistency between reloads, the selected language is stored in `LocalStorage`.
+
 |                                Dark Mode German                                 |                               Dark Mode English                               |
 | :-----------------------------------------------------------------------------: | :---------------------------------------------------------------------------: |
 | ![en-GB_Light](assets/app-screenshots/settings/en-GB_Light.png){: width="300" } | ![de-DE_Dark](assets/app-screenshots/settings/de-DE_Dark.png){: width="300" } |
+
+#### Audio Language
+
+As the Bes Air device speaks to the user, we also provide the option to change the audio language. All options are an English version with a specific accent. So, naturally you can let the device talk as a child.
+
+![en-GB_Light_Presentation](assets/app-screenshots/settings/en-GB_Light_Presentation.jpg){: width="500" }
