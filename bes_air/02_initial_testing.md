@@ -30,7 +30,7 @@ Nevertheless, we still ordered a few old hair dryers from Willhaben to eventuall
 ![Initial Version of the BesAir with a server fan](assets/component-tests/ba_servermotor-1.jpg){: height="400" }
 
 The depicted prototype above using the server fan also had a nozzle attached to it.
-It was made out of carton and tape, and we hypothesized that it would be able to direct the airflow in a more precise way.
+It was made from carton and tape, and we hypothesized that it would be able to direct the airflow in a more precise way.
 It turned out that most of the air still got out in the middle of the nozzle, and the sides almost got no airflow at all.
 In contrast to the hair dryer motor, the server fan also required a PWM signal to control its speed instead of a simple on/off signal via a relay.
 It also was not able to spin down to a complete stop if no signal was provided, but rather stayed at a very low speed.

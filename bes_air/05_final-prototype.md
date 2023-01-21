@@ -22,7 +22,7 @@ The electronics casings were printed in transparent PLA to show off the electron
 
 ![printing the base part](assets/final-prototype/design/printing.jpg){: width="300" }
 
-Significant sanding and glueing work was needed to finalize the 3D Prints, especially for the base part, which warped after printing.
+Significant sanding and gluing work was needed to finalize the 3D Prints, especially for the base part, which warped after printing.
 
 ![All the printed and glued 3D printed parts](assets/final-prototype/design/glued-parts.jpg){: width="300" }
 
@@ -46,7 +46,7 @@ One LED strip was added internally along the long side of the main electronics c
 
 ### LED software
 
-A lot of the software used in the previous prototype was reused, but had to be extended to accommodate a lot of new features.
+A lot of the software used in the previous prototype was reused but had to be extended to accommodate a lot of new features.
 Mainly, the code used to detect the current acceleration of the device was changed to detect the total acceleration without the gravity component.
 This was done by subtracting the total value from the earth gravity value, which was previously measured and stored as a constant.
 To not get a negative value, the absolute value had to be taken:
@@ -112,6 +112,6 @@ void BesAirSound::speak_string(String str)
 ```
 
 In this case, we used the blocking call to `play_sound` because each file should be played in order and not at the same time.
-This also has the consequence that if the IP is being read and an async webrequest turns the device on, it will say "Activated" and then continue reading the IP before being able to turn on the motors.
+This also has the consequence that if the IP is being read and an async web request turns the device on, it will say "Activated" and then continue reading the IP before being able to turn on the motors.
 
 ## Final Assembly

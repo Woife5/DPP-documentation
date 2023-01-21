@@ -15,7 +15,7 @@ The idea is to extend the _BesAir_ experience by developing an app that remotely
 
 ## Development Documentation
 
-The web app is optimized for mobile, but works on all devices.
+The web app is optimized for mobile but works on all devices.
 
 ### Cookie Disclaimer Dialogue
 
