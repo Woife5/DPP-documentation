@@ -17,7 +17,7 @@ The idea is to extend the _BesAir_ experience by developing an app which remotel
 
 The web app is optimized for mobile but works on all devices.
 
-### Cookie Disclaimer
+### Cookie Disclaimer Dialog
 
 Every uncomfortable app needs an awfully long cookie disclaimer with no obvious decline button. Litterally every time a user opens the app, a cookie disclaimer is shown. It explains exactly how we don't use any cookie data. While the big accept button is visible at the top, the small decline button is located at the very bottom.
 
