@@ -7,7 +7,7 @@ nav_order: 3
 
 # App Development
 
-Try out the [_BesAir_ app](https://bes-air-app.vercel.app/){:target="\_blank"} now!
+Try out the [_BesAir_ app](http://bes-air.😡🤖.ml/){:target="\_blank"} now!
 
 ## Introduction
 
@@ -21,18 +21,20 @@ The web app is optimized for mobile but works on all devices.
 
 Every uncomfortable app needs an awfully long cookie disclaimer with no obvious decline button. Litterally every time a user opens the app, a cookie disclaimer is shown. It explains exactly how we don't use any cookie data. While the big accept button is visible at the top, the small decline button is located at the very bottom.
 
-![de-AT_Dark_Cookie](assets/app-screenshots/disclaimers/de-AT_Dark_Cookie.png){: width="300"  }
+| Cookie Disclaimer (Dark) |
+| :-----: |
+| ![de-AT_Dark_Cookie](assets/app-screenshots/disclaimers/de-AT_Dark_Cookie.png){: width="300"  } |
 
 ### Big Fat Button
 
 This clearly important button turns the device on or off. It also communicates to the user when the _Bes Air_ lost connection.
 
-|                          Light Mode Turn On                           |                           Light Mode Turn Off                           |
-| :-------------------------------------------------------------------: | :---------------------------------------------------------------------: |
+| Turn On (Light) | Turn Off (Light) |
+| :-----: | :-----: |
 | ![On_Light](assets/app-screenshots/home/On_Light.png){: width="300" } | ![Off_Light](assets/app-screenshots/home/Off_Light.png){: width="300" } |
 
-|                                Dark Mode Turn Off                                 |                                Dark Mode Reconnect                                |
-| :-------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------: |
+| Turn Off (Dark) | Reconnect (Dark) |
+| :-----: | :-----: |
 | ![Home_Off_Dark_iPhone](assets/app-screenshots/home/Off_Dark.png){: width="300" } | ![Reconnect_Dark](assets/app-screenshots/home/Reconnect_Dark.png){: width="300" } |
 
 ### App Settings
@@ -47,6 +49,6 @@ The app language can be switched with radio buttons. Besides `German` and `Engli
 
 #### Audio Language
 
-As the Bes Air device speaks to the user, we also provide the option to change the audio language. All options are an English version with a specific accent. So, naturally you can let the device talk as a child.
+As the _Bes Air_ device speaks to the user, we also provide the option to change the audio language. All options are an English version with a specific accent. So, naturally you can let the device talk as a child.
 
 ![en-GB_Light_Presentation](assets/app-screenshots/settings/en-GB_Light_Presentation.jpg){: width="500" }
