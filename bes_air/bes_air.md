@@ -19,7 +19,7 @@ Project documentation for the **Design for Physical Prototyping** course 2022/23
 ## Abstract
 
 This project aims to create an extremely overengineered, futuristic broom.
-This broom does not include any bristles or brushes, but instead uses an air stream to relocate dust and dirt.
+The broom does not include any bristles or brushes, but instead uses an air stream to relocate dust and dirt.
 It should only be active when it is in motion, and the user is using it like a normal broom.
 Otherwise the device should be turned off.
 
@@ -74,7 +74,7 @@ Besides the "standard" tools present in an electronic lab, we used a 3D printer 
 
 ## Conclusion
 
-This Project has taken on a life of its own and has far surpassed our initial expectations. The freedom in this lecture has provided us with a very unique and effective learning opportunity.
+The Project has taken on a life of its own and has far surpassed our initial expectations. The freedom in this lecture has provided us with a very unique and effective learning opportunity.
 
 The project has deepened our understanding of engineering, design, and the refinement process. Although we encountered some challenges along the way, they did not compromise the planned outcome at all. The power requirements for the LEDs exceeded the capabilities of the USB power supply, which limited the number of LEDs we could include in the design. Additionally, the ESP32 was not quite powerful enough to support a fully-featured web application, which led us to host the application on a separate web server. Despite these challenges, we were able to polish and improve our design through iterative prototyping. Finishing the first integration test early allowed us to really make the final prototype presentable and we are more than happy with the result.
 
