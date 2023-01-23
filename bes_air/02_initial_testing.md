@@ -84,7 +84,6 @@ We had to connect the two with a long cable and were able to verify that the esp
 
 ![Full overview of the entire setup](assets/component-tests/ba_full-integration.jpeg){: height="500" }
 
-
 ## Adding Audio
 
 Audio is an essential part of the _BesAir_ experience. Initial ideas for what audio could be used for where a booting sequence and playing brushing sounds of a broom when _BesAir_ is in use. Or alternatively amplifying the motor sound to make it more uncomfortable to use.

@@ -125,14 +125,14 @@ During the final assembly phase a lot of small problems turned up which made thi
 We decided to solder the ESP and all of the different sensor and actor connections to avoid them falling apart when the device is all closed up and in use. Additionally we decided to glue the accerlerometer to the base part to ensure the motion-detection of the broom is not influeced by the sensor moving slightliy within the casing.
 Some of the connections went apart quite often in the first prototype due to the high forces acting on the broom while moving it back and forth quickly.
 
-![The final soldered ESP](assets/final-prototype/assembly/esp-soldered.jpg){: width="200" } 
-![The final soldered ESP top](assets/final-prototype/assembly/esp-soldered_top.jpg){: width="200" } 
+![The final soldered ESP](assets/final-prototype/assembly/esp-soldered.jpg){: width="200" }
+![The final soldered ESP top](assets/final-prototype/assembly/esp-soldered_top.jpg){: width="200" }
 
-![All the casing parts fitted](assets/final-prototype/assembly/ba_complete-casing.jpg){: width="300" } 
+![All the casing parts fitted](assets/final-prototype/assembly/ba_complete-casing.jpg){: width="300" }
 
-In order to ensure a smooth and precise fit, we sanded the various components. We used a Dremel to widen and smooth out the gap for the fan. We also used a disk sander on the PVC pipe to press-fit with the 3D printed base part, as it was a heavy part and needed to withstand some force while using the BesAir.  The speaker and LED ring setup also press-fit perfectly at the end of the PVC pipe.
+In order to ensure a smooth and precise fit, we sanded the various components. We used a Dremel to widen and smooth out the gap for the fan. We also used a disk sander on the PVC pipe to press-fit with the 3D printed base part, as it was a heavy part and needed to withstand some force while using the BesAir. The speaker and LED ring setup also press-fit perfectly at the end of the PVC pipe.
 
-![All the casing parts fitted](assets/final-prototype/assembly/fan_press-fit.jpg){: width="300" } 
+![All the casing parts fitted](assets/final-prototype/assembly/fan_press-fit.jpg){: width="300" }
 
 After all the casing parts were fitted nicely, we lengthened the cables for the fan and crimped them for better modularity.
 
@@ -146,7 +146,7 @@ Finally with all components soldered and connected we could test if everything w
 
 The final product was uncomfortable for testers in different ways. Also, the magnitude of discomfort lies on different features for different people.
 
-Frequent opinions of discomfort  in BesAir:
+Frequent opinions of discomfort in BesAir:
 
 1. Keeping constant and alternating motion for constant blowing
 2. Lack of precision when actually "cleaning"
