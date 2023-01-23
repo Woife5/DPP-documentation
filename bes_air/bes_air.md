@@ -41,17 +41,18 @@ The different stages of the implementation are described more detailed in the de
 
 Used materials:
 
--   2x hair dryer (from Willhaben and ASZ Hagenberg)
--   2x 18.5V batteries
--   USB powerbank
+-   3x hair dryer (from Willhaben and ASZ Hagenberg)
+-   18.5V batteries
 -   step-down converter
 -   relay
--   amplifier
--   speaker
--   ESP32 plus sound-module
+-   amplifier (Sanwu TDA7498)
+-   speaker (Visaton FR7)
+-   Feather ESP32 plus sound-module FeatherWing
 -   accelerometer
--   plastic pipe
--   a **LOT** of tape
+-   LED ring
+-   LED strip
+-   2x PVC pipe
+-   a **LOT** of tape, glue and 3D printing filament
 
 Besides the "standard" tools present in an electronic lab, we used a 3D printer to print enclosures for the batteries and a nozzle for the broom.
 

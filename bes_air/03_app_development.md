@@ -52,3 +52,9 @@ The app language can be switched with radio buttons. Besides `German` and `Engli
 As the _Bes Air_ device speaks to the user, we also provide the option to change the audio language. All options are an English version with a specific accent. So, naturally, you can let the device talk as a child.
 
 ![en-GB_Light_Presentation](assets/app-screenshots/settings/en-GB_Light_Presentation.jpg){: width="500" }
+
+## Publishing
+
+The App is automatically built by a _GitHub Action_ everytime the source code is changed.
+The build is then copied into a standard _Nginx_ docker image and pushed to _Docker Hub_.
+Afterwards the container running on a server can easily be restarted with the new version of the app.
