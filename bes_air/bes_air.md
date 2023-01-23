@@ -8,6 +8,14 @@ has_children: true
 
 Project documentation for the **Design for Physical Prototyping** course 2022/23 focusing on the topic of **Uncomfortable Devices**.
 
+## Team
+
+-   Felix Rader
+-   Tobias Wagner
+-   Valentin Postl
+-   Daniel Flockert
+-   Wolfgang Schwendtbauer
+
 ## Abstract
 
 This project aims to create an extremely overengineered, futuristic broom.
@@ -28,32 +36,41 @@ Here is a list of some of the best ideas we came up with:
 -   A wastebin which would generate and display personalized shock-images based on the items thrown away.
 -   A device which would press a lot of hair into a sponge which can be used for cleaning.
 
-The final idea we decided on can be found in the [project proposal section](01_proposal.md).
+The final idea we decided on can be found in the [project proposal section](01_proposal).
 
 ## Implementation
 
 For the most part of the semester, we worked on each component of the final project individually.
 All components were tested on their own first and then in combination with the others they have to interact with.
 Only after the christmas break, we started integrating all different hardware and software-parts into a final prototype.
-The different stages of the implementation are described more detailed in the dedicated subpages, starting with the [initial testing](02_initial_testing.md).
+The different stages of the implementation are described more detailed in the dedicated subpages, starting with the [initial testing](02_initial_testing).
 
 ## Materials and tools
 
 Used materials:
 
--   2x hair dryer (from Willhaben and ASZ Hagenberg)
--   2x 18.5V batteries
--   USB powerbank
+-   3x hair dryer (from Willhaben and ASZ Hagenberg)
+-   18.5V batteries
 -   step-down converter
 -   relay
--   amplifier
--   speaker
--   ESP32 plus sound-module
+-   amplifier (Sanwu TDA7498)
+-   speaker (Visaton FR7)
+-   Feather ESP32 plus sound-module FeatherWing
 -   accelerometer
--   plastic pipe
--   a **LOT** of tape
+-   LED ring
+-   LED strip
+-   2x PVC pipe
+-   a **LOT** of tape, glue and 3D printing filament
 
 Besides the "standard" tools present in an electronic lab, we used a 3D printer to print enclosures for the batteries and a nozzle for the broom.
+
+## Final interaction videos
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ef_SeeZ1vMo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/J4gtbVzL-OM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Qpq8d5d9OnU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Conclusion
 

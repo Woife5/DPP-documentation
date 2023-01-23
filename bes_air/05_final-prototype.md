@@ -18,17 +18,17 @@ For the final prototype, a number of parts were modelled in CAD. The base houses
 For the design language a slightly retro-esque style was chosen with simple core shapes, lots of chamfers and decorative ridges. Modelling was done in Fusion 360 with 3D printing already in mind. Due to the limited print volume, the parts had to be split into roughly a dozen individual parts. Total printing time was roughly 70 hours.
 The electronics casings were printed in transparent PLA to show off the electronics and blinking components inside.
 
-![Sketch render of the Fusion360 model](assets/final-prototype/design/BesAir-Drawing-v2.png){: width="300" }
+![Sketch render of the Fusion360 model](assets/final-prototype/design/BesAir-Drawing-v2.png){: width="500" }
 
 ![printing the base part](assets/final-prototype/design/printing.jpg){: width="300" }
 
 Significant sanding and gluing work was needed to finalize the 3D Prints, especially for the base part, which warped after printing, but turned out fine after merging the two halfs in iterations with superglue and clamps.
 
-![All the printed and glued 3D printed parts](assets/final-prototype/design/glued-parts.jpg){: width="300" }
+![All the printed and glued 3D printed parts](assets/final-prototype/design/glued-parts.jpg){: width="400" }
 
 The main electronics casing was glued to the side of the PVC pipe, with some slots cut out to make room for electronics and routing cables. The motor and pipe mounts simply work by friction to enable easy disassembly during prototyping.
 
-![Gluing the electronics casing to the PVC pipe](assets/final-prototype/design/gluing.jpg){: width="300" }
+![Gluing the electronics casing to the PVC pipe](assets/final-prototype/design/gluing.jpg){: width="400" }
 
 ## Safety
 
@@ -120,38 +120,12 @@ During the final assembly phase a lot of small problems turned up which made thi
 We decided to solder the ESP and all of the different sensor and actor connections to avoid them falling apart when the device is all closed up and in use. Additionally we decided to glue the accerlerometer to the base part to ensure the motion-detection of the broom is not influeced by the sensor moving slightliy within the casing.
 Some of the connections went apart quite often in the first prototype due to the high forces acting on the broom while moving it back and forth quickly.
 
-![The final soldered ESP](assets/final-prototype/assembly/esp-soldered.jpg){: width="200" } 
-![The final soldered ESP top](assets/final-prototype/assembly/esp-soldered_top.jpg){: width="200" } 
-
-![All the casing parts fitted](assets/final-prototype/assembly/ba_complete-casing.jpg){: width="300" } 
-
-In order to ensure a smooth and precise fit, we sanded the various components. We used a Dremel to widen and smooth out the gap for the fan. We also used a disk sander on the PVC pipe to press-fit with the 3D printed base part, as it was a heavy part and needed to withstand some force while using the BesAir.  The speaker and LED ring setup also press-fit perfectly at the end of the PVC pipe.
-
-![All the casing parts fitted](assets/final-prototype/assembly/fan_press-fit.jpg){: width="300" } 
-
-After all the casing parts were fitted nicely, we lengthened the cables for the fan and crimped them for better modularity.
+![The final soldered ESP](assets/final-prototype/assembly/esp-soldered.jpg){: width="200" }
 
 Before closing everything up we decided to also add connectors to almost every other cable in order be able to easily reopen and work on the device. This way we can dismantle everything and work on each component on its own before putting everything together again. As we decided to extend the broomstick length slightly by adding an 30cm long extension-pipe, this proved to be very useful. The modification could be easily made by simply disconnecting the speaker unit, eliminating the need for soldering.
 
-![Connectors of the speaker and LED ring](assets/final-prototype/assembly/speaker-connectors.jpg){: width="200" }
+![Connectors of the speaker and LED ring](assets/final-prototype/assembly/speaker-connectors.jpg){: width="250" }
 
 Finally with all components soldered and connected we could test if everything would fit into the enclosure as planned and if the device would work as expected.
 
 ![Every component fitted into the enclosure](assets/final-prototype/assembly/everything-fitted.jpg)
-
-The final product was uncomfortable for testers in different ways. Also, the magnitude of discomfort lies on different features for different people.
-
-Frequent opinions of discomfort  in BesAir:
-
-1. Keeping constant and alternating motion for constant blowing
-2. Lack of precision when actually "cleaning"
-3. Turning it on requires smartphone connection, (manual IP input by listening to stated IP takes time)
-4. Permanent idle-sound / sound next to ear
-5. Angle of the broomstick makes it more difficult to operate
-6. Always holding BesAir above the ground
-7. Pointy blades of fan are unprotected (also pulls and tear things close to it within)
-8. Language setting does not change language
-9. Unexpected random audio statements
-
-
-
