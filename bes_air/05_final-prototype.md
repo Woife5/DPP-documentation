@@ -18,17 +18,17 @@ For the final prototype, a number of parts were modelled in CAD. The base houses
 For the design language a slightly retro-esque style was chosen with simple core shapes, lots of chamfers and decorative ridges. Modelling was done in Fusion 360 with 3D printing already in mind. Due to the limited print volume, the parts had to be split into roughly a dozen individual parts. Total printing time was roughly 70 hours.
 The electronics casings were printed in transparent PLA to show off the electronics and blinking components inside.
 
-![Sketch render of the Fusion360 model](assets/final-prototype/design/BesAir-Drawing-v2.png){: width="300" }
+![Sketch render of the Fusion360 model](assets/final-prototype/design/BesAir-Drawing-v2.png){: width="500" }
 
 ![printing the base part](assets/final-prototype/design/printing.jpg){: width="300" }
 
 Significant sanding and gluing work was needed to finalize the 3D Prints, especially for the base part, which warped after printing.
 
-![All the printed and glued 3D printed parts](assets/final-prototype/design/glued-parts.jpg){: width="300" }
+![All the printed and glued 3D printed parts](assets/final-prototype/design/glued-parts.jpg){: width="400" }
 
 The main electronics casing was glued to the side of the PVC pipe, with some slots cut out to make room for electronics and routing cables. The motor and pipe mounts simply work by friction to enable easy disassembly during prototyping.
 
-![Gluing the electronics casing to the PVC pipe](assets/final-prototype/design/gluing.jpg){: width="300" }
+![Gluing the electronics casing to the PVC pipe](assets/final-prototype/design/gluing.jpg){: width="400" }
 
 ## Safety
 
@@ -120,13 +120,17 @@ During the final assembly phase a lot of small problems turned up which made thi
 We decided to solder the ESP and all of the different sensor and actor connections to avoid them falling apart when the device is all closed up and in use.
 Some of the connections went apart quite often in the first prototype due to the high forces acting on the broom.
 
-![The final soldered ESP](assets/final-prototype/assembly/esp-soldered.jpg){: width="200" }
+![The final soldered ESP](assets/final-prototype/assembly/esp-soldered.jpg){: width="300" }
 
 Before closing everything up we decided to add connectors to almost every cable in order be able to easily reopen and work on the device.
 This way we can dismantle everything and work on each component on its own before putting everything together again.
 
-![Connectors of the speaker and LED ring](assets/final-prototype/assembly/speaker-connectors.jpg){: width="200" }
+![Connectors of the speaker and LED ring](assets/final-prototype/assembly/speaker-connectors.jpg){: width="250" }
 
 Finally with all components soldered and connected we could test if everything would fit into the enclosure as planned and if the device would work as expected.
 
 ![Every component fitted into the enclosure](assets/final-prototype/assembly/everything-fitted.jpg)
+
+After closing everything up, the insides view through the half-transparent 3D printed enclosure looked like this:
+
+![x-ray of the final product](assets/final-prototype/assembly/besair-xray.jpg){: width="300" }
