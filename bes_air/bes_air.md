@@ -57,5 +57,4 @@ Besides the "standard" tools present in an electronic lab, we used a 3D printer 
 
 ## Conclusion
 
-Shortly summarize your project implementation process and the resulting outcome.
-What problems and limitations did you face? What experiences did you make
+In conclusion, this project was a valuable and fun learning experience that deepened our understanding of engineering, design, and the refinement process. Although we encountered some challenges along the way, they did not compromise the planned outcome at all. The power requirements for the LEDs exceeded the capabilities of the ESP32 microcontroller, which limited the number of LEDs we could include in the design. Additionally, the ESP32 was not quite powerful enough to support a fully-featured web application, which led us to host the application on a separate web server. Despite these challenges, we were able to polish and improve our design through iterative prototyping. Furthermore, we gained experience of power management and the limitations and unexpected problems it can present when merging separate parts with deviating power demands. Overall, this project was a great opportunity to apply our knowledge and skills in a real-world setting, and we are proud of what we accomplished.
