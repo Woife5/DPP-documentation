@@ -157,3 +157,7 @@ Frequent opinions of discomfort  in BesAir:
 7. Pointy blades of fan are unprotected (also pulls and tear things close to it within)
 8. Language setting does not change language
 9. Unexpected random audio statements
+
+After closing everything up, the insides view through the half-transparent 3D printed enclosure looked like this:
+
+![x-ray of the final product](assets/final-prototype/assembly/besair-xray.jpg){: width="300" }
