@@ -20,7 +20,7 @@ The electronics casings were printed in transparent PLA to show off the electron
 
 ![Sketch render of the Fusion360 model](assets/final-prototype/design/BesAir-Drawing-v2.png){: width="500" }
 
-![printing the base part](assets/final-prototype/design/printing.jpg){: width="300" }
+![printing the base part](assets/final-prototype/design/printing.jpg){: width="500" }
 
 Significant sanding and gluing work was needed to finalize the 3D Prints, especially for the base part, which warped after printing, but turned out fine after merging the two halfs in iterations with superglue and clamps.
 
@@ -82,6 +82,11 @@ The hue of every single LED is calculated by mapping the acceleration value to a
 This value is then mapped to a RGB color and sent to the LED strip.
 
 ## Audio Signal Interference
+
+After reducing the number of Batteries to one, we encountered a new Problem: Connecting the audio amplifier and ESP to the same ground caused heavy interference in the audio signal. After spending some time on troubleshooting we decided we were unable to fix this problem in time. This left two options: Connecting the ESP to a USB power bank and cutting the LEDs from the prototype (to save on power) or leave the audio as is. Luckily we decided to go with the second option.
+A little later on we discovered the LEDs also produce a very audible interference noise when addressed. We chose to use this to our advantage. The spinning LED animation _BesAir_ plays when in standby/of as well as when active also produces an almost mechanical spinning sound through the interference noise.
+When the fan is turned on the LEDs are addressed with a random color each tick, which produces a noisy high pitched sound, which nicely pairs with the motor noise.
+Whenever audio is played the LEDs are turned off completely to minimize interference.
 
 ### Speaker software
 
